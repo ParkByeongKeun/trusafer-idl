@@ -6,6 +6,8 @@ Main Control Protocol
 
 syntax = "proto3";
 
+import "google/api/annotations.proto";
+
 option go_package = "github.com/ParkByeongKeun/trusafer-idl/maincontrol";
 option java_multiple_files = true;
 option java_package = "net.ijoon.trusafer.main_control";
@@ -15,46 +17,184 @@ package maincontrol;
 
 service MainControl {
   /* Registerer */
-  rpc CreateRegisterer(CreateRegistererRequest) returns (CreateRegistererResponse) {}
-  rpc ReadRegisterer(ReadRegistererRequest) returns (ReadRegistererResponse) {}
-  rpc ReadRegistererList(ReadRegistererListRequest) returns (ReadRegistererListResponse) {}
-  rpc UpdateRegisterer(UpdateRegistererRequest) returns (UpdateRegistererResponse) {}
-  rpc DeleteRegisterer(DeleteRegistererRequest) returns (DeleteRegistererResponse) {}
+  rpc CreateRegisterer(CreateRegistererRequest) returns (CreateRegistererResponse) {
+    option (google.api.http) = {
+      post: "/api/main/v1/registerer"
+      body: "*"
+  };
+  }
+  rpc ReadRegisterer(ReadRegistererRequest) returns (ReadRegistererResponse) {
+    option (google.api.http) = {
+      get: "/api/main/v1/registerer"
+    };
+  }
+  rpc ReadRegistererList(ReadRegistererListRequest) returns (ReadRegistererListResponse) {
+    option (google.api.http) = {
+      get: "/api/main/v1/registerer_list"
+    };
+  }
+  rpc UpdateRegisterer(UpdateRegistererRequest) returns (UpdateRegistererResponse) {
+    option (google.api.http) = {
+      put: "/api/main/v1/registerer"
+      body: "*"
+    };
+  }
+  rpc DeleteRegisterer(DeleteRegistererRequest) returns (DeleteRegistererResponse) {
+    option (google.api.http) = {
+      delete: "/api/main/v1/registerer"
+      body: "*"
+    };
+  }
 
 /* Place */
-  rpc CreatePlace(CreatePlaceRequest) returns (CreatePlaceResponse) {}
-  rpc ReadPlace(ReadPlaceRequest) returns (ReadPlaceResponse) {}
-  rpc ReadPlaceList(ReadPlaceListRequest) returns (ReadPlaceListResponse) {}
-  rpc UpdatePlace(UpdatePlaceRequest) returns (UpdatePlaceResponse) {}
-  rpc DeletePlace(DeletePlaceRequest) returns (DeletePlaceResponse) {}
+  rpc CreatePlace(CreatePlaceRequest) returns (CreatePlaceResponse) {
+    option (google.api.http) = {
+      post: "/api/main/v1/place"
+      body: "*"
+  };
+  }
+  rpc ReadPlace(ReadPlaceRequest) returns (ReadPlaceResponse) {
+    option (google.api.http) = {
+      get: "/api/main/v1/place"
+    };
+  }
+  rpc ReadPlaceList(ReadPlaceListRequest) returns (ReadPlaceListResponse) {
+    option (google.api.http) = {
+      get: "/api/main/v1/place_list"
+    };
+  }
+  rpc UpdatePlace(UpdatePlaceRequest) returns (UpdatePlaceResponse) {
+    option (google.api.http) = {
+      put: "/api/main/v1/place"
+      body: "*"
+    };
+  }
+  rpc DeletePlace(DeletePlaceRequest) returns (DeletePlaceResponse) {
+    option (google.api.http) = {
+      delete: "/api/main/v1/place"
+      body: "*"
+    };
+  }
   
   /* Settop */
-  rpc CreateSettop(CreateSettopRequest) returns (CreateSettopResponse) {}
-  rpc ReadSettop(ReadSettopRequest) returns (ReadSettopResponse) {}
-  rpc ReadSettopList(ReadSettopListRequest) returns (ReadSettopListResponse) {}
-  rpc UpdateSettop(UpdateSettopRequest) returns (UpdateSettopResponse) {}
-  rpc DeleteSettop(DeleteSettopRequest) returns (DeleteSettopResponse) {}
+  rpc CreateSettop(CreateSettopRequest) returns (CreateSettopResponse) {
+    option (google.api.http) = {
+      post: "/api/main/v1/settop"
+      body: "*"
+  };
+  }
+  rpc ReadSettop(ReadSettopRequest) returns (ReadSettopResponse) {
+    option (google.api.http) = {
+      get: "/api/main/v1/settop"
+  };
+  }
+  rpc ReadSettopList(ReadSettopListRequest) returns (ReadSettopListResponse) {
+    option (google.api.http) = {
+      get: "/api/main/v1/settop_list"
+  };
+  }
+  rpc UpdateSettop(UpdateSettopRequest) returns (UpdateSettopResponse) {
+    option (google.api.http) = {
+      put: "/api/main/v1/settop"
+      body: "*"
+    };
+  }
+  rpc DeleteSettop(DeleteSettopRequest) returns (DeleteSettopResponse) {
+    option (google.api.http) = {
+      delete: "/api/main/v1/settop"
+      body: "*"
+    };
+  }
   
   /* Sensor */
-  rpc CreateSensor(CreateSensorRequest) returns (CreateSensorResponse) {}
-  rpc ReadSensor(ReadSensorRequest) returns (ReadSensorResponse) {}
-  rpc ReadSensorList(ReadSensorListRequest) returns (ReadSensorListResponse) {}
-  rpc UpdateSensor(UpdateSensorRequest) returns (UpdateSensorResponse) {}
-  rpc DeleteSensor(DeleteSensorRequest) returns (DeleteSensorResponse) {}
+  rpc CreateSensor(CreateSensorRequest) returns (CreateSensorResponse) {
+    option (google.api.http) = {
+      post: "/api/main/v1/sensor"
+      body: "*"
+  };
+  }
+  rpc ReadSensor(ReadSensorRequest) returns (ReadSensorResponse) {
+    option (google.api.http) = {
+      get: "/api/main/v1/sensor"
+  };
+  }
+  rpc ReadSensorList(ReadSensorListRequest) returns (ReadSensorListResponse) {
+    option (google.api.http) = {
+      get: "/api/main/v1/sensor_list"
+  };
+  }
+  rpc UpdateSensor(UpdateSensorRequest) returns (UpdateSensorResponse) {
+    option (google.api.http) = {
+      put: "/api/main/v1/sensor"
+      body: "*"
+    };
+  }
+  rpc DeleteSensor(DeleteSensorRequest) returns (DeleteSensorResponse) {
+    option (google.api.http) = {
+      delete: "/api/main/v1/sensor"
+      body: "*"
+    };
+  }
   
   /* History */
-  rpc CreateHistory(CreateHistoryRequest) returns (CreateHistoryResponse) {}
-  rpc ReadHistory(ReadHistoryRequest) returns (ReadHistoryResponse) {}
-  rpc ReadHistoryList(ReadHistoryListRequest) returns (ReadHistoryListResponse) {}
-  rpc UpdateHistory(UpdateHistoryRequest) returns (UpdateHistoryResponse) {}
-  rpc DeleteHistory(DeleteHistoryRequest) returns (DeleteHistoryResponse) {}
+  rpc CreateHistory(CreateHistoryRequest) returns (CreateHistoryResponse) {
+    option (google.api.http) = {
+      post: "/api/main/v1/history"
+      body: "*"
+  };
+  }
+  rpc ReadHistory(ReadHistoryRequest) returns (ReadHistoryResponse) {
+    option (google.api.http) = {
+      get: "/api/main/v1/history"
+  };
+  }
+  rpc ReadHistoryList(ReadHistoryListRequest) returns (ReadHistoryListResponse) {
+    option (google.api.http) = {
+      get: "/api/main/v1/history_list"
+  };
+  }
+  rpc UpdateHistory(UpdateHistoryRequest) returns (UpdateHistoryResponse) {
+    option (google.api.http) = {
+      put: "/api/main/v1/history"
+      body: "*"
+    };
+  }
+  rpc DeleteHistory(DeleteHistoryRequest) returns (DeleteHistoryResponse) {
+    option (google.api.http) = {
+      delete: "/api/main/v1/history"
+      body: "*"
+    };
+  }
 
   /* Group */
-  rpc CreateGroup(CreateGroupRequest) returns (CreateGroupResponse) {}
-  rpc ReadGroup(ReadGroupRequest) returns (ReadGroupResponse) {}
-  rpc ReadGroupList(ReadGroupListRequest) returns (ReadGroupListResponse) {}
-  rpc UpdateGroup(UpdateGroupRequest) returns (UpdateGroupResponse) {}
-  rpc DeleteGroup(DeleteGroupRequest) returns (DeleteGroupResponse) {}
+  rpc CreateGroup(CreateGroupRequest) returns (CreateGroupResponse) {
+    option (google.api.http) = {
+      post: "/api/main/v1/group"
+      body: "*"
+  };
+  }
+  rpc ReadGroup(ReadGroupRequest) returns (ReadGroupResponse) {
+    option (google.api.http) = {
+      get: "/api/main/v1/group"
+  };
+  }
+  rpc ReadGroupList(ReadGroupListRequest) returns (ReadGroupListResponse) {
+    option (google.api.http) = {
+      get: "/api/main/v1/group_list"
+  };
+  }
+  rpc UpdateGroup(UpdateGroupRequest) returns (UpdateGroupResponse) {
+    option (google.api.http) = {
+      put: "/api/main/v1/group"
+      body: "*"
+    };
+  }
+  rpc DeleteGroup(DeleteGroupRequest) returns (DeleteGroupResponse) {
+    option (google.api.http) = {
+      delete: "/api/main/v1/group"
+      body: "*"
+    };
+  }
 
   // /* Share */
   // rpc CreateShareUser(CreateShareRequest) returns (CreateShareResponse) {}
