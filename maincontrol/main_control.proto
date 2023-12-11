@@ -119,7 +119,7 @@ message ReadRegistererResponse {
 
 // 특정 건물의 registerer list 가져오기
 message ReadRegistererListRequest {
-  uint64 place_id = 1;
+  uint64 group_id = 1;
 }
 message ReadRegistererListResponse {
   repeated Registerer registerer_list = 1;
