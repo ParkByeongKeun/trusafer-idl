@@ -269,7 +269,7 @@ message Place {
   uint64 id = 1;
   string name = 2;
   string address = 3;
-  uint64 owner_id = 4;
+  uint64 registerer_id = 4;
   string registered_time = 5;
 }
 
