@@ -305,7 +305,7 @@ message ReadPlaceResponse {
 
 // place list 가져오기
 message ReadPlaceListRequest {
-  string registerer_id = 1;
+  uint64 registerer_id = 1;
 }
 message ReadPlaceListResponse {
   repeated Place place_list = 1;
