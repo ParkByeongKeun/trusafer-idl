@@ -326,7 +326,7 @@ message Settop {
   string ip_address = 4;
   string location = 5;
   string floor = 6;
-  repeated ip_module ip_module = 7;
+  ip_module ip_module = 7;
   string registered_time = 8;
 }
 
@@ -379,7 +379,7 @@ enum SensorStatus {
 
 message Sensor {
   uint64 id = 1;
-  string settop_id = 2;
+  uint64 settop_id = 2;
   SensorStatus status = 3;
   string serial = 4;
   string ip_address = 5;
@@ -428,10 +428,15 @@ message ReadSensorListResponse {
 }
 
 
+message minMax_Temp {
+  uint64 min = 1;
+  string max = 2;
+}
+
 message History {
   uint64 id = 1;
-  string sensor_id = 2;
-  repeated string temp = 3;
+  uint64 sensor_id = 2;
+  minMax_Temp temp = 3;
   string date = 4;
   
 }
