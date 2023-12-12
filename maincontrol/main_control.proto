@@ -365,8 +365,7 @@ message Settop {
   string ip_address = 4;
   string location = 5;
   string floor = 6;
-  ip_module ip_module = 7;
-  string registered_time = 8;
+  string registered_time = 7;
 }
 
 
