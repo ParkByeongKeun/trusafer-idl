@@ -1223,9 +1223,10 @@ type IpModule struct {
 	unknownFields protoimpl.UnknownFields
 
 	Id              uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	IpAddress       string `protobuf:"bytes,2,opt,name=ip_address,json=ipAddress,proto3" json:"ip_address,omitempty"`
-	MacAddress      string `protobuf:"bytes,3,opt,name=mac_address,json=macAddress,proto3" json:"mac_address,omitempty"`
-	FirmwareVersion string `protobuf:"bytes,4,opt,name=firmware_version,json=firmwareVersion,proto3" json:"firmware_version,omitempty"`
+	SettopId        uint64 `protobuf:"varint,2,opt,name=settop_id,json=settopId,proto3" json:"settop_id,omitempty"`
+	IpAddress       string `protobuf:"bytes,3,opt,name=ip_address,json=ipAddress,proto3" json:"ip_address,omitempty"`
+	MacAddress      string `protobuf:"bytes,4,opt,name=mac_address,json=macAddress,proto3" json:"mac_address,omitempty"`
+	FirmwareVersion string `protobuf:"bytes,5,opt,name=firmware_version,json=firmwareVersion,proto3" json:"firmware_version,omitempty"`
 }
 
 func (x *IpModule) Reset() {
@@ -1267,6 +1268,13 @@ func (x *IpModule) GetId() uint64 {
 	return 0
 }
 
+func (x *IpModule) GetSettopId() uint64 {
+	if x != nil {
+		return x.SettopId
+	}
+	return 0
+}
+
 func (x *IpModule) GetIpAddress() string {
 	if x != nil {
 		return x.IpAddress
@@ -1288,6 +1296,454 @@ func (x *IpModule) GetFirmwareVersion() string {
 	return ""
 }
 
+// ip_module 등록
+type CreateIpModuleRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	IpModule *IpModule `protobuf:"bytes,1,opt,name=ip_module,json=ipModule,proto3" json:"ip_module,omitempty"`
+}
+
+func (x *CreateIpModuleRequest) Reset() {
+	*x = CreateIpModuleRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_main_control_proto_msgTypes[23]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateIpModuleRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateIpModuleRequest) ProtoMessage() {}
+
+func (x *CreateIpModuleRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_main_control_proto_msgTypes[23]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateIpModuleRequest.ProtoReflect.Descriptor instead.
+func (*CreateIpModuleRequest) Descriptor() ([]byte, []int) {
+	return file_main_control_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *CreateIpModuleRequest) GetIpModule() *IpModule {
+	if x != nil {
+		return x.IpModule
+	}
+	return nil
+}
+
+type CreateIpModuleResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *CreateIpModuleResponse) Reset() {
+	*x = CreateIpModuleResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_main_control_proto_msgTypes[24]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateIpModuleResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateIpModuleResponse) ProtoMessage() {}
+
+func (x *CreateIpModuleResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_main_control_proto_msgTypes[24]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateIpModuleResponse.ProtoReflect.Descriptor instead.
+func (*CreateIpModuleResponse) Descriptor() ([]byte, []int) {
+	return file_main_control_proto_rawDescGZIP(), []int{24}
+}
+
+// ip_module 수정
+type UpdateIpModuleRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	IpModule *IpModule `protobuf:"bytes,1,opt,name=ip_module,json=ipModule,proto3" json:"ip_module,omitempty"`
+}
+
+func (x *UpdateIpModuleRequest) Reset() {
+	*x = UpdateIpModuleRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_main_control_proto_msgTypes[25]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateIpModuleRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateIpModuleRequest) ProtoMessage() {}
+
+func (x *UpdateIpModuleRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_main_control_proto_msgTypes[25]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateIpModuleRequest.ProtoReflect.Descriptor instead.
+func (*UpdateIpModuleRequest) Descriptor() ([]byte, []int) {
+	return file_main_control_proto_rawDescGZIP(), []int{25}
+}
+
+func (x *UpdateIpModuleRequest) GetIpModule() *IpModule {
+	if x != nil {
+		return x.IpModule
+	}
+	return nil
+}
+
+type UpdateIpModuleResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *UpdateIpModuleResponse) Reset() {
+	*x = UpdateIpModuleResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_main_control_proto_msgTypes[26]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateIpModuleResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateIpModuleResponse) ProtoMessage() {}
+
+func (x *UpdateIpModuleResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_main_control_proto_msgTypes[26]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateIpModuleResponse.ProtoReflect.Descriptor instead.
+func (*UpdateIpModuleResponse) Descriptor() ([]byte, []int) {
+	return file_main_control_proto_rawDescGZIP(), []int{26}
+}
+
+// ip_module 삭제
+type DeleteIpModuleRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	IpModuleId uint64 `protobuf:"varint,1,opt,name=ip_module_id,json=ipModuleId,proto3" json:"ip_module_id,omitempty"`
+}
+
+func (x *DeleteIpModuleRequest) Reset() {
+	*x = DeleteIpModuleRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_main_control_proto_msgTypes[27]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteIpModuleRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteIpModuleRequest) ProtoMessage() {}
+
+func (x *DeleteIpModuleRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_main_control_proto_msgTypes[27]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteIpModuleRequest.ProtoReflect.Descriptor instead.
+func (*DeleteIpModuleRequest) Descriptor() ([]byte, []int) {
+	return file_main_control_proto_rawDescGZIP(), []int{27}
+}
+
+func (x *DeleteIpModuleRequest) GetIpModuleId() uint64 {
+	if x != nil {
+		return x.IpModuleId
+	}
+	return 0
+}
+
+type DeleteIpModuleResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DeleteIpModuleResponse) Reset() {
+	*x = DeleteIpModuleResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_main_control_proto_msgTypes[28]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteIpModuleResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteIpModuleResponse) ProtoMessage() {}
+
+func (x *DeleteIpModuleResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_main_control_proto_msgTypes[28]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteIpModuleResponse.ProtoReflect.Descriptor instead.
+func (*DeleteIpModuleResponse) Descriptor() ([]byte, []int) {
+	return file_main_control_proto_rawDescGZIP(), []int{28}
+}
+
+// 특정 ip_module 가져오기
+type ReadIpModuleRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	IpModuleId uint64 `protobuf:"varint,1,opt,name=ip_module_id,json=ipModuleId,proto3" json:"ip_module_id,omitempty"`
+}
+
+func (x *ReadIpModuleRequest) Reset() {
+	*x = ReadIpModuleRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_main_control_proto_msgTypes[29]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ReadIpModuleRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ReadIpModuleRequest) ProtoMessage() {}
+
+func (x *ReadIpModuleRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_main_control_proto_msgTypes[29]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ReadIpModuleRequest.ProtoReflect.Descriptor instead.
+func (*ReadIpModuleRequest) Descriptor() ([]byte, []int) {
+	return file_main_control_proto_rawDescGZIP(), []int{29}
+}
+
+func (x *ReadIpModuleRequest) GetIpModuleId() uint64 {
+	if x != nil {
+		return x.IpModuleId
+	}
+	return 0
+}
+
+type ReadIpModuleResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	IpModule *IpModule `protobuf:"bytes,1,opt,name=ip_module,json=ipModule,proto3" json:"ip_module,omitempty"`
+}
+
+func (x *ReadIpModuleResponse) Reset() {
+	*x = ReadIpModuleResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_main_control_proto_msgTypes[30]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ReadIpModuleResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ReadIpModuleResponse) ProtoMessage() {}
+
+func (x *ReadIpModuleResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_main_control_proto_msgTypes[30]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ReadIpModuleResponse.ProtoReflect.Descriptor instead.
+func (*ReadIpModuleResponse) Descriptor() ([]byte, []int) {
+	return file_main_control_proto_rawDescGZIP(), []int{30}
+}
+
+func (x *ReadIpModuleResponse) GetIpModule() *IpModule {
+	if x != nil {
+		return x.IpModule
+	}
+	return nil
+}
+
+// ip_module list 가져오기
+type ReadIpModuleListRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	SettopId uint64 `protobuf:"varint,1,opt,name=settop_id,json=settopId,proto3" json:"settop_id,omitempty"`
+}
+
+func (x *ReadIpModuleListRequest) Reset() {
+	*x = ReadIpModuleListRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_main_control_proto_msgTypes[31]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ReadIpModuleListRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ReadIpModuleListRequest) ProtoMessage() {}
+
+func (x *ReadIpModuleListRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_main_control_proto_msgTypes[31]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ReadIpModuleListRequest.ProtoReflect.Descriptor instead.
+func (*ReadIpModuleListRequest) Descriptor() ([]byte, []int) {
+	return file_main_control_proto_rawDescGZIP(), []int{31}
+}
+
+func (x *ReadIpModuleListRequest) GetSettopId() uint64 {
+	if x != nil {
+		return x.SettopId
+	}
+	return 0
+}
+
+type ReadIpModuleListResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	IpModuleList []*IpModule `protobuf:"bytes,1,rep,name=ip_module_list,json=ipModuleList,proto3" json:"ip_module_list,omitempty"`
+}
+
+func (x *ReadIpModuleListResponse) Reset() {
+	*x = ReadIpModuleListResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_main_control_proto_msgTypes[32]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ReadIpModuleListResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ReadIpModuleListResponse) ProtoMessage() {}
+
+func (x *ReadIpModuleListResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_main_control_proto_msgTypes[32]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ReadIpModuleListResponse.ProtoReflect.Descriptor instead.
+func (*ReadIpModuleListResponse) Descriptor() ([]byte, []int) {
+	return file_main_control_proto_rawDescGZIP(), []int{32}
+}
+
+func (x *ReadIpModuleListResponse) GetIpModuleList() []*IpModule {
+	if x != nil {
+		return x.IpModuleList
+	}
+	return nil
+}
+
 type Settop struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1306,7 +1762,7 @@ type Settop struct {
 func (x *Settop) Reset() {
 	*x = Settop{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[23]
+		mi := &file_main_control_proto_msgTypes[33]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1319,7 +1775,7 @@ func (x *Settop) String() string {
 func (*Settop) ProtoMessage() {}
 
 func (x *Settop) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[23]
+	mi := &file_main_control_proto_msgTypes[33]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1332,7 +1788,7 @@ func (x *Settop) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Settop.ProtoReflect.Descriptor instead.
 func (*Settop) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{23}
+	return file_main_control_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *Settop) GetId() uint64 {
@@ -1403,7 +1859,7 @@ type CreateSettopRequest struct {
 func (x *CreateSettopRequest) Reset() {
 	*x = CreateSettopRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[24]
+		mi := &file_main_control_proto_msgTypes[34]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1416,7 +1872,7 @@ func (x *CreateSettopRequest) String() string {
 func (*CreateSettopRequest) ProtoMessage() {}
 
 func (x *CreateSettopRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[24]
+	mi := &file_main_control_proto_msgTypes[34]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1429,7 +1885,7 @@ func (x *CreateSettopRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateSettopRequest.ProtoReflect.Descriptor instead.
 func (*CreateSettopRequest) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{24}
+	return file_main_control_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *CreateSettopRequest) GetSettop() *Settop {
@@ -1448,7 +1904,7 @@ type CreateSettopResponse struct {
 func (x *CreateSettopResponse) Reset() {
 	*x = CreateSettopResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[25]
+		mi := &file_main_control_proto_msgTypes[35]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1461,7 +1917,7 @@ func (x *CreateSettopResponse) String() string {
 func (*CreateSettopResponse) ProtoMessage() {}
 
 func (x *CreateSettopResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[25]
+	mi := &file_main_control_proto_msgTypes[35]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1474,7 +1930,7 @@ func (x *CreateSettopResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateSettopResponse.ProtoReflect.Descriptor instead.
 func (*CreateSettopResponse) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{25}
+	return file_main_control_proto_rawDescGZIP(), []int{35}
 }
 
 // settop 수정
@@ -1489,7 +1945,7 @@ type UpdateSettopRequest struct {
 func (x *UpdateSettopRequest) Reset() {
 	*x = UpdateSettopRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[26]
+		mi := &file_main_control_proto_msgTypes[36]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1502,7 +1958,7 @@ func (x *UpdateSettopRequest) String() string {
 func (*UpdateSettopRequest) ProtoMessage() {}
 
 func (x *UpdateSettopRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[26]
+	mi := &file_main_control_proto_msgTypes[36]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1515,7 +1971,7 @@ func (x *UpdateSettopRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateSettopRequest.ProtoReflect.Descriptor instead.
 func (*UpdateSettopRequest) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{26}
+	return file_main_control_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *UpdateSettopRequest) GetSettop() *Settop {
@@ -1534,7 +1990,7 @@ type UpdateSettopResponse struct {
 func (x *UpdateSettopResponse) Reset() {
 	*x = UpdateSettopResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[27]
+		mi := &file_main_control_proto_msgTypes[37]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1547,7 +2003,7 @@ func (x *UpdateSettopResponse) String() string {
 func (*UpdateSettopResponse) ProtoMessage() {}
 
 func (x *UpdateSettopResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[27]
+	mi := &file_main_control_proto_msgTypes[37]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1560,7 +2016,7 @@ func (x *UpdateSettopResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateSettopResponse.ProtoReflect.Descriptor instead.
 func (*UpdateSettopResponse) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{27}
+	return file_main_control_proto_rawDescGZIP(), []int{37}
 }
 
 // settop 삭제
@@ -1575,7 +2031,7 @@ type DeleteSettopRequest struct {
 func (x *DeleteSettopRequest) Reset() {
 	*x = DeleteSettopRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[28]
+		mi := &file_main_control_proto_msgTypes[38]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1588,7 +2044,7 @@ func (x *DeleteSettopRequest) String() string {
 func (*DeleteSettopRequest) ProtoMessage() {}
 
 func (x *DeleteSettopRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[28]
+	mi := &file_main_control_proto_msgTypes[38]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1601,7 +2057,7 @@ func (x *DeleteSettopRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteSettopRequest.ProtoReflect.Descriptor instead.
 func (*DeleteSettopRequest) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{28}
+	return file_main_control_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *DeleteSettopRequest) GetSettopId() uint64 {
@@ -1620,7 +2076,7 @@ type DeleteSettopResponse struct {
 func (x *DeleteSettopResponse) Reset() {
 	*x = DeleteSettopResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[29]
+		mi := &file_main_control_proto_msgTypes[39]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1633,7 +2089,7 @@ func (x *DeleteSettopResponse) String() string {
 func (*DeleteSettopResponse) ProtoMessage() {}
 
 func (x *DeleteSettopResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[29]
+	mi := &file_main_control_proto_msgTypes[39]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1646,7 +2102,7 @@ func (x *DeleteSettopResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteSettopResponse.ProtoReflect.Descriptor instead.
 func (*DeleteSettopResponse) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{29}
+	return file_main_control_proto_rawDescGZIP(), []int{39}
 }
 
 // 특정 settop 가져오기
@@ -1661,7 +2117,7 @@ type ReadSettopRequest struct {
 func (x *ReadSettopRequest) Reset() {
 	*x = ReadSettopRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[30]
+		mi := &file_main_control_proto_msgTypes[40]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1674,7 +2130,7 @@ func (x *ReadSettopRequest) String() string {
 func (*ReadSettopRequest) ProtoMessage() {}
 
 func (x *ReadSettopRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[30]
+	mi := &file_main_control_proto_msgTypes[40]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1687,7 +2143,7 @@ func (x *ReadSettopRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReadSettopRequest.ProtoReflect.Descriptor instead.
 func (*ReadSettopRequest) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{30}
+	return file_main_control_proto_rawDescGZIP(), []int{40}
 }
 
 func (x *ReadSettopRequest) GetSettopId() uint64 {
@@ -1708,7 +2164,7 @@ type ReadSettopResponse struct {
 func (x *ReadSettopResponse) Reset() {
 	*x = ReadSettopResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[31]
+		mi := &file_main_control_proto_msgTypes[41]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1721,7 +2177,7 @@ func (x *ReadSettopResponse) String() string {
 func (*ReadSettopResponse) ProtoMessage() {}
 
 func (x *ReadSettopResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[31]
+	mi := &file_main_control_proto_msgTypes[41]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1734,7 +2190,7 @@ func (x *ReadSettopResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReadSettopResponse.ProtoReflect.Descriptor instead.
 func (*ReadSettopResponse) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{31}
+	return file_main_control_proto_rawDescGZIP(), []int{41}
 }
 
 func (x *ReadSettopResponse) GetSettop() *Settop {
@@ -1756,7 +2212,7 @@ type ReadSettopListRequest struct {
 func (x *ReadSettopListRequest) Reset() {
 	*x = ReadSettopListRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[32]
+		mi := &file_main_control_proto_msgTypes[42]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1769,7 +2225,7 @@ func (x *ReadSettopListRequest) String() string {
 func (*ReadSettopListRequest) ProtoMessage() {}
 
 func (x *ReadSettopListRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[32]
+	mi := &file_main_control_proto_msgTypes[42]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1782,7 +2238,7 @@ func (x *ReadSettopListRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReadSettopListRequest.ProtoReflect.Descriptor instead.
 func (*ReadSettopListRequest) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{32}
+	return file_main_control_proto_rawDescGZIP(), []int{42}
 }
 
 func (x *ReadSettopListRequest) GetPlaceId() uint64 {
@@ -1803,7 +2259,7 @@ type ReadSettopListResponse struct {
 func (x *ReadSettopListResponse) Reset() {
 	*x = ReadSettopListResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[33]
+		mi := &file_main_control_proto_msgTypes[43]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1816,7 +2272,7 @@ func (x *ReadSettopListResponse) String() string {
 func (*ReadSettopListResponse) ProtoMessage() {}
 
 func (x *ReadSettopListResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[33]
+	mi := &file_main_control_proto_msgTypes[43]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1829,7 +2285,7 @@ func (x *ReadSettopListResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReadSettopListResponse.ProtoReflect.Descriptor instead.
 func (*ReadSettopListResponse) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{33}
+	return file_main_control_proto_rawDescGZIP(), []int{43}
 }
 
 func (x *ReadSettopListResponse) GetSettopList() []*Settop {
@@ -1858,7 +2314,7 @@ type Sensor struct {
 func (x *Sensor) Reset() {
 	*x = Sensor{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[34]
+		mi := &file_main_control_proto_msgTypes[44]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1871,7 +2327,7 @@ func (x *Sensor) String() string {
 func (*Sensor) ProtoMessage() {}
 
 func (x *Sensor) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[34]
+	mi := &file_main_control_proto_msgTypes[44]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1884,7 +2340,7 @@ func (x *Sensor) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Sensor.ProtoReflect.Descriptor instead.
 func (*Sensor) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{34}
+	return file_main_control_proto_rawDescGZIP(), []int{44}
 }
 
 func (x *Sensor) GetId() uint64 {
@@ -1962,7 +2418,7 @@ type CreateSensorRequest struct {
 func (x *CreateSensorRequest) Reset() {
 	*x = CreateSensorRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[35]
+		mi := &file_main_control_proto_msgTypes[45]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1975,7 +2431,7 @@ func (x *CreateSensorRequest) String() string {
 func (*CreateSensorRequest) ProtoMessage() {}
 
 func (x *CreateSensorRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[35]
+	mi := &file_main_control_proto_msgTypes[45]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1988,7 +2444,7 @@ func (x *CreateSensorRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateSensorRequest.ProtoReflect.Descriptor instead.
 func (*CreateSensorRequest) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{35}
+	return file_main_control_proto_rawDescGZIP(), []int{45}
 }
 
 func (x *CreateSensorRequest) GetSensor() *Sensor {
@@ -2007,7 +2463,7 @@ type CreateSensorResponse struct {
 func (x *CreateSensorResponse) Reset() {
 	*x = CreateSensorResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[36]
+		mi := &file_main_control_proto_msgTypes[46]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2020,7 +2476,7 @@ func (x *CreateSensorResponse) String() string {
 func (*CreateSensorResponse) ProtoMessage() {}
 
 func (x *CreateSensorResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[36]
+	mi := &file_main_control_proto_msgTypes[46]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2033,7 +2489,7 @@ func (x *CreateSensorResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateSensorResponse.ProtoReflect.Descriptor instead.
 func (*CreateSensorResponse) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{36}
+	return file_main_control_proto_rawDescGZIP(), []int{46}
 }
 
 // sensor 수정
@@ -2048,7 +2504,7 @@ type UpdateSensorRequest struct {
 func (x *UpdateSensorRequest) Reset() {
 	*x = UpdateSensorRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[37]
+		mi := &file_main_control_proto_msgTypes[47]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2061,7 +2517,7 @@ func (x *UpdateSensorRequest) String() string {
 func (*UpdateSensorRequest) ProtoMessage() {}
 
 func (x *UpdateSensorRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[37]
+	mi := &file_main_control_proto_msgTypes[47]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2074,7 +2530,7 @@ func (x *UpdateSensorRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateSensorRequest.ProtoReflect.Descriptor instead.
 func (*UpdateSensorRequest) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{37}
+	return file_main_control_proto_rawDescGZIP(), []int{47}
 }
 
 func (x *UpdateSensorRequest) GetSensor() *Sensor {
@@ -2093,7 +2549,7 @@ type UpdateSensorResponse struct {
 func (x *UpdateSensorResponse) Reset() {
 	*x = UpdateSensorResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[38]
+		mi := &file_main_control_proto_msgTypes[48]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2106,7 +2562,7 @@ func (x *UpdateSensorResponse) String() string {
 func (*UpdateSensorResponse) ProtoMessage() {}
 
 func (x *UpdateSensorResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[38]
+	mi := &file_main_control_proto_msgTypes[48]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2119,7 +2575,7 @@ func (x *UpdateSensorResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateSensorResponse.ProtoReflect.Descriptor instead.
 func (*UpdateSensorResponse) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{38}
+	return file_main_control_proto_rawDescGZIP(), []int{48}
 }
 
 // sensor 삭제
@@ -2134,7 +2590,7 @@ type DeleteSensorRequest struct {
 func (x *DeleteSensorRequest) Reset() {
 	*x = DeleteSensorRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[39]
+		mi := &file_main_control_proto_msgTypes[49]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2147,7 +2603,7 @@ func (x *DeleteSensorRequest) String() string {
 func (*DeleteSensorRequest) ProtoMessage() {}
 
 func (x *DeleteSensorRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[39]
+	mi := &file_main_control_proto_msgTypes[49]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2160,7 +2616,7 @@ func (x *DeleteSensorRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteSensorRequest.ProtoReflect.Descriptor instead.
 func (*DeleteSensorRequest) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{39}
+	return file_main_control_proto_rawDescGZIP(), []int{49}
 }
 
 func (x *DeleteSensorRequest) GetSensorId() uint64 {
@@ -2179,7 +2635,7 @@ type DeleteSensorResponse struct {
 func (x *DeleteSensorResponse) Reset() {
 	*x = DeleteSensorResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[40]
+		mi := &file_main_control_proto_msgTypes[50]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2192,7 +2648,7 @@ func (x *DeleteSensorResponse) String() string {
 func (*DeleteSensorResponse) ProtoMessage() {}
 
 func (x *DeleteSensorResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[40]
+	mi := &file_main_control_proto_msgTypes[50]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2205,7 +2661,7 @@ func (x *DeleteSensorResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteSensorResponse.ProtoReflect.Descriptor instead.
 func (*DeleteSensorResponse) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{40}
+	return file_main_control_proto_rawDescGZIP(), []int{50}
 }
 
 // 특정 sensor 가져오기
@@ -2220,7 +2676,7 @@ type ReadSensorRequest struct {
 func (x *ReadSensorRequest) Reset() {
 	*x = ReadSensorRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[41]
+		mi := &file_main_control_proto_msgTypes[51]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2233,7 +2689,7 @@ func (x *ReadSensorRequest) String() string {
 func (*ReadSensorRequest) ProtoMessage() {}
 
 func (x *ReadSensorRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[41]
+	mi := &file_main_control_proto_msgTypes[51]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2246,7 +2702,7 @@ func (x *ReadSensorRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReadSensorRequest.ProtoReflect.Descriptor instead.
 func (*ReadSensorRequest) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{41}
+	return file_main_control_proto_rawDescGZIP(), []int{51}
 }
 
 func (x *ReadSensorRequest) GetSensorId() uint64 {
@@ -2267,7 +2723,7 @@ type ReadSensorResponse struct {
 func (x *ReadSensorResponse) Reset() {
 	*x = ReadSensorResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[42]
+		mi := &file_main_control_proto_msgTypes[52]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2280,7 +2736,7 @@ func (x *ReadSensorResponse) String() string {
 func (*ReadSensorResponse) ProtoMessage() {}
 
 func (x *ReadSensorResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[42]
+	mi := &file_main_control_proto_msgTypes[52]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2293,7 +2749,7 @@ func (x *ReadSensorResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReadSensorResponse.ProtoReflect.Descriptor instead.
 func (*ReadSensorResponse) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{42}
+	return file_main_control_proto_rawDescGZIP(), []int{52}
 }
 
 func (x *ReadSensorResponse) GetSensor() *Sensor {
@@ -2315,7 +2771,7 @@ type ReadSensorListRequest struct {
 func (x *ReadSensorListRequest) Reset() {
 	*x = ReadSensorListRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[43]
+		mi := &file_main_control_proto_msgTypes[53]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2328,7 +2784,7 @@ func (x *ReadSensorListRequest) String() string {
 func (*ReadSensorListRequest) ProtoMessage() {}
 
 func (x *ReadSensorListRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[43]
+	mi := &file_main_control_proto_msgTypes[53]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2341,7 +2797,7 @@ func (x *ReadSensorListRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReadSensorListRequest.ProtoReflect.Descriptor instead.
 func (*ReadSensorListRequest) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{43}
+	return file_main_control_proto_rawDescGZIP(), []int{53}
 }
 
 func (x *ReadSensorListRequest) GetSettopId() uint64 {
@@ -2362,7 +2818,7 @@ type ReadSensorListResponse struct {
 func (x *ReadSensorListResponse) Reset() {
 	*x = ReadSensorListResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[44]
+		mi := &file_main_control_proto_msgTypes[54]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2375,7 +2831,7 @@ func (x *ReadSensorListResponse) String() string {
 func (*ReadSensorListResponse) ProtoMessage() {}
 
 func (x *ReadSensorListResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[44]
+	mi := &file_main_control_proto_msgTypes[54]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2388,7 +2844,7 @@ func (x *ReadSensorListResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReadSensorListResponse.ProtoReflect.Descriptor instead.
 func (*ReadSensorListResponse) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{44}
+	return file_main_control_proto_rawDescGZIP(), []int{54}
 }
 
 func (x *ReadSensorListResponse) GetSensorList() []*Sensor {
@@ -2398,76 +2854,22 @@ func (x *ReadSensorListResponse) GetSensorList() []*Sensor {
 	return nil
 }
 
-type MinMax_Temp struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Min uint64 `protobuf:"varint,1,opt,name=min,proto3" json:"min,omitempty"`
-	Max string `protobuf:"bytes,2,opt,name=max,proto3" json:"max,omitempty"`
-}
-
-func (x *MinMax_Temp) Reset() {
-	*x = MinMax_Temp{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[45]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *MinMax_Temp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*MinMax_Temp) ProtoMessage() {}
-
-func (x *MinMax_Temp) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[45]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use MinMax_Temp.ProtoReflect.Descriptor instead.
-func (*MinMax_Temp) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{45}
-}
-
-func (x *MinMax_Temp) GetMin() uint64 {
-	if x != nil {
-		return x.Min
-	}
-	return 0
-}
-
-func (x *MinMax_Temp) GetMax() string {
-	if x != nil {
-		return x.Max
-	}
-	return ""
-}
-
 type History struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id       uint64       `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	SensorId uint64       `protobuf:"varint,2,opt,name=sensor_id,json=sensorId,proto3" json:"sensor_id,omitempty"`
-	Temp     *MinMax_Temp `protobuf:"bytes,3,opt,name=temp,proto3" json:"temp,omitempty"`
-	Date     string       `protobuf:"bytes,4,opt,name=date,proto3" json:"date,omitempty"`
+	Id       uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	SensorId uint64 `protobuf:"varint,2,opt,name=sensor_id,json=sensorId,proto3" json:"sensor_id,omitempty"`
+	MinTemp  uint64 `protobuf:"varint,3,opt,name=min_temp,json=minTemp,proto3" json:"min_temp,omitempty"`
+	MaxTemp  uint64 `protobuf:"varint,4,opt,name=max_temp,json=maxTemp,proto3" json:"max_temp,omitempty"`
+	Date     string `protobuf:"bytes,5,opt,name=date,proto3" json:"date,omitempty"`
 }
 
 func (x *History) Reset() {
 	*x = History{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[46]
+		mi := &file_main_control_proto_msgTypes[55]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2480,7 +2882,7 @@ func (x *History) String() string {
 func (*History) ProtoMessage() {}
 
 func (x *History) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[46]
+	mi := &file_main_control_proto_msgTypes[55]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2493,7 +2895,7 @@ func (x *History) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use History.ProtoReflect.Descriptor instead.
 func (*History) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{46}
+	return file_main_control_proto_rawDescGZIP(), []int{55}
 }
 
 func (x *History) GetId() uint64 {
@@ -2510,11 +2912,18 @@ func (x *History) GetSensorId() uint64 {
 	return 0
 }
 
-func (x *History) GetTemp() *MinMax_Temp {
+func (x *History) GetMinTemp() uint64 {
 	if x != nil {
-		return x.Temp
+		return x.MinTemp
 	}
-	return nil
+	return 0
+}
+
+func (x *History) GetMaxTemp() uint64 {
+	if x != nil {
+		return x.MaxTemp
+	}
+	return 0
 }
 
 func (x *History) GetDate() string {
@@ -2536,7 +2945,7 @@ type CreateHistoryRequest struct {
 func (x *CreateHistoryRequest) Reset() {
 	*x = CreateHistoryRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[47]
+		mi := &file_main_control_proto_msgTypes[56]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2549,7 +2958,7 @@ func (x *CreateHistoryRequest) String() string {
 func (*CreateHistoryRequest) ProtoMessage() {}
 
 func (x *CreateHistoryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[47]
+	mi := &file_main_control_proto_msgTypes[56]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2562,7 +2971,7 @@ func (x *CreateHistoryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateHistoryRequest.ProtoReflect.Descriptor instead.
 func (*CreateHistoryRequest) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{47}
+	return file_main_control_proto_rawDescGZIP(), []int{56}
 }
 
 func (x *CreateHistoryRequest) GetHistory() *History {
@@ -2581,7 +2990,7 @@ type CreateHistoryResponse struct {
 func (x *CreateHistoryResponse) Reset() {
 	*x = CreateHistoryResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[48]
+		mi := &file_main_control_proto_msgTypes[57]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2594,7 +3003,7 @@ func (x *CreateHistoryResponse) String() string {
 func (*CreateHistoryResponse) ProtoMessage() {}
 
 func (x *CreateHistoryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[48]
+	mi := &file_main_control_proto_msgTypes[57]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2607,7 +3016,7 @@ func (x *CreateHistoryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateHistoryResponse.ProtoReflect.Descriptor instead.
 func (*CreateHistoryResponse) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{48}
+	return file_main_control_proto_rawDescGZIP(), []int{57}
 }
 
 // history 수정
@@ -2622,7 +3031,7 @@ type UpdateHistoryRequest struct {
 func (x *UpdateHistoryRequest) Reset() {
 	*x = UpdateHistoryRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[49]
+		mi := &file_main_control_proto_msgTypes[58]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2635,7 +3044,7 @@ func (x *UpdateHistoryRequest) String() string {
 func (*UpdateHistoryRequest) ProtoMessage() {}
 
 func (x *UpdateHistoryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[49]
+	mi := &file_main_control_proto_msgTypes[58]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2648,7 +3057,7 @@ func (x *UpdateHistoryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateHistoryRequest.ProtoReflect.Descriptor instead.
 func (*UpdateHistoryRequest) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{49}
+	return file_main_control_proto_rawDescGZIP(), []int{58}
 }
 
 func (x *UpdateHistoryRequest) GetHistory() *History {
@@ -2667,7 +3076,7 @@ type UpdateHistoryResponse struct {
 func (x *UpdateHistoryResponse) Reset() {
 	*x = UpdateHistoryResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[50]
+		mi := &file_main_control_proto_msgTypes[59]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2680,7 +3089,7 @@ func (x *UpdateHistoryResponse) String() string {
 func (*UpdateHistoryResponse) ProtoMessage() {}
 
 func (x *UpdateHistoryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[50]
+	mi := &file_main_control_proto_msgTypes[59]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2693,7 +3102,7 @@ func (x *UpdateHistoryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateHistoryResponse.ProtoReflect.Descriptor instead.
 func (*UpdateHistoryResponse) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{50}
+	return file_main_control_proto_rawDescGZIP(), []int{59}
 }
 
 // history 삭제
@@ -2708,7 +3117,7 @@ type DeleteHistoryRequest struct {
 func (x *DeleteHistoryRequest) Reset() {
 	*x = DeleteHistoryRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[51]
+		mi := &file_main_control_proto_msgTypes[60]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2721,7 +3130,7 @@ func (x *DeleteHistoryRequest) String() string {
 func (*DeleteHistoryRequest) ProtoMessage() {}
 
 func (x *DeleteHistoryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[51]
+	mi := &file_main_control_proto_msgTypes[60]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2734,7 +3143,7 @@ func (x *DeleteHistoryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteHistoryRequest.ProtoReflect.Descriptor instead.
 func (*DeleteHistoryRequest) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{51}
+	return file_main_control_proto_rawDescGZIP(), []int{60}
 }
 
 func (x *DeleteHistoryRequest) GetHistoryId() uint64 {
@@ -2753,7 +3162,7 @@ type DeleteHistoryResponse struct {
 func (x *DeleteHistoryResponse) Reset() {
 	*x = DeleteHistoryResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[52]
+		mi := &file_main_control_proto_msgTypes[61]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2766,7 +3175,7 @@ func (x *DeleteHistoryResponse) String() string {
 func (*DeleteHistoryResponse) ProtoMessage() {}
 
 func (x *DeleteHistoryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[52]
+	mi := &file_main_control_proto_msgTypes[61]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2779,7 +3188,7 @@ func (x *DeleteHistoryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteHistoryResponse.ProtoReflect.Descriptor instead.
 func (*DeleteHistoryResponse) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{52}
+	return file_main_control_proto_rawDescGZIP(), []int{61}
 }
 
 // 특정 history 가져오기
@@ -2794,7 +3203,7 @@ type ReadHistoryRequest struct {
 func (x *ReadHistoryRequest) Reset() {
 	*x = ReadHistoryRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[53]
+		mi := &file_main_control_proto_msgTypes[62]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2807,7 +3216,7 @@ func (x *ReadHistoryRequest) String() string {
 func (*ReadHistoryRequest) ProtoMessage() {}
 
 func (x *ReadHistoryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[53]
+	mi := &file_main_control_proto_msgTypes[62]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2820,7 +3229,7 @@ func (x *ReadHistoryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReadHistoryRequest.ProtoReflect.Descriptor instead.
 func (*ReadHistoryRequest) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{53}
+	return file_main_control_proto_rawDescGZIP(), []int{62}
 }
 
 func (x *ReadHistoryRequest) GetHistoryId() uint64 {
@@ -2841,7 +3250,7 @@ type ReadHistoryResponse struct {
 func (x *ReadHistoryResponse) Reset() {
 	*x = ReadHistoryResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[54]
+		mi := &file_main_control_proto_msgTypes[63]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2854,7 +3263,7 @@ func (x *ReadHistoryResponse) String() string {
 func (*ReadHistoryResponse) ProtoMessage() {}
 
 func (x *ReadHistoryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[54]
+	mi := &file_main_control_proto_msgTypes[63]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2867,7 +3276,7 @@ func (x *ReadHistoryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReadHistoryResponse.ProtoReflect.Descriptor instead.
 func (*ReadHistoryResponse) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{54}
+	return file_main_control_proto_rawDescGZIP(), []int{63}
 }
 
 func (x *ReadHistoryResponse) GetHistory() *History {
@@ -2891,7 +3300,7 @@ type ReadHistoryListRequest struct {
 func (x *ReadHistoryListRequest) Reset() {
 	*x = ReadHistoryListRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[55]
+		mi := &file_main_control_proto_msgTypes[64]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2904,7 +3313,7 @@ func (x *ReadHistoryListRequest) String() string {
 func (*ReadHistoryListRequest) ProtoMessage() {}
 
 func (x *ReadHistoryListRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[55]
+	mi := &file_main_control_proto_msgTypes[64]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2917,7 +3326,7 @@ func (x *ReadHistoryListRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReadHistoryListRequest.ProtoReflect.Descriptor instead.
 func (*ReadHistoryListRequest) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{55}
+	return file_main_control_proto_rawDescGZIP(), []int{64}
 }
 
 func (x *ReadHistoryListRequest) GetSensorId() uint64 {
@@ -2952,7 +3361,7 @@ type ReadHistoryListResponse struct {
 func (x *ReadHistoryListResponse) Reset() {
 	*x = ReadHistoryListResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[56]
+		mi := &file_main_control_proto_msgTypes[65]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2965,7 +3374,7 @@ func (x *ReadHistoryListResponse) String() string {
 func (*ReadHistoryListResponse) ProtoMessage() {}
 
 func (x *ReadHistoryListResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[56]
+	mi := &file_main_control_proto_msgTypes[65]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2978,7 +3387,7 @@ func (x *ReadHistoryListResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReadHistoryListResponse.ProtoReflect.Descriptor instead.
 func (*ReadHistoryListResponse) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{56}
+	return file_main_control_proto_rawDescGZIP(), []int{65}
 }
 
 func (x *ReadHistoryListResponse) GetHistoryList() []*History {
@@ -3002,7 +3411,7 @@ type Group struct {
 func (x *Group) Reset() {
 	*x = Group{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[57]
+		mi := &file_main_control_proto_msgTypes[66]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3015,7 +3424,7 @@ func (x *Group) String() string {
 func (*Group) ProtoMessage() {}
 
 func (x *Group) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[57]
+	mi := &file_main_control_proto_msgTypes[66]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3028,7 +3437,7 @@ func (x *Group) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Group.ProtoReflect.Descriptor instead.
 func (*Group) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{57}
+	return file_main_control_proto_rawDescGZIP(), []int{66}
 }
 
 func (x *Group) GetId() uint64 {
@@ -3071,7 +3480,7 @@ type CreateGroupRequest struct {
 func (x *CreateGroupRequest) Reset() {
 	*x = CreateGroupRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[58]
+		mi := &file_main_control_proto_msgTypes[67]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3084,7 +3493,7 @@ func (x *CreateGroupRequest) String() string {
 func (*CreateGroupRequest) ProtoMessage() {}
 
 func (x *CreateGroupRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[58]
+	mi := &file_main_control_proto_msgTypes[67]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3097,7 +3506,7 @@ func (x *CreateGroupRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateGroupRequest.ProtoReflect.Descriptor instead.
 func (*CreateGroupRequest) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{58}
+	return file_main_control_proto_rawDescGZIP(), []int{67}
 }
 
 func (x *CreateGroupRequest) GetGroup() *Group {
@@ -3116,7 +3525,7 @@ type CreateGroupResponse struct {
 func (x *CreateGroupResponse) Reset() {
 	*x = CreateGroupResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[59]
+		mi := &file_main_control_proto_msgTypes[68]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3129,7 +3538,7 @@ func (x *CreateGroupResponse) String() string {
 func (*CreateGroupResponse) ProtoMessage() {}
 
 func (x *CreateGroupResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[59]
+	mi := &file_main_control_proto_msgTypes[68]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3142,7 +3551,7 @@ func (x *CreateGroupResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateGroupResponse.ProtoReflect.Descriptor instead.
 func (*CreateGroupResponse) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{59}
+	return file_main_control_proto_rawDescGZIP(), []int{68}
 }
 
 // group 수정
@@ -3157,7 +3566,7 @@ type UpdateGroupRequest struct {
 func (x *UpdateGroupRequest) Reset() {
 	*x = UpdateGroupRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[60]
+		mi := &file_main_control_proto_msgTypes[69]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3170,7 +3579,7 @@ func (x *UpdateGroupRequest) String() string {
 func (*UpdateGroupRequest) ProtoMessage() {}
 
 func (x *UpdateGroupRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[60]
+	mi := &file_main_control_proto_msgTypes[69]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3183,7 +3592,7 @@ func (x *UpdateGroupRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateGroupRequest.ProtoReflect.Descriptor instead.
 func (*UpdateGroupRequest) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{60}
+	return file_main_control_proto_rawDescGZIP(), []int{69}
 }
 
 func (x *UpdateGroupRequest) GetGroup() *Group {
@@ -3202,7 +3611,7 @@ type UpdateGroupResponse struct {
 func (x *UpdateGroupResponse) Reset() {
 	*x = UpdateGroupResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[61]
+		mi := &file_main_control_proto_msgTypes[70]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3215,7 +3624,7 @@ func (x *UpdateGroupResponse) String() string {
 func (*UpdateGroupResponse) ProtoMessage() {}
 
 func (x *UpdateGroupResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[61]
+	mi := &file_main_control_proto_msgTypes[70]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3228,7 +3637,7 @@ func (x *UpdateGroupResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateGroupResponse.ProtoReflect.Descriptor instead.
 func (*UpdateGroupResponse) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{61}
+	return file_main_control_proto_rawDescGZIP(), []int{70}
 }
 
 // group 삭제
@@ -3243,7 +3652,7 @@ type DeleteGroupRequest struct {
 func (x *DeleteGroupRequest) Reset() {
 	*x = DeleteGroupRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[62]
+		mi := &file_main_control_proto_msgTypes[71]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3256,7 +3665,7 @@ func (x *DeleteGroupRequest) String() string {
 func (*DeleteGroupRequest) ProtoMessage() {}
 
 func (x *DeleteGroupRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[62]
+	mi := &file_main_control_proto_msgTypes[71]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3269,7 +3678,7 @@ func (x *DeleteGroupRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteGroupRequest.ProtoReflect.Descriptor instead.
 func (*DeleteGroupRequest) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{62}
+	return file_main_control_proto_rawDescGZIP(), []int{71}
 }
 
 func (x *DeleteGroupRequest) GetGroupId() uint64 {
@@ -3288,7 +3697,7 @@ type DeleteGroupResponse struct {
 func (x *DeleteGroupResponse) Reset() {
 	*x = DeleteGroupResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[63]
+		mi := &file_main_control_proto_msgTypes[72]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3301,7 +3710,7 @@ func (x *DeleteGroupResponse) String() string {
 func (*DeleteGroupResponse) ProtoMessage() {}
 
 func (x *DeleteGroupResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[63]
+	mi := &file_main_control_proto_msgTypes[72]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3314,7 +3723,7 @@ func (x *DeleteGroupResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteGroupResponse.ProtoReflect.Descriptor instead.
 func (*DeleteGroupResponse) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{63}
+	return file_main_control_proto_rawDescGZIP(), []int{72}
 }
 
 // 특정 group 가져오기
@@ -3329,7 +3738,7 @@ type ReadGroupRequest struct {
 func (x *ReadGroupRequest) Reset() {
 	*x = ReadGroupRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[64]
+		mi := &file_main_control_proto_msgTypes[73]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3342,7 +3751,7 @@ func (x *ReadGroupRequest) String() string {
 func (*ReadGroupRequest) ProtoMessage() {}
 
 func (x *ReadGroupRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[64]
+	mi := &file_main_control_proto_msgTypes[73]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3355,7 +3764,7 @@ func (x *ReadGroupRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReadGroupRequest.ProtoReflect.Descriptor instead.
 func (*ReadGroupRequest) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{64}
+	return file_main_control_proto_rawDescGZIP(), []int{73}
 }
 
 func (x *ReadGroupRequest) GetGroupId() uint64 {
@@ -3376,7 +3785,7 @@ type ReadGroupResponse struct {
 func (x *ReadGroupResponse) Reset() {
 	*x = ReadGroupResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[65]
+		mi := &file_main_control_proto_msgTypes[74]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3389,7 +3798,7 @@ func (x *ReadGroupResponse) String() string {
 func (*ReadGroupResponse) ProtoMessage() {}
 
 func (x *ReadGroupResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[65]
+	mi := &file_main_control_proto_msgTypes[74]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3402,7 +3811,7 @@ func (x *ReadGroupResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReadGroupResponse.ProtoReflect.Descriptor instead.
 func (*ReadGroupResponse) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{65}
+	return file_main_control_proto_rawDescGZIP(), []int{74}
 }
 
 func (x *ReadGroupResponse) GetGroup() *Group {
@@ -3424,7 +3833,7 @@ type ReadGroupListRequest struct {
 func (x *ReadGroupListRequest) Reset() {
 	*x = ReadGroupListRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[66]
+		mi := &file_main_control_proto_msgTypes[75]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3437,7 +3846,7 @@ func (x *ReadGroupListRequest) String() string {
 func (*ReadGroupListRequest) ProtoMessage() {}
 
 func (x *ReadGroupListRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[66]
+	mi := &file_main_control_proto_msgTypes[75]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3450,7 +3859,7 @@ func (x *ReadGroupListRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReadGroupListRequest.ProtoReflect.Descriptor instead.
 func (*ReadGroupListRequest) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{66}
+	return file_main_control_proto_rawDescGZIP(), []int{75}
 }
 
 func (x *ReadGroupListRequest) GetPlaceId() uint64 {
@@ -3471,7 +3880,7 @@ type ReadGroupListResponse struct {
 func (x *ReadGroupListResponse) Reset() {
 	*x = ReadGroupListResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[67]
+		mi := &file_main_control_proto_msgTypes[76]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3484,7 +3893,7 @@ func (x *ReadGroupListResponse) String() string {
 func (*ReadGroupListResponse) ProtoMessage() {}
 
 func (x *ReadGroupListResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[67]
+	mi := &file_main_control_proto_msgTypes[76]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3497,7 +3906,7 @@ func (x *ReadGroupListResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReadGroupListResponse.ProtoReflect.Descriptor instead.
 func (*ReadGroupListResponse) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{67}
+	return file_main_control_proto_rawDescGZIP(), []int{76}
 }
 
 func (x *ReadGroupListResponse) GetGroupList() []*Group {
@@ -3611,124 +4020,159 @@ var file_main_control_proto_rawDesc = []byte{
 	0x73, 0x65, 0x12, 0x31, 0x0a, 0x0a, 0x70, 0x6c, 0x61, 0x63, 0x65, 0x5f, 0x6c, 0x69, 0x73, 0x74,
 	0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x12, 0x2e, 0x6d, 0x61, 0x69, 0x6e, 0x63, 0x6f, 0x6e,
 	0x74, 0x72, 0x6f, 0x6c, 0x2e, 0x50, 0x6c, 0x61, 0x63, 0x65, 0x52, 0x09, 0x70, 0x6c, 0x61, 0x63,
-	0x65, 0x4c, 0x69, 0x73, 0x74, 0x22, 0x86, 0x01, 0x0a, 0x09, 0x69, 0x70, 0x5f, 0x6d, 0x6f, 0x64,
+	0x65, 0x4c, 0x69, 0x73, 0x74, 0x22, 0xa3, 0x01, 0x0a, 0x09, 0x69, 0x70, 0x5f, 0x6d, 0x6f, 0x64,
 	0x75, 0x6c, 0x65, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52,
-	0x02, 0x69, 0x64, 0x12, 0x1d, 0x0a, 0x0a, 0x69, 0x70, 0x5f, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73,
-	0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x69, 0x70, 0x41, 0x64, 0x64, 0x72, 0x65,
-	0x73, 0x73, 0x12, 0x1f, 0x0a, 0x0b, 0x6d, 0x61, 0x63, 0x5f, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73,
-	0x73, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x6d, 0x61, 0x63, 0x41, 0x64, 0x64, 0x72,
-	0x65, 0x73, 0x73, 0x12, 0x29, 0x0a, 0x10, 0x66, 0x69, 0x72, 0x6d, 0x77, 0x61, 0x72, 0x65, 0x5f,
-	0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0f, 0x66,
-	0x69, 0x72, 0x6d, 0x77, 0x61, 0x72, 0x65, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x22, 0xfa,
-	0x01, 0x0a, 0x06, 0x53, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x02, 0x69, 0x64, 0x12, 0x19, 0x0a, 0x08, 0x70, 0x6c, 0x61,
-	0x63, 0x65, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x52, 0x07, 0x70, 0x6c, 0x61,
-	0x63, 0x65, 0x49, 0x64, 0x12, 0x16, 0x0a, 0x06, 0x73, 0x65, 0x72, 0x69, 0x61, 0x6c, 0x18, 0x03,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x73, 0x65, 0x72, 0x69, 0x61, 0x6c, 0x12, 0x1d, 0x0a, 0x0a,
-	0x69, 0x70, 0x5f, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09,
-	0x52, 0x09, 0x69, 0x70, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x12, 0x1a, 0x0a, 0x08, 0x6c,
-	0x6f, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x6c,
-	0x6f, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x14, 0x0a, 0x05, 0x66, 0x6c, 0x6f, 0x6f, 0x72,
-	0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x66, 0x6c, 0x6f, 0x6f, 0x72, 0x12, 0x33, 0x0a,
-	0x09, 0x69, 0x70, 0x5f, 0x6d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x18, 0x07, 0x20, 0x01, 0x28, 0x0b,
-	0x32, 0x16, 0x2e, 0x6d, 0x61, 0x69, 0x6e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x2e, 0x69,
-	0x70, 0x5f, 0x6d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x52, 0x08, 0x69, 0x70, 0x4d, 0x6f, 0x64, 0x75,
-	0x6c, 0x65, 0x12, 0x27, 0x0a, 0x0f, 0x72, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x65, 0x64,
-	0x5f, 0x74, 0x69, 0x6d, 0x65, 0x18, 0x08, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0e, 0x72, 0x65, 0x67,
-	0x69, 0x73, 0x74, 0x65, 0x72, 0x65, 0x64, 0x54, 0x69, 0x6d, 0x65, 0x22, 0x42, 0x0a, 0x13, 0x43,
-	0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x12, 0x2b, 0x0a, 0x06, 0x73, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x0b, 0x32, 0x13, 0x2e, 0x6d, 0x61, 0x69, 0x6e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c,
-	0x2e, 0x53, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x52, 0x06, 0x73, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x22,
-	0x16, 0x0a, 0x14, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x42, 0x0a, 0x13, 0x55, 0x70, 0x64, 0x61, 0x74,
-	0x65, 0x53, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x2b,
-	0x0a, 0x06, 0x73, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x13,
-	0x2e, 0x6d, 0x61, 0x69, 0x6e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x2e, 0x53, 0x65, 0x74,
-	0x74, 0x6f, 0x70, 0x52, 0x06, 0x73, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x22, 0x16, 0x0a, 0x14, 0x55,
-	0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x22, 0x32, 0x0a, 0x13, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x53, 0x65, 0x74,
-	0x74, 0x6f, 0x70, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1b, 0x0a, 0x09, 0x73, 0x65,
-	0x74, 0x74, 0x6f, 0x70, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x08, 0x73,
-	0x65, 0x74, 0x74, 0x6f, 0x70, 0x49, 0x64, 0x22, 0x16, 0x0a, 0x14, 0x44, 0x65, 0x6c, 0x65, 0x74,
-	0x65, 0x53, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22,
-	0x30, 0x0a, 0x11, 0x52, 0x65, 0x61, 0x64, 0x53, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x52, 0x65, 0x71,
-	0x75, 0x65, 0x73, 0x74, 0x12, 0x1b, 0x0a, 0x09, 0x73, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x5f, 0x69,
-	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x08, 0x73, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x49,
-	0x64, 0x22, 0x41, 0x0a, 0x12, 0x52, 0x65, 0x61, 0x64, 0x53, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2b, 0x0a, 0x06, 0x73, 0x65, 0x74, 0x74, 0x6f,
-	0x70, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x13, 0x2e, 0x6d, 0x61, 0x69, 0x6e, 0x63, 0x6f,
-	0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x2e, 0x53, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x52, 0x06, 0x73, 0x65,
-	0x74, 0x74, 0x6f, 0x70, 0x22, 0x32, 0x0a, 0x15, 0x52, 0x65, 0x61, 0x64, 0x53, 0x65, 0x74, 0x74,
-	0x6f, 0x70, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x19, 0x0a,
-	0x08, 0x70, 0x6c, 0x61, 0x63, 0x65, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52,
-	0x07, 0x70, 0x6c, 0x61, 0x63, 0x65, 0x49, 0x64, 0x22, 0x4e, 0x0a, 0x16, 0x52, 0x65, 0x61, 0x64,
-	0x53, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x12, 0x34, 0x0a, 0x0b, 0x73, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x5f, 0x6c, 0x69, 0x73,
-	0x74, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x13, 0x2e, 0x6d, 0x61, 0x69, 0x6e, 0x63, 0x6f,
-	0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x2e, 0x53, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x52, 0x0a, 0x73, 0x65,
-	0x74, 0x74, 0x6f, 0x70, 0x4c, 0x69, 0x73, 0x74, 0x22, 0xa5, 0x02, 0x0a, 0x06, 0x53, 0x65, 0x6e,
-	0x73, 0x6f, 0x72, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52,
 	0x02, 0x69, 0x64, 0x12, 0x1b, 0x0a, 0x09, 0x73, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x5f, 0x69, 0x64,
 	0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x52, 0x08, 0x73, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x49, 0x64,
-	0x12, 0x31, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0e,
-	0x32, 0x19, 0x2e, 0x6d, 0x61, 0x69, 0x6e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x2e, 0x53,
-	0x65, 0x6e, 0x73, 0x6f, 0x72, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x06, 0x73, 0x74, 0x61,
-	0x74, 0x75, 0x73, 0x12, 0x16, 0x0a, 0x06, 0x73, 0x65, 0x72, 0x69, 0x61, 0x6c, 0x18, 0x04, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x06, 0x73, 0x65, 0x72, 0x69, 0x61, 0x6c, 0x12, 0x1d, 0x0a, 0x0a, 0x69,
-	0x70, 0x5f, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x09, 0x69, 0x70, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x12, 0x1a, 0x0a, 0x08, 0x6c, 0x6f,
-	0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x6c, 0x6f,
-	0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x25, 0x0a, 0x0e, 0x74, 0x68, 0x72, 0x65, 0x73, 0x68,
-	0x6f, 0x6c, 0x64, 0x5f, 0x74, 0x65, 0x6d, 0x70, 0x18, 0x07, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0d,
-	0x74, 0x68, 0x72, 0x65, 0x73, 0x68, 0x6f, 0x6c, 0x64, 0x54, 0x65, 0x6d, 0x70, 0x12, 0x18, 0x0a,
-	0x07, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x08, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07,
-	0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x27, 0x0a, 0x0f, 0x72, 0x65, 0x67, 0x69, 0x73,
-	0x74, 0x65, 0x72, 0x65, 0x64, 0x5f, 0x74, 0x69, 0x6d, 0x65, 0x18, 0x09, 0x20, 0x01, 0x28, 0x09,
-	0x52, 0x0e, 0x72, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x65, 0x64, 0x54, 0x69, 0x6d, 0x65,
-	0x22, 0x42, 0x0a, 0x13, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x65, 0x6e, 0x73, 0x6f, 0x72,
-	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x2b, 0x0a, 0x06, 0x73, 0x65, 0x6e, 0x73, 0x6f,
-	0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x13, 0x2e, 0x6d, 0x61, 0x69, 0x6e, 0x63, 0x6f,
-	0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x2e, 0x53, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x52, 0x06, 0x73, 0x65,
-	0x6e, 0x73, 0x6f, 0x72, 0x22, 0x16, 0x0a, 0x14, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x65,
-	0x6e, 0x73, 0x6f, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x42, 0x0a, 0x13,
-	0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x12, 0x2b, 0x0a, 0x06, 0x73, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x0b, 0x32, 0x13, 0x2e, 0x6d, 0x61, 0x69, 0x6e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x6f,
-	0x6c, 0x2e, 0x53, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x52, 0x06, 0x73, 0x65, 0x6e, 0x73, 0x6f, 0x72,
-	0x22, 0x16, 0x0a, 0x14, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x6e, 0x73, 0x6f, 0x72,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x32, 0x0a, 0x13, 0x44, 0x65, 0x6c, 0x65,
-	0x74, 0x65, 0x53, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12,
-	0x1b, 0x0a, 0x09, 0x73, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x04, 0x52, 0x08, 0x73, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x49, 0x64, 0x22, 0x16, 0x0a, 0x14,
-	0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x53, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x30, 0x0a, 0x11, 0x52, 0x65, 0x61, 0x64, 0x53, 0x65, 0x6e, 0x73,
+	0x12, 0x1d, 0x0a, 0x0a, 0x69, 0x70, 0x5f, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x03,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x69, 0x70, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x12,
+	0x1f, 0x0a, 0x0b, 0x6d, 0x61, 0x63, 0x5f, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x04,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x6d, 0x61, 0x63, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73,
+	0x12, 0x29, 0x0a, 0x10, 0x66, 0x69, 0x72, 0x6d, 0x77, 0x61, 0x72, 0x65, 0x5f, 0x76, 0x65, 0x72,
+	0x73, 0x69, 0x6f, 0x6e, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0f, 0x66, 0x69, 0x72, 0x6d,
+	0x77, 0x61, 0x72, 0x65, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x22, 0x4c, 0x0a, 0x15, 0x43,
+	0x72, 0x65, 0x61, 0x74, 0x65, 0x49, 0x70, 0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x12, 0x33, 0x0a, 0x09, 0x69, 0x70, 0x5f, 0x6d, 0x6f, 0x64, 0x75, 0x6c,
+	0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x6d, 0x61, 0x69, 0x6e, 0x63, 0x6f,
+	0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x2e, 0x69, 0x70, 0x5f, 0x6d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x52,
+	0x08, 0x69, 0x70, 0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x22, 0x18, 0x0a, 0x16, 0x43, 0x72, 0x65,
+	0x61, 0x74, 0x65, 0x49, 0x70, 0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x22, 0x4c, 0x0a, 0x15, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x49, 0x70, 0x4d,
+	0x6f, 0x64, 0x75, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x33, 0x0a, 0x09,
+	0x69, 0x70, 0x5f, 0x6d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32,
+	0x16, 0x2e, 0x6d, 0x61, 0x69, 0x6e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x2e, 0x69, 0x70,
+	0x5f, 0x6d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x52, 0x08, 0x69, 0x70, 0x4d, 0x6f, 0x64, 0x75, 0x6c,
+	0x65, 0x22, 0x18, 0x0a, 0x16, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x49, 0x70, 0x4d, 0x6f, 0x64,
+	0x75, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x39, 0x0a, 0x15, 0x44,
+	0x65, 0x6c, 0x65, 0x74, 0x65, 0x49, 0x70, 0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x12, 0x20, 0x0a, 0x0c, 0x69, 0x70, 0x5f, 0x6d, 0x6f, 0x64, 0x75, 0x6c,
+	0x65, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0a, 0x69, 0x70, 0x4d, 0x6f,
+	0x64, 0x75, 0x6c, 0x65, 0x49, 0x64, 0x22, 0x18, 0x0a, 0x16, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65,
+	0x49, 0x70, 0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x22, 0x37, 0x0a, 0x13, 0x52, 0x65, 0x61, 0x64, 0x49, 0x70, 0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x20, 0x0a, 0x0c, 0x69, 0x70, 0x5f, 0x6d, 0x6f,
+	0x64, 0x75, 0x6c, 0x65, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0a, 0x69,
+	0x70, 0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x49, 0x64, 0x22, 0x4b, 0x0a, 0x14, 0x52, 0x65, 0x61,
+	0x64, 0x49, 0x70, 0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x33, 0x0a, 0x09, 0x69, 0x70, 0x5f, 0x6d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x6d, 0x61, 0x69, 0x6e, 0x63, 0x6f, 0x6e, 0x74, 0x72,
+	0x6f, 0x6c, 0x2e, 0x69, 0x70, 0x5f, 0x6d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x52, 0x08, 0x69, 0x70,
+	0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x22, 0x36, 0x0a, 0x17, 0x52, 0x65, 0x61, 0x64, 0x49, 0x70,
+	0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x12, 0x1b, 0x0a, 0x09, 0x73, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x5f, 0x69, 0x64, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x04, 0x52, 0x08, 0x73, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x49, 0x64, 0x22, 0x58,
+	0x0a, 0x18, 0x52, 0x65, 0x61, 0x64, 0x49, 0x70, 0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x4c, 0x69,
+	0x73, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3c, 0x0a, 0x0e, 0x69, 0x70,
+	0x5f, 0x6d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x5f, 0x6c, 0x69, 0x73, 0x74, 0x18, 0x01, 0x20, 0x03,
+	0x28, 0x0b, 0x32, 0x16, 0x2e, 0x6d, 0x61, 0x69, 0x6e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c,
+	0x2e, 0x69, 0x70, 0x5f, 0x6d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x52, 0x0c, 0x69, 0x70, 0x4d, 0x6f,
+	0x64, 0x75, 0x6c, 0x65, 0x4c, 0x69, 0x73, 0x74, 0x22, 0xfa, 0x01, 0x0a, 0x06, 0x53, 0x65, 0x74,
+	0x74, 0x6f, 0x70, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52,
+	0x02, 0x69, 0x64, 0x12, 0x19, 0x0a, 0x08, 0x70, 0x6c, 0x61, 0x63, 0x65, 0x5f, 0x69, 0x64, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x04, 0x52, 0x07, 0x70, 0x6c, 0x61, 0x63, 0x65, 0x49, 0x64, 0x12, 0x16,
+	0x0a, 0x06, 0x73, 0x65, 0x72, 0x69, 0x61, 0x6c, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06,
+	0x73, 0x65, 0x72, 0x69, 0x61, 0x6c, 0x12, 0x1d, 0x0a, 0x0a, 0x69, 0x70, 0x5f, 0x61, 0x64, 0x64,
+	0x72, 0x65, 0x73, 0x73, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x69, 0x70, 0x41, 0x64,
+	0x64, 0x72, 0x65, 0x73, 0x73, 0x12, 0x1a, 0x0a, 0x08, 0x6c, 0x6f, 0x63, 0x61, 0x74, 0x69, 0x6f,
+	0x6e, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x6c, 0x6f, 0x63, 0x61, 0x74, 0x69, 0x6f,
+	0x6e, 0x12, 0x14, 0x0a, 0x05, 0x66, 0x6c, 0x6f, 0x6f, 0x72, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x05, 0x66, 0x6c, 0x6f, 0x6f, 0x72, 0x12, 0x33, 0x0a, 0x09, 0x69, 0x70, 0x5f, 0x6d, 0x6f,
+	0x64, 0x75, 0x6c, 0x65, 0x18, 0x07, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x6d, 0x61, 0x69,
+	0x6e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x2e, 0x69, 0x70, 0x5f, 0x6d, 0x6f, 0x64, 0x75,
+	0x6c, 0x65, 0x52, 0x08, 0x69, 0x70, 0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x12, 0x27, 0x0a, 0x0f,
+	0x72, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x65, 0x64, 0x5f, 0x74, 0x69, 0x6d, 0x65, 0x18,
+	0x08, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0e, 0x72, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x65,
+	0x64, 0x54, 0x69, 0x6d, 0x65, 0x22, 0x42, 0x0a, 0x13, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53,
+	0x65, 0x74, 0x74, 0x6f, 0x70, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x2b, 0x0a, 0x06,
+	0x73, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x13, 0x2e, 0x6d,
+	0x61, 0x69, 0x6e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x2e, 0x53, 0x65, 0x74, 0x74, 0x6f,
+	0x70, 0x52, 0x06, 0x73, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x22, 0x16, 0x0a, 0x14, 0x43, 0x72, 0x65,
+	0x61, 0x74, 0x65, 0x53, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x22, 0x42, 0x0a, 0x13, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x74, 0x74, 0x6f,
+	0x70, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x2b, 0x0a, 0x06, 0x73, 0x65, 0x74, 0x74,
+	0x6f, 0x70, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x13, 0x2e, 0x6d, 0x61, 0x69, 0x6e, 0x63,
+	0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x2e, 0x53, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x52, 0x06, 0x73,
+	0x65, 0x74, 0x74, 0x6f, 0x70, 0x22, 0x16, 0x0a, 0x14, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53,
+	0x65, 0x74, 0x74, 0x6f, 0x70, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x32, 0x0a,
+	0x13, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x53, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x12, 0x1b, 0x0a, 0x09, 0x73, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x5f, 0x69,
+	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x08, 0x73, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x49,
+	0x64, 0x22, 0x16, 0x0a, 0x14, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x53, 0x65, 0x74, 0x74, 0x6f,
+	0x70, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x30, 0x0a, 0x11, 0x52, 0x65, 0x61,
+	0x64, 0x53, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1b,
+	0x0a, 0x09, 0x73, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x04, 0x52, 0x08, 0x73, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x49, 0x64, 0x22, 0x41, 0x0a, 0x12, 0x52,
+	0x65, 0x61, 0x64, 0x53, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x2b, 0x0a, 0x06, 0x73, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x0b, 0x32, 0x13, 0x2e, 0x6d, 0x61, 0x69, 0x6e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x2e,
+	0x53, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x52, 0x06, 0x73, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x22, 0x32,
+	0x0a, 0x15, 0x52, 0x65, 0x61, 0x64, 0x53, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x4c, 0x69, 0x73, 0x74,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x19, 0x0a, 0x08, 0x70, 0x6c, 0x61, 0x63, 0x65,
+	0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x07, 0x70, 0x6c, 0x61, 0x63, 0x65,
+	0x49, 0x64, 0x22, 0x4e, 0x0a, 0x16, 0x52, 0x65, 0x61, 0x64, 0x53, 0x65, 0x74, 0x74, 0x6f, 0x70,
+	0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x34, 0x0a, 0x0b,
+	0x73, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x5f, 0x6c, 0x69, 0x73, 0x74, 0x18, 0x01, 0x20, 0x03, 0x28,
+	0x0b, 0x32, 0x13, 0x2e, 0x6d, 0x61, 0x69, 0x6e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x2e,
+	0x53, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x52, 0x0a, 0x73, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x4c, 0x69,
+	0x73, 0x74, 0x22, 0xa5, 0x02, 0x0a, 0x06, 0x53, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x12, 0x0e, 0x0a,
+	0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x02, 0x69, 0x64, 0x12, 0x1b, 0x0a,
+	0x09, 0x73, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04,
+	0x52, 0x08, 0x73, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x49, 0x64, 0x12, 0x31, 0x0a, 0x06, 0x73, 0x74,
+	0x61, 0x74, 0x75, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x19, 0x2e, 0x6d, 0x61, 0x69,
+	0x6e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x2e, 0x53, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x53,
+	0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x16, 0x0a,
+	0x06, 0x73, 0x65, 0x72, 0x69, 0x61, 0x6c, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x73,
+	0x65, 0x72, 0x69, 0x61, 0x6c, 0x12, 0x1d, 0x0a, 0x0a, 0x69, 0x70, 0x5f, 0x61, 0x64, 0x64, 0x72,
+	0x65, 0x73, 0x73, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x69, 0x70, 0x41, 0x64, 0x64,
+	0x72, 0x65, 0x73, 0x73, 0x12, 0x1a, 0x0a, 0x08, 0x6c, 0x6f, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e,
+	0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x6c, 0x6f, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e,
+	0x12, 0x25, 0x0a, 0x0e, 0x74, 0x68, 0x72, 0x65, 0x73, 0x68, 0x6f, 0x6c, 0x64, 0x5f, 0x74, 0x65,
+	0x6d, 0x70, 0x18, 0x07, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0d, 0x74, 0x68, 0x72, 0x65, 0x73, 0x68,
+	0x6f, 0x6c, 0x64, 0x54, 0x65, 0x6d, 0x70, 0x12, 0x18, 0x0a, 0x07, 0x76, 0x65, 0x72, 0x73, 0x69,
+	0x6f, 0x6e, 0x18, 0x08, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f,
+	0x6e, 0x12, 0x27, 0x0a, 0x0f, 0x72, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x65, 0x64, 0x5f,
+	0x74, 0x69, 0x6d, 0x65, 0x18, 0x09, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0e, 0x72, 0x65, 0x67, 0x69,
+	0x73, 0x74, 0x65, 0x72, 0x65, 0x64, 0x54, 0x69, 0x6d, 0x65, 0x22, 0x42, 0x0a, 0x13, 0x43, 0x72,
+	0x65, 0x61, 0x74, 0x65, 0x53, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x12, 0x2b, 0x0a, 0x06, 0x73, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x0b, 0x32, 0x13, 0x2e, 0x6d, 0x61, 0x69, 0x6e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x2e,
+	0x53, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x52, 0x06, 0x73, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x22, 0x16,
+	0x0a, 0x14, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x42, 0x0a, 0x13, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65,
+	0x53, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x2b, 0x0a,
+	0x06, 0x73, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x13, 0x2e,
+	0x6d, 0x61, 0x69, 0x6e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x2e, 0x53, 0x65, 0x6e, 0x73,
+	0x6f, 0x72, 0x52, 0x06, 0x73, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x22, 0x16, 0x0a, 0x14, 0x55, 0x70,
+	0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x22, 0x32, 0x0a, 0x13, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x53, 0x65, 0x6e, 0x73,
 	0x6f, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1b, 0x0a, 0x09, 0x73, 0x65, 0x6e,
 	0x73, 0x6f, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x08, 0x73, 0x65,
-	0x6e, 0x73, 0x6f, 0x72, 0x49, 0x64, 0x22, 0x41, 0x0a, 0x12, 0x52, 0x65, 0x61, 0x64, 0x53, 0x65,
-	0x6e, 0x73, 0x6f, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2b, 0x0a, 0x06,
-	0x73, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x13, 0x2e, 0x6d,
-	0x61, 0x69, 0x6e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x2e, 0x53, 0x65, 0x6e, 0x73, 0x6f,
-	0x72, 0x52, 0x06, 0x73, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x22, 0x34, 0x0a, 0x15, 0x52, 0x65, 0x61,
-	0x64, 0x53, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x12, 0x1b, 0x0a, 0x09, 0x73, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x5f, 0x69, 0x64, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x08, 0x73, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x49, 0x64, 0x22,
-	0x4e, 0x0a, 0x16, 0x52, 0x65, 0x61, 0x64, 0x53, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x4c, 0x69, 0x73,
-	0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x34, 0x0a, 0x0b, 0x73, 0x65, 0x6e,
-	0x73, 0x6f, 0x72, 0x5f, 0x6c, 0x69, 0x73, 0x74, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x13,
-	0x2e, 0x6d, 0x61, 0x69, 0x6e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x2e, 0x53, 0x65, 0x6e,
-	0x73, 0x6f, 0x72, 0x52, 0x0a, 0x73, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x4c, 0x69, 0x73, 0x74, 0x22,
-	0x31, 0x0a, 0x0b, 0x6d, 0x69, 0x6e, 0x4d, 0x61, 0x78, 0x5f, 0x54, 0x65, 0x6d, 0x70, 0x12, 0x10,
-	0x0a, 0x03, 0x6d, 0x69, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x03, 0x6d, 0x69, 0x6e,
-	0x12, 0x10, 0x0a, 0x03, 0x6d, 0x61, 0x78, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6d,
-	0x61, 0x78, 0x22, 0x78, 0x0a, 0x07, 0x48, 0x69, 0x73, 0x74, 0x6f, 0x72, 0x79, 0x12, 0x0e, 0x0a,
-	0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x02, 0x69, 0x64, 0x12, 0x1b, 0x0a,
-	0x09, 0x73, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04,
-	0x52, 0x08, 0x73, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x49, 0x64, 0x12, 0x2c, 0x0a, 0x04, 0x74, 0x65,
-	0x6d, 0x70, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x18, 0x2e, 0x6d, 0x61, 0x69, 0x6e, 0x63,
-	0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x2e, 0x6d, 0x69, 0x6e, 0x4d, 0x61, 0x78, 0x5f, 0x54, 0x65,
-	0x6d, 0x70, 0x52, 0x04, 0x74, 0x65, 0x6d, 0x70, 0x12, 0x12, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x65,
-	0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x64, 0x61, 0x74, 0x65, 0x22, 0x46, 0x0a, 0x14,
+	0x6e, 0x73, 0x6f, 0x72, 0x49, 0x64, 0x22, 0x16, 0x0a, 0x14, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65,
+	0x53, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x30,
+	0x0a, 0x11, 0x52, 0x65, 0x61, 0x64, 0x53, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x12, 0x1b, 0x0a, 0x09, 0x73, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x5f, 0x69, 0x64,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x08, 0x73, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x49, 0x64,
+	0x22, 0x41, 0x0a, 0x12, 0x52, 0x65, 0x61, 0x64, 0x53, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2b, 0x0a, 0x06, 0x73, 0x65, 0x6e, 0x73, 0x6f, 0x72,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x13, 0x2e, 0x6d, 0x61, 0x69, 0x6e, 0x63, 0x6f, 0x6e,
+	0x74, 0x72, 0x6f, 0x6c, 0x2e, 0x53, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x52, 0x06, 0x73, 0x65, 0x6e,
+	0x73, 0x6f, 0x72, 0x22, 0x34, 0x0a, 0x15, 0x52, 0x65, 0x61, 0x64, 0x53, 0x65, 0x6e, 0x73, 0x6f,
+	0x72, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1b, 0x0a, 0x09,
+	0x73, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52,
+	0x08, 0x73, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x49, 0x64, 0x22, 0x4e, 0x0a, 0x16, 0x52, 0x65, 0x61,
+	0x64, 0x53, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x34, 0x0a, 0x0b, 0x73, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x5f, 0x6c, 0x69,
+	0x73, 0x74, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x13, 0x2e, 0x6d, 0x61, 0x69, 0x6e, 0x63,
+	0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x2e, 0x53, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x52, 0x0a, 0x73,
+	0x65, 0x6e, 0x73, 0x6f, 0x72, 0x4c, 0x69, 0x73, 0x74, 0x22, 0x80, 0x01, 0x0a, 0x07, 0x48, 0x69,
+	0x73, 0x74, 0x6f, 0x72, 0x79, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x04, 0x52, 0x02, 0x69, 0x64, 0x12, 0x1b, 0x0a, 0x09, 0x73, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x5f,
+	0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x52, 0x08, 0x73, 0x65, 0x6e, 0x73, 0x6f, 0x72,
+	0x49, 0x64, 0x12, 0x19, 0x0a, 0x08, 0x6d, 0x69, 0x6e, 0x5f, 0x74, 0x65, 0x6d, 0x70, 0x18, 0x03,
+	0x20, 0x01, 0x28, 0x04, 0x52, 0x07, 0x6d, 0x69, 0x6e, 0x54, 0x65, 0x6d, 0x70, 0x12, 0x19, 0x0a,
+	0x08, 0x6d, 0x61, 0x78, 0x5f, 0x74, 0x65, 0x6d, 0x70, 0x18, 0x04, 0x20, 0x01, 0x28, 0x04, 0x52,
+	0x07, 0x6d, 0x61, 0x78, 0x54, 0x65, 0x6d, 0x70, 0x12, 0x12, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x65,
+	0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x64, 0x61, 0x74, 0x65, 0x22, 0x46, 0x0a, 0x14,
 	0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x48, 0x69, 0x73, 0x74, 0x6f, 0x72, 0x79, 0x52, 0x65, 0x71,
 	0x75, 0x65, 0x73, 0x74, 0x12, 0x2e, 0x0a, 0x07, 0x68, 0x69, 0x73, 0x74, 0x6f, 0x72, 0x79, 0x18,
 	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x6d, 0x61, 0x69, 0x6e, 0x63, 0x6f, 0x6e, 0x74,
@@ -4066,7 +4510,7 @@ func file_main_control_proto_rawDescGZIP() []byte {
 }
 
 var file_main_control_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_main_control_proto_msgTypes = make([]protoimpl.MessageInfo, 68)
+var file_main_control_proto_msgTypes = make([]protoimpl.MessageInfo, 77)
 var file_main_control_proto_goTypes = []interface{}{
 	(RegistererStatus)(0),              // 0: maincontrol.RegistererStatus
 	(SensorStatus)(0),                  // 1: maincontrol.SensorStatus
@@ -4093,51 +4537,60 @@ var file_main_control_proto_goTypes = []interface{}{
 	(*ReadPlaceListRequest)(nil),       // 22: maincontrol.ReadPlaceListRequest
 	(*ReadPlaceListResponse)(nil),      // 23: maincontrol.ReadPlaceListResponse
 	(*IpModule)(nil),                   // 24: maincontrol.ip_module
-	(*Settop)(nil),                     // 25: maincontrol.Settop
-	(*CreateSettopRequest)(nil),        // 26: maincontrol.CreateSettopRequest
-	(*CreateSettopResponse)(nil),       // 27: maincontrol.CreateSettopResponse
-	(*UpdateSettopRequest)(nil),        // 28: maincontrol.UpdateSettopRequest
-	(*UpdateSettopResponse)(nil),       // 29: maincontrol.UpdateSettopResponse
-	(*DeleteSettopRequest)(nil),        // 30: maincontrol.DeleteSettopRequest
-	(*DeleteSettopResponse)(nil),       // 31: maincontrol.DeleteSettopResponse
-	(*ReadSettopRequest)(nil),          // 32: maincontrol.ReadSettopRequest
-	(*ReadSettopResponse)(nil),         // 33: maincontrol.ReadSettopResponse
-	(*ReadSettopListRequest)(nil),      // 34: maincontrol.ReadSettopListRequest
-	(*ReadSettopListResponse)(nil),     // 35: maincontrol.ReadSettopListResponse
-	(*Sensor)(nil),                     // 36: maincontrol.Sensor
-	(*CreateSensorRequest)(nil),        // 37: maincontrol.CreateSensorRequest
-	(*CreateSensorResponse)(nil),       // 38: maincontrol.CreateSensorResponse
-	(*UpdateSensorRequest)(nil),        // 39: maincontrol.UpdateSensorRequest
-	(*UpdateSensorResponse)(nil),       // 40: maincontrol.UpdateSensorResponse
-	(*DeleteSensorRequest)(nil),        // 41: maincontrol.DeleteSensorRequest
-	(*DeleteSensorResponse)(nil),       // 42: maincontrol.DeleteSensorResponse
-	(*ReadSensorRequest)(nil),          // 43: maincontrol.ReadSensorRequest
-	(*ReadSensorResponse)(nil),         // 44: maincontrol.ReadSensorResponse
-	(*ReadSensorListRequest)(nil),      // 45: maincontrol.ReadSensorListRequest
-	(*ReadSensorListResponse)(nil),     // 46: maincontrol.ReadSensorListResponse
-	(*MinMax_Temp)(nil),                // 47: maincontrol.minMax_Temp
-	(*History)(nil),                    // 48: maincontrol.History
-	(*CreateHistoryRequest)(nil),       // 49: maincontrol.CreateHistoryRequest
-	(*CreateHistoryResponse)(nil),      // 50: maincontrol.CreateHistoryResponse
-	(*UpdateHistoryRequest)(nil),       // 51: maincontrol.UpdateHistoryRequest
-	(*UpdateHistoryResponse)(nil),      // 52: maincontrol.UpdateHistoryResponse
-	(*DeleteHistoryRequest)(nil),       // 53: maincontrol.DeleteHistoryRequest
-	(*DeleteHistoryResponse)(nil),      // 54: maincontrol.DeleteHistoryResponse
-	(*ReadHistoryRequest)(nil),         // 55: maincontrol.ReadHistoryRequest
-	(*ReadHistoryResponse)(nil),        // 56: maincontrol.ReadHistoryResponse
-	(*ReadHistoryListRequest)(nil),     // 57: maincontrol.ReadHistoryListRequest
-	(*ReadHistoryListResponse)(nil),    // 58: maincontrol.ReadHistoryListResponse
-	(*Group)(nil),                      // 59: maincontrol.Group
-	(*CreateGroupRequest)(nil),         // 60: maincontrol.CreateGroupRequest
-	(*CreateGroupResponse)(nil),        // 61: maincontrol.CreateGroupResponse
-	(*UpdateGroupRequest)(nil),         // 62: maincontrol.UpdateGroupRequest
-	(*UpdateGroupResponse)(nil),        // 63: maincontrol.UpdateGroupResponse
-	(*DeleteGroupRequest)(nil),         // 64: maincontrol.DeleteGroupRequest
-	(*DeleteGroupResponse)(nil),        // 65: maincontrol.DeleteGroupResponse
-	(*ReadGroupRequest)(nil),           // 66: maincontrol.ReadGroupRequest
-	(*ReadGroupResponse)(nil),          // 67: maincontrol.ReadGroupResponse
-	(*ReadGroupListRequest)(nil),       // 68: maincontrol.ReadGroupListRequest
-	(*ReadGroupListResponse)(nil),      // 69: maincontrol.ReadGroupListResponse
+	(*CreateIpModuleRequest)(nil),      // 25: maincontrol.CreateIpModuleRequest
+	(*CreateIpModuleResponse)(nil),     // 26: maincontrol.CreateIpModuleResponse
+	(*UpdateIpModuleRequest)(nil),      // 27: maincontrol.UpdateIpModuleRequest
+	(*UpdateIpModuleResponse)(nil),     // 28: maincontrol.UpdateIpModuleResponse
+	(*DeleteIpModuleRequest)(nil),      // 29: maincontrol.DeleteIpModuleRequest
+	(*DeleteIpModuleResponse)(nil),     // 30: maincontrol.DeleteIpModuleResponse
+	(*ReadIpModuleRequest)(nil),        // 31: maincontrol.ReadIpModuleRequest
+	(*ReadIpModuleResponse)(nil),       // 32: maincontrol.ReadIpModuleResponse
+	(*ReadIpModuleListRequest)(nil),    // 33: maincontrol.ReadIpModuleListRequest
+	(*ReadIpModuleListResponse)(nil),   // 34: maincontrol.ReadIpModuleListResponse
+	(*Settop)(nil),                     // 35: maincontrol.Settop
+	(*CreateSettopRequest)(nil),        // 36: maincontrol.CreateSettopRequest
+	(*CreateSettopResponse)(nil),       // 37: maincontrol.CreateSettopResponse
+	(*UpdateSettopRequest)(nil),        // 38: maincontrol.UpdateSettopRequest
+	(*UpdateSettopResponse)(nil),       // 39: maincontrol.UpdateSettopResponse
+	(*DeleteSettopRequest)(nil),        // 40: maincontrol.DeleteSettopRequest
+	(*DeleteSettopResponse)(nil),       // 41: maincontrol.DeleteSettopResponse
+	(*ReadSettopRequest)(nil),          // 42: maincontrol.ReadSettopRequest
+	(*ReadSettopResponse)(nil),         // 43: maincontrol.ReadSettopResponse
+	(*ReadSettopListRequest)(nil),      // 44: maincontrol.ReadSettopListRequest
+	(*ReadSettopListResponse)(nil),     // 45: maincontrol.ReadSettopListResponse
+	(*Sensor)(nil),                     // 46: maincontrol.Sensor
+	(*CreateSensorRequest)(nil),        // 47: maincontrol.CreateSensorRequest
+	(*CreateSensorResponse)(nil),       // 48: maincontrol.CreateSensorResponse
+	(*UpdateSensorRequest)(nil),        // 49: maincontrol.UpdateSensorRequest
+	(*UpdateSensorResponse)(nil),       // 50: maincontrol.UpdateSensorResponse
+	(*DeleteSensorRequest)(nil),        // 51: maincontrol.DeleteSensorRequest
+	(*DeleteSensorResponse)(nil),       // 52: maincontrol.DeleteSensorResponse
+	(*ReadSensorRequest)(nil),          // 53: maincontrol.ReadSensorRequest
+	(*ReadSensorResponse)(nil),         // 54: maincontrol.ReadSensorResponse
+	(*ReadSensorListRequest)(nil),      // 55: maincontrol.ReadSensorListRequest
+	(*ReadSensorListResponse)(nil),     // 56: maincontrol.ReadSensorListResponse
+	(*History)(nil),                    // 57: maincontrol.History
+	(*CreateHistoryRequest)(nil),       // 58: maincontrol.CreateHistoryRequest
+	(*CreateHistoryResponse)(nil),      // 59: maincontrol.CreateHistoryResponse
+	(*UpdateHistoryRequest)(nil),       // 60: maincontrol.UpdateHistoryRequest
+	(*UpdateHistoryResponse)(nil),      // 61: maincontrol.UpdateHistoryResponse
+	(*DeleteHistoryRequest)(nil),       // 62: maincontrol.DeleteHistoryRequest
+	(*DeleteHistoryResponse)(nil),      // 63: maincontrol.DeleteHistoryResponse
+	(*ReadHistoryRequest)(nil),         // 64: maincontrol.ReadHistoryRequest
+	(*ReadHistoryResponse)(nil),        // 65: maincontrol.ReadHistoryResponse
+	(*ReadHistoryListRequest)(nil),     // 66: maincontrol.ReadHistoryListRequest
+	(*ReadHistoryListResponse)(nil),    // 67: maincontrol.ReadHistoryListResponse
+	(*Group)(nil),                      // 68: maincontrol.Group
+	(*CreateGroupRequest)(nil),         // 69: maincontrol.CreateGroupRequest
+	(*CreateGroupResponse)(nil),        // 70: maincontrol.CreateGroupResponse
+	(*UpdateGroupRequest)(nil),         // 71: maincontrol.UpdateGroupRequest
+	(*UpdateGroupResponse)(nil),        // 72: maincontrol.UpdateGroupResponse
+	(*DeleteGroupRequest)(nil),         // 73: maincontrol.DeleteGroupRequest
+	(*DeleteGroupResponse)(nil),        // 74: maincontrol.DeleteGroupResponse
+	(*ReadGroupRequest)(nil),           // 75: maincontrol.ReadGroupRequest
+	(*ReadGroupResponse)(nil),          // 76: maincontrol.ReadGroupResponse
+	(*ReadGroupListRequest)(nil),       // 77: maincontrol.ReadGroupListRequest
+	(*ReadGroupListResponse)(nil),      // 78: maincontrol.ReadGroupListResponse
 }
 var file_main_control_proto_depIdxs = []int32{
 	0,  // 0: maincontrol.Registerer.status:type_name -> maincontrol.RegistererStatus
@@ -4149,90 +4602,93 @@ var file_main_control_proto_depIdxs = []int32{
 	13, // 6: maincontrol.UpdatePlaceRequest.place:type_name -> maincontrol.Place
 	13, // 7: maincontrol.ReadPlaceResponse.place:type_name -> maincontrol.Place
 	13, // 8: maincontrol.ReadPlaceListResponse.place_list:type_name -> maincontrol.Place
-	24, // 9: maincontrol.Settop.ip_module:type_name -> maincontrol.ip_module
-	25, // 10: maincontrol.CreateSettopRequest.settop:type_name -> maincontrol.Settop
-	25, // 11: maincontrol.UpdateSettopRequest.settop:type_name -> maincontrol.Settop
-	25, // 12: maincontrol.ReadSettopResponse.settop:type_name -> maincontrol.Settop
-	25, // 13: maincontrol.ReadSettopListResponse.settop_list:type_name -> maincontrol.Settop
-	1,  // 14: maincontrol.Sensor.status:type_name -> maincontrol.SensorStatus
-	36, // 15: maincontrol.CreateSensorRequest.sensor:type_name -> maincontrol.Sensor
-	36, // 16: maincontrol.UpdateSensorRequest.sensor:type_name -> maincontrol.Sensor
-	36, // 17: maincontrol.ReadSensorResponse.sensor:type_name -> maincontrol.Sensor
-	36, // 18: maincontrol.ReadSensorListResponse.sensor_list:type_name -> maincontrol.Sensor
-	47, // 19: maincontrol.History.temp:type_name -> maincontrol.minMax_Temp
-	48, // 20: maincontrol.CreateHistoryRequest.history:type_name -> maincontrol.History
-	48, // 21: maincontrol.UpdateHistoryRequest.history:type_name -> maincontrol.History
-	48, // 22: maincontrol.ReadHistoryResponse.history:type_name -> maincontrol.History
-	48, // 23: maincontrol.ReadHistoryListResponse.history_list:type_name -> maincontrol.History
-	59, // 24: maincontrol.CreateGroupRequest.group:type_name -> maincontrol.Group
-	59, // 25: maincontrol.UpdateGroupRequest.group:type_name -> maincontrol.Group
-	59, // 26: maincontrol.ReadGroupResponse.group:type_name -> maincontrol.Group
-	59, // 27: maincontrol.ReadGroupListResponse.group_list:type_name -> maincontrol.Group
-	3,  // 28: maincontrol.MainControl.CreateRegisterer:input_type -> maincontrol.CreateRegistererRequest
-	9,  // 29: maincontrol.MainControl.ReadRegisterer:input_type -> maincontrol.ReadRegistererRequest
-	11, // 30: maincontrol.MainControl.ReadRegistererList:input_type -> maincontrol.ReadRegistererListRequest
-	5,  // 31: maincontrol.MainControl.UpdateRegisterer:input_type -> maincontrol.UpdateRegistererRequest
-	7,  // 32: maincontrol.MainControl.DeleteRegisterer:input_type -> maincontrol.DeleteRegistererRequest
-	14, // 33: maincontrol.MainControl.CreatePlace:input_type -> maincontrol.CreatePlaceRequest
-	20, // 34: maincontrol.MainControl.ReadPlace:input_type -> maincontrol.ReadPlaceRequest
-	22, // 35: maincontrol.MainControl.ReadPlaceList:input_type -> maincontrol.ReadPlaceListRequest
-	16, // 36: maincontrol.MainControl.UpdatePlace:input_type -> maincontrol.UpdatePlaceRequest
-	18, // 37: maincontrol.MainControl.DeletePlace:input_type -> maincontrol.DeletePlaceRequest
-	26, // 38: maincontrol.MainControl.CreateSettop:input_type -> maincontrol.CreateSettopRequest
-	32, // 39: maincontrol.MainControl.ReadSettop:input_type -> maincontrol.ReadSettopRequest
-	34, // 40: maincontrol.MainControl.ReadSettopList:input_type -> maincontrol.ReadSettopListRequest
-	28, // 41: maincontrol.MainControl.UpdateSettop:input_type -> maincontrol.UpdateSettopRequest
-	30, // 42: maincontrol.MainControl.DeleteSettop:input_type -> maincontrol.DeleteSettopRequest
-	37, // 43: maincontrol.MainControl.CreateSensor:input_type -> maincontrol.CreateSensorRequest
-	43, // 44: maincontrol.MainControl.ReadSensor:input_type -> maincontrol.ReadSensorRequest
-	45, // 45: maincontrol.MainControl.ReadSensorList:input_type -> maincontrol.ReadSensorListRequest
-	39, // 46: maincontrol.MainControl.UpdateSensor:input_type -> maincontrol.UpdateSensorRequest
-	41, // 47: maincontrol.MainControl.DeleteSensor:input_type -> maincontrol.DeleteSensorRequest
-	49, // 48: maincontrol.MainControl.CreateHistory:input_type -> maincontrol.CreateHistoryRequest
-	55, // 49: maincontrol.MainControl.ReadHistory:input_type -> maincontrol.ReadHistoryRequest
-	57, // 50: maincontrol.MainControl.ReadHistoryList:input_type -> maincontrol.ReadHistoryListRequest
-	51, // 51: maincontrol.MainControl.UpdateHistory:input_type -> maincontrol.UpdateHistoryRequest
-	53, // 52: maincontrol.MainControl.DeleteHistory:input_type -> maincontrol.DeleteHistoryRequest
-	60, // 53: maincontrol.MainControl.CreateGroup:input_type -> maincontrol.CreateGroupRequest
-	66, // 54: maincontrol.MainControl.ReadGroup:input_type -> maincontrol.ReadGroupRequest
-	68, // 55: maincontrol.MainControl.ReadGroupList:input_type -> maincontrol.ReadGroupListRequest
-	62, // 56: maincontrol.MainControl.UpdateGroup:input_type -> maincontrol.UpdateGroupRequest
-	64, // 57: maincontrol.MainControl.DeleteGroup:input_type -> maincontrol.DeleteGroupRequest
-	4,  // 58: maincontrol.MainControl.CreateRegisterer:output_type -> maincontrol.CreateRegistererResponse
-	10, // 59: maincontrol.MainControl.ReadRegisterer:output_type -> maincontrol.ReadRegistererResponse
-	12, // 60: maincontrol.MainControl.ReadRegistererList:output_type -> maincontrol.ReadRegistererListResponse
-	6,  // 61: maincontrol.MainControl.UpdateRegisterer:output_type -> maincontrol.UpdateRegistererResponse
-	8,  // 62: maincontrol.MainControl.DeleteRegisterer:output_type -> maincontrol.DeleteRegistererResponse
-	15, // 63: maincontrol.MainControl.CreatePlace:output_type -> maincontrol.CreatePlaceResponse
-	21, // 64: maincontrol.MainControl.ReadPlace:output_type -> maincontrol.ReadPlaceResponse
-	23, // 65: maincontrol.MainControl.ReadPlaceList:output_type -> maincontrol.ReadPlaceListResponse
-	17, // 66: maincontrol.MainControl.UpdatePlace:output_type -> maincontrol.UpdatePlaceResponse
-	19, // 67: maincontrol.MainControl.DeletePlace:output_type -> maincontrol.DeletePlaceResponse
-	27, // 68: maincontrol.MainControl.CreateSettop:output_type -> maincontrol.CreateSettopResponse
-	33, // 69: maincontrol.MainControl.ReadSettop:output_type -> maincontrol.ReadSettopResponse
-	35, // 70: maincontrol.MainControl.ReadSettopList:output_type -> maincontrol.ReadSettopListResponse
-	29, // 71: maincontrol.MainControl.UpdateSettop:output_type -> maincontrol.UpdateSettopResponse
-	31, // 72: maincontrol.MainControl.DeleteSettop:output_type -> maincontrol.DeleteSettopResponse
-	38, // 73: maincontrol.MainControl.CreateSensor:output_type -> maincontrol.CreateSensorResponse
-	44, // 74: maincontrol.MainControl.ReadSensor:output_type -> maincontrol.ReadSensorResponse
-	46, // 75: maincontrol.MainControl.ReadSensorList:output_type -> maincontrol.ReadSensorListResponse
-	40, // 76: maincontrol.MainControl.UpdateSensor:output_type -> maincontrol.UpdateSensorResponse
-	42, // 77: maincontrol.MainControl.DeleteSensor:output_type -> maincontrol.DeleteSensorResponse
-	50, // 78: maincontrol.MainControl.CreateHistory:output_type -> maincontrol.CreateHistoryResponse
-	56, // 79: maincontrol.MainControl.ReadHistory:output_type -> maincontrol.ReadHistoryResponse
-	58, // 80: maincontrol.MainControl.ReadHistoryList:output_type -> maincontrol.ReadHistoryListResponse
-	52, // 81: maincontrol.MainControl.UpdateHistory:output_type -> maincontrol.UpdateHistoryResponse
-	54, // 82: maincontrol.MainControl.DeleteHistory:output_type -> maincontrol.DeleteHistoryResponse
-	61, // 83: maincontrol.MainControl.CreateGroup:output_type -> maincontrol.CreateGroupResponse
-	67, // 84: maincontrol.MainControl.ReadGroup:output_type -> maincontrol.ReadGroupResponse
-	69, // 85: maincontrol.MainControl.ReadGroupList:output_type -> maincontrol.ReadGroupListResponse
-	63, // 86: maincontrol.MainControl.UpdateGroup:output_type -> maincontrol.UpdateGroupResponse
-	65, // 87: maincontrol.MainControl.DeleteGroup:output_type -> maincontrol.DeleteGroupResponse
-	58, // [58:88] is the sub-list for method output_type
-	28, // [28:58] is the sub-list for method input_type
-	28, // [28:28] is the sub-list for extension type_name
-	28, // [28:28] is the sub-list for extension extendee
-	0,  // [0:28] is the sub-list for field type_name
+	24, // 9: maincontrol.CreateIpModuleRequest.ip_module:type_name -> maincontrol.ip_module
+	24, // 10: maincontrol.UpdateIpModuleRequest.ip_module:type_name -> maincontrol.ip_module
+	24, // 11: maincontrol.ReadIpModuleResponse.ip_module:type_name -> maincontrol.ip_module
+	24, // 12: maincontrol.ReadIpModuleListResponse.ip_module_list:type_name -> maincontrol.ip_module
+	24, // 13: maincontrol.Settop.ip_module:type_name -> maincontrol.ip_module
+	35, // 14: maincontrol.CreateSettopRequest.settop:type_name -> maincontrol.Settop
+	35, // 15: maincontrol.UpdateSettopRequest.settop:type_name -> maincontrol.Settop
+	35, // 16: maincontrol.ReadSettopResponse.settop:type_name -> maincontrol.Settop
+	35, // 17: maincontrol.ReadSettopListResponse.settop_list:type_name -> maincontrol.Settop
+	1,  // 18: maincontrol.Sensor.status:type_name -> maincontrol.SensorStatus
+	46, // 19: maincontrol.CreateSensorRequest.sensor:type_name -> maincontrol.Sensor
+	46, // 20: maincontrol.UpdateSensorRequest.sensor:type_name -> maincontrol.Sensor
+	46, // 21: maincontrol.ReadSensorResponse.sensor:type_name -> maincontrol.Sensor
+	46, // 22: maincontrol.ReadSensorListResponse.sensor_list:type_name -> maincontrol.Sensor
+	57, // 23: maincontrol.CreateHistoryRequest.history:type_name -> maincontrol.History
+	57, // 24: maincontrol.UpdateHistoryRequest.history:type_name -> maincontrol.History
+	57, // 25: maincontrol.ReadHistoryResponse.history:type_name -> maincontrol.History
+	57, // 26: maincontrol.ReadHistoryListResponse.history_list:type_name -> maincontrol.History
+	68, // 27: maincontrol.CreateGroupRequest.group:type_name -> maincontrol.Group
+	68, // 28: maincontrol.UpdateGroupRequest.group:type_name -> maincontrol.Group
+	68, // 29: maincontrol.ReadGroupResponse.group:type_name -> maincontrol.Group
+	68, // 30: maincontrol.ReadGroupListResponse.group_list:type_name -> maincontrol.Group
+	3,  // 31: maincontrol.MainControl.CreateRegisterer:input_type -> maincontrol.CreateRegistererRequest
+	9,  // 32: maincontrol.MainControl.ReadRegisterer:input_type -> maincontrol.ReadRegistererRequest
+	11, // 33: maincontrol.MainControl.ReadRegistererList:input_type -> maincontrol.ReadRegistererListRequest
+	5,  // 34: maincontrol.MainControl.UpdateRegisterer:input_type -> maincontrol.UpdateRegistererRequest
+	7,  // 35: maincontrol.MainControl.DeleteRegisterer:input_type -> maincontrol.DeleteRegistererRequest
+	14, // 36: maincontrol.MainControl.CreatePlace:input_type -> maincontrol.CreatePlaceRequest
+	20, // 37: maincontrol.MainControl.ReadPlace:input_type -> maincontrol.ReadPlaceRequest
+	22, // 38: maincontrol.MainControl.ReadPlaceList:input_type -> maincontrol.ReadPlaceListRequest
+	16, // 39: maincontrol.MainControl.UpdatePlace:input_type -> maincontrol.UpdatePlaceRequest
+	18, // 40: maincontrol.MainControl.DeletePlace:input_type -> maincontrol.DeletePlaceRequest
+	36, // 41: maincontrol.MainControl.CreateSettop:input_type -> maincontrol.CreateSettopRequest
+	42, // 42: maincontrol.MainControl.ReadSettop:input_type -> maincontrol.ReadSettopRequest
+	44, // 43: maincontrol.MainControl.ReadSettopList:input_type -> maincontrol.ReadSettopListRequest
+	38, // 44: maincontrol.MainControl.UpdateSettop:input_type -> maincontrol.UpdateSettopRequest
+	40, // 45: maincontrol.MainControl.DeleteSettop:input_type -> maincontrol.DeleteSettopRequest
+	47, // 46: maincontrol.MainControl.CreateSensor:input_type -> maincontrol.CreateSensorRequest
+	53, // 47: maincontrol.MainControl.ReadSensor:input_type -> maincontrol.ReadSensorRequest
+	55, // 48: maincontrol.MainControl.ReadSensorList:input_type -> maincontrol.ReadSensorListRequest
+	49, // 49: maincontrol.MainControl.UpdateSensor:input_type -> maincontrol.UpdateSensorRequest
+	51, // 50: maincontrol.MainControl.DeleteSensor:input_type -> maincontrol.DeleteSensorRequest
+	58, // 51: maincontrol.MainControl.CreateHistory:input_type -> maincontrol.CreateHistoryRequest
+	64, // 52: maincontrol.MainControl.ReadHistory:input_type -> maincontrol.ReadHistoryRequest
+	66, // 53: maincontrol.MainControl.ReadHistoryList:input_type -> maincontrol.ReadHistoryListRequest
+	60, // 54: maincontrol.MainControl.UpdateHistory:input_type -> maincontrol.UpdateHistoryRequest
+	62, // 55: maincontrol.MainControl.DeleteHistory:input_type -> maincontrol.DeleteHistoryRequest
+	69, // 56: maincontrol.MainControl.CreateGroup:input_type -> maincontrol.CreateGroupRequest
+	75, // 57: maincontrol.MainControl.ReadGroup:input_type -> maincontrol.ReadGroupRequest
+	77, // 58: maincontrol.MainControl.ReadGroupList:input_type -> maincontrol.ReadGroupListRequest
+	71, // 59: maincontrol.MainControl.UpdateGroup:input_type -> maincontrol.UpdateGroupRequest
+	73, // 60: maincontrol.MainControl.DeleteGroup:input_type -> maincontrol.DeleteGroupRequest
+	4,  // 61: maincontrol.MainControl.CreateRegisterer:output_type -> maincontrol.CreateRegistererResponse
+	10, // 62: maincontrol.MainControl.ReadRegisterer:output_type -> maincontrol.ReadRegistererResponse
+	12, // 63: maincontrol.MainControl.ReadRegistererList:output_type -> maincontrol.ReadRegistererListResponse
+	6,  // 64: maincontrol.MainControl.UpdateRegisterer:output_type -> maincontrol.UpdateRegistererResponse
+	8,  // 65: maincontrol.MainControl.DeleteRegisterer:output_type -> maincontrol.DeleteRegistererResponse
+	15, // 66: maincontrol.MainControl.CreatePlace:output_type -> maincontrol.CreatePlaceResponse
+	21, // 67: maincontrol.MainControl.ReadPlace:output_type -> maincontrol.ReadPlaceResponse
+	23, // 68: maincontrol.MainControl.ReadPlaceList:output_type -> maincontrol.ReadPlaceListResponse
+	17, // 69: maincontrol.MainControl.UpdatePlace:output_type -> maincontrol.UpdatePlaceResponse
+	19, // 70: maincontrol.MainControl.DeletePlace:output_type -> maincontrol.DeletePlaceResponse
+	37, // 71: maincontrol.MainControl.CreateSettop:output_type -> maincontrol.CreateSettopResponse
+	43, // 72: maincontrol.MainControl.ReadSettop:output_type -> maincontrol.ReadSettopResponse
+	45, // 73: maincontrol.MainControl.ReadSettopList:output_type -> maincontrol.ReadSettopListResponse
+	39, // 74: maincontrol.MainControl.UpdateSettop:output_type -> maincontrol.UpdateSettopResponse
+	41, // 75: maincontrol.MainControl.DeleteSettop:output_type -> maincontrol.DeleteSettopResponse
+	48, // 76: maincontrol.MainControl.CreateSensor:output_type -> maincontrol.CreateSensorResponse
+	54, // 77: maincontrol.MainControl.ReadSensor:output_type -> maincontrol.ReadSensorResponse
+	56, // 78: maincontrol.MainControl.ReadSensorList:output_type -> maincontrol.ReadSensorListResponse
+	50, // 79: maincontrol.MainControl.UpdateSensor:output_type -> maincontrol.UpdateSensorResponse
+	52, // 80: maincontrol.MainControl.DeleteSensor:output_type -> maincontrol.DeleteSensorResponse
+	59, // 81: maincontrol.MainControl.CreateHistory:output_type -> maincontrol.CreateHistoryResponse
+	65, // 82: maincontrol.MainControl.ReadHistory:output_type -> maincontrol.ReadHistoryResponse
+	67, // 83: maincontrol.MainControl.ReadHistoryList:output_type -> maincontrol.ReadHistoryListResponse
+	61, // 84: maincontrol.MainControl.UpdateHistory:output_type -> maincontrol.UpdateHistoryResponse
+	63, // 85: maincontrol.MainControl.DeleteHistory:output_type -> maincontrol.DeleteHistoryResponse
+	70, // 86: maincontrol.MainControl.CreateGroup:output_type -> maincontrol.CreateGroupResponse
+	76, // 87: maincontrol.MainControl.ReadGroup:output_type -> maincontrol.ReadGroupResponse
+	78, // 88: maincontrol.MainControl.ReadGroupList:output_type -> maincontrol.ReadGroupListResponse
+	72, // 89: maincontrol.MainControl.UpdateGroup:output_type -> maincontrol.UpdateGroupResponse
+	74, // 90: maincontrol.MainControl.DeleteGroup:output_type -> maincontrol.DeleteGroupResponse
+	61, // [61:91] is the sub-list for method output_type
+	31, // [31:61] is the sub-list for method input_type
+	31, // [31:31] is the sub-list for extension type_name
+	31, // [31:31] is the sub-list for extension extendee
+	0,  // [0:31] is the sub-list for field type_name
 }
 
 func init() { file_main_control_proto_init() }
@@ -4518,7 +4974,7 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Settop); i {
+			switch v := v.(*CreateIpModuleRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4530,7 +4986,7 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateSettopRequest); i {
+			switch v := v.(*CreateIpModuleResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4542,7 +4998,7 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateSettopResponse); i {
+			switch v := v.(*UpdateIpModuleRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4554,7 +5010,7 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateSettopRequest); i {
+			switch v := v.(*UpdateIpModuleResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4566,7 +5022,7 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[27].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateSettopResponse); i {
+			switch v := v.(*DeleteIpModuleRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4578,7 +5034,7 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[28].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteSettopRequest); i {
+			switch v := v.(*DeleteIpModuleResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4590,7 +5046,7 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[29].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteSettopResponse); i {
+			switch v := v.(*ReadIpModuleRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4602,7 +5058,7 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[30].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ReadSettopRequest); i {
+			switch v := v.(*ReadIpModuleResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4614,7 +5070,7 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[31].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ReadSettopResponse); i {
+			switch v := v.(*ReadIpModuleListRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4626,7 +5082,7 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[32].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ReadSettopListRequest); i {
+			switch v := v.(*ReadIpModuleListResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4638,7 +5094,7 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[33].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ReadSettopListResponse); i {
+			switch v := v.(*Settop); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4650,7 +5106,7 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[34].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Sensor); i {
+			switch v := v.(*CreateSettopRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4662,7 +5118,7 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[35].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateSensorRequest); i {
+			switch v := v.(*CreateSettopResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4674,7 +5130,7 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[36].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateSensorResponse); i {
+			switch v := v.(*UpdateSettopRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4686,7 +5142,7 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[37].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateSensorRequest); i {
+			switch v := v.(*UpdateSettopResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4698,7 +5154,7 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[38].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateSensorResponse); i {
+			switch v := v.(*DeleteSettopRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4710,7 +5166,7 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[39].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteSensorRequest); i {
+			switch v := v.(*DeleteSettopResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4722,7 +5178,7 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[40].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteSensorResponse); i {
+			switch v := v.(*ReadSettopRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4734,7 +5190,7 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[41].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ReadSensorRequest); i {
+			switch v := v.(*ReadSettopResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4746,7 +5202,7 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[42].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ReadSensorResponse); i {
+			switch v := v.(*ReadSettopListRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4758,7 +5214,7 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[43].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ReadSensorListRequest); i {
+			switch v := v.(*ReadSettopListResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4770,7 +5226,7 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[44].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ReadSensorListResponse); i {
+			switch v := v.(*Sensor); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4782,7 +5238,7 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[45].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MinMax_Temp); i {
+			switch v := v.(*CreateSensorRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4794,7 +5250,7 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[46].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*History); i {
+			switch v := v.(*CreateSensorResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4806,7 +5262,7 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[47].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateHistoryRequest); i {
+			switch v := v.(*UpdateSensorRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4818,7 +5274,7 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[48].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateHistoryResponse); i {
+			switch v := v.(*UpdateSensorResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4830,7 +5286,7 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[49].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateHistoryRequest); i {
+			switch v := v.(*DeleteSensorRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4842,7 +5298,7 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[50].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateHistoryResponse); i {
+			switch v := v.(*DeleteSensorResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4854,7 +5310,7 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[51].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteHistoryRequest); i {
+			switch v := v.(*ReadSensorRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4866,7 +5322,7 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[52].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteHistoryResponse); i {
+			switch v := v.(*ReadSensorResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4878,7 +5334,7 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[53].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ReadHistoryRequest); i {
+			switch v := v.(*ReadSensorListRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4890,7 +5346,7 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[54].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ReadHistoryResponse); i {
+			switch v := v.(*ReadSensorListResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4902,7 +5358,7 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[55].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ReadHistoryListRequest); i {
+			switch v := v.(*History); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4914,7 +5370,7 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[56].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ReadHistoryListResponse); i {
+			switch v := v.(*CreateHistoryRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4926,7 +5382,7 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[57].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Group); i {
+			switch v := v.(*CreateHistoryResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4938,7 +5394,7 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[58].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateGroupRequest); i {
+			switch v := v.(*UpdateHistoryRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4950,7 +5406,7 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[59].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateGroupResponse); i {
+			switch v := v.(*UpdateHistoryResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4962,7 +5418,7 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[60].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateGroupRequest); i {
+			switch v := v.(*DeleteHistoryRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4974,7 +5430,7 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[61].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateGroupResponse); i {
+			switch v := v.(*DeleteHistoryResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4986,7 +5442,7 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[62].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteGroupRequest); i {
+			switch v := v.(*ReadHistoryRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4998,7 +5454,7 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[63].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteGroupResponse); i {
+			switch v := v.(*ReadHistoryResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5010,7 +5466,7 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[64].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ReadGroupRequest); i {
+			switch v := v.(*ReadHistoryListRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5022,7 +5478,7 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[65].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ReadGroupResponse); i {
+			switch v := v.(*ReadHistoryListResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5034,7 +5490,7 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[66].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ReadGroupListRequest); i {
+			switch v := v.(*Group); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5046,6 +5502,114 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[67].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateGroupRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_main_control_proto_msgTypes[68].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateGroupResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_main_control_proto_msgTypes[69].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateGroupRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_main_control_proto_msgTypes[70].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateGroupResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_main_control_proto_msgTypes[71].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteGroupRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_main_control_proto_msgTypes[72].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteGroupResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_main_control_proto_msgTypes[73].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ReadGroupRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_main_control_proto_msgTypes[74].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ReadGroupResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_main_control_proto_msgTypes[75].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ReadGroupListRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_main_control_proto_msgTypes[76].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ReadGroupListResponse); i {
 			case 0:
 				return &v.state
@@ -5064,7 +5628,7 @@ func file_main_control_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_main_control_proto_rawDesc,
 			NumEnums:      2,
-			NumMessages:   68,
+			NumMessages:   77,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

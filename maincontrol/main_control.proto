@@ -314,9 +314,48 @@ message ReadPlaceListResponse {
 
 message ip_module {
   uint64 id = 1;
-  string ip_address = 2;
-  string mac_address = 3;
-  string firmware_version = 4;
+  uint64 settop_id = 2;
+  string ip_address = 3;
+  string mac_address = 4;
+  string firmware_version = 5;
+}
+
+
+// ip_module 등록
+message CreateIpModuleRequest {
+  ip_module ip_module = 1;
+}
+message CreateIpModuleResponse {
+}
+
+// ip_module 수정
+message UpdateIpModuleRequest {
+  ip_module ip_module = 1;
+}
+message UpdateIpModuleResponse {
+}
+
+// ip_module 삭제
+message DeleteIpModuleRequest {
+  uint64 ip_module_id = 1;
+}
+message DeleteIpModuleResponse {
+}
+
+// 특정 ip_module 가져오기
+message ReadIpModuleRequest {
+  uint64 ip_module_id = 1;
+}
+message ReadIpModuleResponse {
+  ip_module ip_module = 1;
+}
+
+// ip_module list 가져오기
+message ReadIpModuleListRequest {
+  uint64 settop_id = 1;
+}
+message ReadIpModuleListResponse {
+  repeated ip_module ip_module_list = 1;
 }
 
 message Settop {
@@ -427,17 +466,12 @@ message ReadSensorListResponse {
   repeated Sensor sensor_list = 1;
 }
 
-
-message minMax_Temp {
-  uint64 min = 1;
-  string max = 2;
-}
-
 message History {
   uint64 id = 1;
   uint64 sensor_id = 2;
-  minMax_Temp temp = 3;
-  string date = 4;
+  uint64 min_temp = 3;
+  uint64 max_temp = 4;
+  string date = 5;
   
 }
 
