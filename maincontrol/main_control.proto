@@ -321,7 +321,7 @@ message ip_module {
 
 message Settop {
   uint64 id = 1;
-  string place_id = 2;
+  uint64 place_id = 2;
   string serial = 3;
   string ip_address = 4;
   string location = 5;
