@@ -242,15 +242,15 @@ enum RegistererStatus {
 }
 
 message Registerer {
-  uint64 id = 1;
-  string auth_id = 2;
+  string uuid = 1;
+  string auth_email = 2;
   string company_name = 3;
   string company_number = 4;
   string company_number_file_name = 5;
   RegistererStatus status = 6;
-  uint64 alarm = 7;
-  uint64 permission_id = 8;
-  uint64 group_id = 9;
+  bool alarm = 7;
+  string permission_uuid = 8;
+  string group_uuid = 9;
   bytes company_number_file = 10;
 }
 
@@ -270,14 +270,14 @@ message UpdateRegistererResponse {
 
 // registerer 삭제
 message DeleteRegistererRequest {
-  uint64 registerer_id = 1;
+  string registerer_uuid = 1;
 }
 message DeleteRegistererResponse {
 }
 
 // 특정 registerer 가져오기
 message ReadRegistererRequest {
-  uint64 registerer_id = 1;
+  string registerer_uuid = 1;
 }
 message ReadRegistererResponse {
   Registerer registerer = 1;
@@ -285,17 +285,17 @@ message ReadRegistererResponse {
 
 // 특정 건물의 registerer list 가져오기
 message ReadRegistererListRequest {
-  uint64 group_id = 1;
+  string group_uuid = 1;
 }
 message ReadRegistererListResponse {
   repeated Registerer registerer_list = 1;
 }
 
 message Place {
-  uint64 id = 1;
+  string uuid = 1;
   string name = 2;
   string address = 3;
-  uint64 registerer_id = 4;
+  string registerer_uuid = 4;
   string registered_time = 5;
 }
 
@@ -316,14 +316,14 @@ message UpdatePlaceResponse {
 
 // place 삭제
 message DeletePlaceRequest {
-  uint64 place_id = 1;
+  string place_uuid = 1;
 }
 message DeletePlaceResponse {
 }
 
 // 특정 place 가져오기
 message ReadPlaceRequest {
-  uint64 place_id = 1;
+  string place_uuid = 1;
 }
 message ReadPlaceResponse {
   Place place = 1;
@@ -331,67 +331,70 @@ message ReadPlaceResponse {
 
 // place list 가져오기
 message ReadPlaceListRequest {
-  uint64 registerer_id = 1;
+  string registerer_uuid = 1;
 }
 message ReadPlaceListResponse {
   repeated Place place_list = 1;
 }
 
 
-message ip_module {
-  uint64 id = 1;
-  uint64 settop_id = 2;
-  string ip_address = 3;
-  string mac_address = 4;
-  string firmware_version = 5;
-}
+// message ip_module {
+//   uint64 id = 1;
+//   uint64 settop_id = 2;
+//   string ip_address = 3;
+//   string mac_address = 4;
+//   string firmware_version = 5;
+// }
 
 
-// ip_module 등록
-message CreateIpModuleRequest {
-  ip_module ip_module = 1;
-}
-message CreateIpModuleResponse {
-}
+// // ip_module 등록
+// message CreateIpModuleRequest {
+//   ip_module ip_module = 1;
+// }
+// message CreateIpModuleResponse {
+// }
 
-// ip_module 수정
-message UpdateIpModuleRequest {
-  ip_module ip_module = 1;
-}
-message UpdateIpModuleResponse {
-}
+// // ip_module 수정
+// message UpdateIpModuleRequest {
+//   ip_module ip_module = 1;
+// }
+// message UpdateIpModuleResponse {
+// }
 
-// ip_module 삭제
-message DeleteIpModuleRequest {
-  uint64 ip_module_id = 1;
-}
-message DeleteIpModuleResponse {
-}
+// // ip_module 삭제
+// message DeleteIpModuleRequest {
+//   uint64 ip_module_id = 1;
+// }
+// message DeleteIpModuleResponse {
+// }
 
-// 특정 ip_module 가져오기
-message ReadIpModuleRequest {
-  uint64 ip_module_id = 1;
-}
-message ReadIpModuleResponse {
-  ip_module ip_module = 1;
-}
+// // 특정 ip_module 가져오기
+// message ReadIpModuleRequest {
+//   uint64 ip_module_id = 1;
+// }
+// message ReadIpModuleResponse {
+//   ip_module ip_module = 1;
+// }
 
-// ip_module list 가져오기
-message ReadIpModuleListRequest {
-  uint64 settop_id = 1;
-}
-message ReadIpModuleListResponse {
-  repeated ip_module ip_module_list = 1;
-}
+// // ip_module list 가져오기
+// message ReadIpModuleListRequest {
+//   uint64 settop_id = 1;
+// }
+// message ReadIpModuleListResponse {
+//   repeated ip_module ip_module_list = 1;
+// }
 
 message Settop {
-  uint64 id = 1;
-  uint64 place_id = 2;
+  string uuid = 1;
+  string place_uuid = 2;
   string serial = 3;
-  string ip_address = 4;
   string location = 5;
   uint64 floor = 6;
-  string registered_time = 7;
+  string mac1 = 7;
+  string mac2 = 8;
+  bool is_alive = 9;
+  string latest_version = 10; 
+  string registered_time = 11;
 }
 
 
@@ -411,14 +414,14 @@ message UpdateSettopResponse {
 
 // settop 삭제
 message DeleteSettopRequest {
-  uint64 settop_id = 1;
+  string settop_uuid = 1;
 }
 message DeleteSettopResponse {
 }
 
 // 특정 settop 가져오기
 message ReadSettopRequest {
-  uint64 settop_id = 1;
+  string settop_uuid = 1;
 }
 message ReadSettopResponse {
   Settop settop = 1;
@@ -426,7 +429,7 @@ message ReadSettopResponse {
 
 // settop list 가져오기
 message ReadSettopListRequest {
-  uint64 place_id = 1;
+  string place_uuid = 1;
 }
 message ReadSettopListResponse {
   repeated Settop settop_list = 1;
@@ -442,15 +445,16 @@ enum SensorStatus {
 
 
 message Sensor {
-  uint64 id = 1;
-  uint64 settop_id = 2;
+  string uuid = 1;
+  string settop_uuid = 2;
   SensorStatus status = 3;
   string serial = 4;
   string ip_address = 5;
   string location = 6;
-  string threshold_temp = 7;
-  string version = 8;
-  string registered_time = 9;
+  string threshold_temp_warning = 7;
+  string threshold_temp_danger = 8;
+  string latest_version = 9;
+  string registered_time = 10;
 }
 
 
@@ -470,14 +474,14 @@ message UpdateSensorResponse {
 
 // sensor 삭제
 message DeleteSensorRequest {
-  uint64 sensor_id = 1;
+  string sensor_uuid = 1;
 }
 message DeleteSensorResponse {
 }
 
 // 특정 sensor 가져오기
 message ReadSensorRequest {
-  uint64 sensor_id = 1;
+  string sensor_uuid = 1;
 }
 message ReadSensorResponse {
   Sensor sensor = 1;
@@ -485,15 +489,15 @@ message ReadSensorResponse {
 
 // sensor list 가져오기
 message ReadSensorListRequest {
-  uint64 settop_id = 1;
+  string settop_uuid = 1;
 }
 message ReadSensorListResponse {
   repeated Sensor sensor_list = 1;
 }
 
 message History {
-  uint64 id = 1;
-  uint64 sensor_id = 2;
+  string uuid = 1;
+  string sensor_serial = 2;
   uint64 min_temp = 3;
   uint64 max_temp = 4;
   string date = 5;
@@ -517,14 +521,14 @@ message UpdateHistoryResponse {
 
 // history 삭제
 message DeleteHistoryRequest {
-  uint64 history_id = 1;
+  string history_uuid = 1;
 }
 message DeleteHistoryResponse {
 }
 
 // 특정 history 가져오기
 message ReadHistoryRequest {
-  uint64 history_id = 1;
+  string history_uuid = 1;
 }
 message ReadHistoryResponse {
   History history = 1;
@@ -532,7 +536,7 @@ message ReadHistoryResponse {
 
 // history list 가져오기
 message ReadHistoryListRequest {
-  uint64 sensor_id = 1;
+  string sensor_serial = 1;
   uint64 cursor = 2;
   uint64 count = 3;
 }
@@ -542,9 +546,9 @@ message ReadHistoryListResponse {
 
 
 message Group {
-  uint64 id = 1;
-  uint64 place_id = 2;
-  uint64 group_id = 3;
+  string uuid = 1;
+  string place_uuid = 2;
+  string group_uuid = 3;
   string name = 4;
 }
 
@@ -565,14 +569,14 @@ message UpdateGroupResponse {
 
 // group 삭제
 message DeleteGroupRequest {
-  uint64 group_id = 1;
+  string group_uuid = 1;
 }
 message DeleteGroupResponse {
 }
 
 // 특정 group 가져오기
 message ReadGroupRequest {
-  uint64 group_id = 1;
+  string group_uuid = 1;
 }
 message ReadGroupResponse {
   Group group = 1;
@@ -580,14 +584,14 @@ message ReadGroupResponse {
 
 // group list 가져오기
 message ReadGroupListRequest {
-  uint64 place_id = 1;
+  string place_uuid = 1;
 }
 message ReadGroupListResponse {
   repeated Group group_list = 1;
 }
 
 message Permission {
-  uint64 id = 1;
+  string uuid = 1;
   string name = 2; 
   bool user = 3;
   bool permission = 4;
@@ -614,7 +618,7 @@ message UpdatePermissionResponse {
 
 // group 삭제
 message DeletePermissionRequest {
-  uint64 permission_id = 1;
+  string permission_uuid = 1;
 }
 message DeletePermissionResponse {
 }
@@ -625,48 +629,3 @@ message ReadPermissionListRequest {
 message ReadPermissionListResponse {
   repeated Permission permission_list = 1;
 }
-// message share {
-//   uint64 id = 1;
-//   string sensor_id = 2;
-//   repeated string temp = 3;
-//   string date = 4;
-  
-// }
-
-
-// // share 등록
-// message CreateShareRequest {
-//   Share share = 1;
-// }
-// message CreateShareResponse {
-// }
-
-// // share 수정
-// message UpdateShareRequest {
-//   Share share = 1;
-// }
-// message UpdateShareResponse {
-// }
-
-// // share 삭제
-// message DeleteShareRequest {
-//   uint64 share_id = 1;
-// }
-// message DeleteShareResponse {
-// }
-
-// // 특정 share 가져오기
-// message ReadShareRequest {
-//   uint64 share_id = 1;
-// }
-// message ReadShareResponse {
-//   Share share = 1;
-// }
-
-// // share list 가져오기
-// message ReadShareListRequest {
-//   uint64 sensor_id = 1;
-// }
-// message ReadShareListResponse {
-//   repeated Share share_list = 1;
-// }
