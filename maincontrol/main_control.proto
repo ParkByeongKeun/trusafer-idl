@@ -548,7 +548,7 @@ message ReadHistoryListResponse {
 message Group {
   string uuid = 1;
   string place_uuid = 2;
-  string group_uuid = 3;
+  uint64 group_id = 3;
   string name = 4;
 }
 
