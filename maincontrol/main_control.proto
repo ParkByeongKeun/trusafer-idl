@@ -248,7 +248,7 @@ message Registerer {
   string company_number = 4;
   string company_number_file_name = 5;
   RegistererStatus status = 6;
-  bool alarm = 7;
+  bool is_alarm = 7;
   string permission_uuid = 8;
   string group_uuid = 9;
   bytes company_number_file = 10;
