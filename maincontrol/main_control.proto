@@ -221,11 +221,12 @@ message Registerer {
   uint64 auth_id = 2;
   string company_name = 3;
   string company_number = 4;
-  string company_number_file = 5;
+  string company_number_file_name = 5;
   RegistererStatus status = 6;
   uint64 alarm = 7;
   uint64 auth = 8;
   uint64 group_id = 9;
+  bytes company_number_file = 10;
 }
 
 // registerer 등록
