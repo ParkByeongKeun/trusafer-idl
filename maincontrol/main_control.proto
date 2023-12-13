@@ -196,6 +196,31 @@ service MainControl {
     };
   }
 
+  /* Permission */
+  rpc CreatePermission(CreatePermissionRequest) returns (CreatePermissionResponse) {
+    option (google.api.http) = {
+      post: "/api/main/v1/permission"
+      body: "*"
+  };
+  }
+  rpc ReadPermissionList(ReadPermissionListRequest) returns (ReadPermissionListResponse) {
+    option (google.api.http) = {
+      get: "/api/main/v1/permission_list"
+  };
+  }
+  rpc UpdatePermission(UpdatePermissionRequest) returns (UpdatePermissionResponse) {
+    option (google.api.http) = {
+      put: "/api/main/v1/permission"
+      body: "*"
+    };
+  }
+  rpc DeletePermission(DeletePermissionRequest) returns (DeletePermissionResponse) {
+    option (google.api.http) = {
+      delete: "/api/main/v1/permission"
+      body: "*"
+    };
+  }
+
   // /* Share */
   // rpc CreateShareUser(CreateShareRequest) returns (CreateShareResponse) {}
   // rpc DeleteShareUser(DeleteShareRequest) returns (DeleteShareResponse) {}
@@ -224,7 +249,7 @@ message Registerer {
   string company_number_file_name = 5;
   RegistererStatus status = 6;
   uint64 alarm = 7;
-  uint64 auth = 8;
+  uint64 permission_id = 8;
   uint64 group_id = 9;
   bytes company_number_file = 10;
 }
@@ -561,6 +586,45 @@ message ReadGroupListResponse {
   repeated Group group_list = 1;
 }
 
+message Permission {
+  uint64 id = 1;
+  string name = 2; 
+  bool user = 3;
+  bool permission = 4;
+  bool sensor_create = 5;
+  bool sensor_info = 6;
+  bool ip_module = 7;
+  bool threshold = 8;
+}
+
+
+// group 등록
+message CreatePermissionRequest {
+  Permission Permission = 1;
+}
+message CreatePermissionResponse {
+}
+
+// group 수정
+message UpdatePermissionRequest {
+  Permission permission = 1;
+}
+message UpdatePermissionResponse {
+}
+
+// group 삭제
+message DeletePermissionRequest {
+  uint64 permission_id = 1;
+}
+message DeletePermissionResponse {
+}
+
+// group list 가져오기
+message ReadPermissionListRequest {
+}
+message ReadPermissionListResponse {
+  repeated Permission permission_list = 1;
+}
 // message share {
 //   uint64 id = 1;
 //   string sensor_id = 2;
