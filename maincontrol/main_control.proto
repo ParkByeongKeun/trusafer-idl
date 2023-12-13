@@ -218,7 +218,7 @@ enum RegistererStatus {
 
 message Registerer {
   uint64 id = 1;
-  uint64 auth_id = 2;
+  string auth_id = 2;
   string company_name = 3;
   string company_number = 4;
   string company_number_file_name = 5;
