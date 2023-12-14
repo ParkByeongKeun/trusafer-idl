@@ -252,13 +252,29 @@ message Registerer {
   string auth_email = 2;
   string company_name = 3;
   string company_number = 4;
-  string company_number_file_name = 5;
-  RegistererStatus status = 6;
-  bool is_alarm = 7;
-  string permission_uuid = 8;
-  string group_uuid = 9;
-  string name = 10;
+  RegistererStatus status = 5;
+  bool is_alarm = 6;
+  string permission_uuid = 7;
+  string name = 8;
 }
+
+message RegistererInfo {
+  string uuid = 1;
+  string auth_email = 2;
+  string company_name = 3;
+  string company_number = 4;
+  RegistererStatus status = 5;
+  bool is_alarm = 6;
+  bool p_user = 7;
+  bool p_permission = 8;
+  bool p_sensor_create = 9;
+  bool p_sensor_info = 10;
+  bool p_ip_module = 11;
+  bool p_threshold = 12;
+  string name = 13;
+}
+
+
 
 // registerer 등록
 message CreateRegistererRequest {
@@ -283,10 +299,10 @@ message DeleteRegistererResponse {
 
 // 특정 registerer 가져오기
 message ReadRegistererRequest {
-  string name =1;
+  string name = 1;
 }
 message ReadRegistererResponse {
-  Registerer registerer = 1;
+  RegistererInfo registerer_info = 1;
 }
 
 // 특정 건물의 registerer list 가져오기
@@ -294,7 +310,7 @@ message ReadRegistererListRequest {
   string group_uuid = 1;
 }
 message ReadRegistererListResponse {
-  repeated Registerer registerer_list = 1;
+  repeated RegistererInfo registerer_list_info = 1;
 }
 
 message Place {
@@ -311,6 +327,7 @@ message CreatePlaceRequest {
   Place place = 1;
 }
 message CreatePlaceResponse {
+  string uuid = 1;
 }
 
 // place 수정
@@ -645,4 +662,19 @@ message FindEmailRequest {
 message FindEmailResponse {
   string email = 1;
 }
+
+
+// // 메인화면 req
+// message MainPageRequest {
+//   string registerer_uuid = 1;
+//   string 
+//   string group_uuid = 2;
+
+//   string name = 1;
+//   string company_name = 2;
+//   string company_number = 3;
+// }
+// message MainPageResponse {
+//   string email = 1;
+// }
 
