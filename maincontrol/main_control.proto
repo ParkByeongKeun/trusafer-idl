@@ -221,6 +221,12 @@ service MainControl {
     };
   }
 
+  rpc FindEmail(FindEmailRequest) returns (FindEmailResponse) {
+    option (google.api.http) = {
+      post: "/api/main/v1/find_email"
+      body: "*"
+    };
+  }
   // /* Share */
   // rpc CreateShareUser(CreateShareRequest) returns (CreateShareResponse) {}
   // rpc DeleteShareUser(DeleteShareRequest) returns (DeleteShareResponse) {}
@@ -628,3 +634,14 @@ message ReadPermissionListRequest {
 message ReadPermissionListResponse {
   repeated Permission permission_list = 1;
 }
+
+// 이메일 찾기
+message FindEmailRequest {
+  string name = 1;
+  string company_name = 2;
+  string company_number = 3;
+}
+message FindEmailResponse {
+  string email = 1;
+}
+
