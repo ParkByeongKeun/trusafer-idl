@@ -277,7 +277,6 @@ message DeleteRegistererResponse {
 
 // 특정 registerer 가져오기
 message ReadRegistererRequest {
-  string registerer_uuid = 1;
 }
 message ReadRegistererResponse {
   Registerer registerer = 1;
