@@ -203,6 +203,11 @@ service MainControl {
       body: "*"
   };
   }
+  rpc ReadPermission(ReadPermissionRequest) returns (ReadPermissionResponse) {
+    option (google.api.http) = {
+      get: "/api/main/v1/permission"
+  };
+  }
   rpc ReadPermissionList(ReadPermissionListRequest) returns (ReadPermissionListResponse) {
     option (google.api.http) = {
       get: "/api/main/v1/permission_list"
@@ -644,6 +649,14 @@ message DeletePermissionRequest {
   string permission_uuid = 1;
 }
 message DeletePermissionResponse {
+}
+
+// group list 가져오기
+message ReadPermissionRequest {
+  string permission_uuid = 1;
+}
+message ReadPermissionResponse {
+  repeated Permission permission_list = 1;
 }
 
 // group list 가져오기

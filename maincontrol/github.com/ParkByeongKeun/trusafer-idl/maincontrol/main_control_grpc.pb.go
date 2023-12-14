@@ -60,6 +60,7 @@ type MainControlClient interface {
 	DeleteGroup(ctx context.Context, in *DeleteGroupRequest, opts ...grpc.CallOption) (*DeleteGroupResponse, error)
 	// Permission
 	CreatePermission(ctx context.Context, in *CreatePermissionRequest, opts ...grpc.CallOption) (*CreatePermissionResponse, error)
+	ReadPermission(ctx context.Context, in *ReadPermissionRequest, opts ...grpc.CallOption) (*ReadPermissionResponse, error)
 	ReadPermissionList(ctx context.Context, in *ReadPermissionListRequest, opts ...grpc.CallOption) (*ReadPermissionListResponse, error)
 	UpdatePermission(ctx context.Context, in *UpdatePermissionRequest, opts ...grpc.CallOption) (*UpdatePermissionResponse, error)
 	DeletePermission(ctx context.Context, in *DeletePermissionRequest, opts ...grpc.CallOption) (*DeletePermissionResponse, error)
@@ -353,6 +354,15 @@ func (c *mainControlClient) CreatePermission(ctx context.Context, in *CreatePerm
 	return out, nil
 }
 
+func (c *mainControlClient) ReadPermission(ctx context.Context, in *ReadPermissionRequest, opts ...grpc.CallOption) (*ReadPermissionResponse, error) {
+	out := new(ReadPermissionResponse)
+	err := c.cc.Invoke(ctx, "/maincontrol.MainControl/ReadPermission", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *mainControlClient) ReadPermissionList(ctx context.Context, in *ReadPermissionListRequest, opts ...grpc.CallOption) (*ReadPermissionListResponse, error) {
 	out := new(ReadPermissionListResponse)
 	err := c.cc.Invoke(ctx, "/maincontrol.MainControl/ReadPermissionList", in, out, opts...)
@@ -431,6 +441,7 @@ type MainControlServer interface {
 	DeleteGroup(context.Context, *DeleteGroupRequest) (*DeleteGroupResponse, error)
 	// Permission
 	CreatePermission(context.Context, *CreatePermissionRequest) (*CreatePermissionResponse, error)
+	ReadPermission(context.Context, *ReadPermissionRequest) (*ReadPermissionResponse, error)
 	ReadPermissionList(context.Context, *ReadPermissionListRequest) (*ReadPermissionListResponse, error)
 	UpdatePermission(context.Context, *UpdatePermissionRequest) (*UpdatePermissionResponse, error)
 	DeletePermission(context.Context, *DeletePermissionRequest) (*DeletePermissionResponse, error)
@@ -534,6 +545,9 @@ func (UnimplementedMainControlServer) DeleteGroup(context.Context, *DeleteGroupR
 }
 func (UnimplementedMainControlServer) CreatePermission(context.Context, *CreatePermissionRequest) (*CreatePermissionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreatePermission not implemented")
+}
+func (UnimplementedMainControlServer) ReadPermission(context.Context, *ReadPermissionRequest) (*ReadPermissionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReadPermission not implemented")
 }
 func (UnimplementedMainControlServer) ReadPermissionList(context.Context, *ReadPermissionListRequest) (*ReadPermissionListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReadPermissionList not implemented")
@@ -1118,6 +1132,24 @@ func _MainControl_CreatePermission_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MainControl_ReadPermission_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReadPermissionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MainControlServer).ReadPermission(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/maincontrol.MainControl/ReadPermission",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MainControlServer).ReadPermission(ctx, req.(*ReadPermissionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _MainControl_ReadPermissionList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ReadPermissionListRequest)
 	if err := dec(in); err != nil {
@@ -1320,6 +1352,10 @@ var MainControl_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreatePermission",
 			Handler:    _MainControl_CreatePermission_Handler,
+		},
+		{
+			MethodName: "ReadPermission",
+			Handler:    _MainControl_ReadPermission_Handler,
 		},
 		{
 			MethodName: "ReadPermissionList",
