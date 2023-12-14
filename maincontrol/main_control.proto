@@ -257,7 +257,7 @@ message Registerer {
   bool is_alarm = 7;
   string permission_uuid = 8;
   string group_uuid = 9;
-  bytes company_number_file = 10;
+  string name = 10;
 }
 
 // registerer 등록
