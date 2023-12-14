@@ -315,7 +315,7 @@ message ReadRegistererListRequest {
   string group_uuid = 1;
 }
 message ReadRegistererListResponse {
-  repeated RegistererInfo registerer_list_info = 1;
+  repeated Registerer registerer_list = 1;
 }
 
 message Place {
