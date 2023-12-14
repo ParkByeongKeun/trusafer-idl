@@ -427,6 +427,7 @@ message CreateSettopRequest {
   Settop settop = 1;
 }
 message CreateSettopResponse {
+  string uuid = 1;
 }
 
 // settop 수정
@@ -487,6 +488,7 @@ message CreateSensorRequest {
   Sensor sensor = 1;
 }
 message CreateSensorResponse {
+  string uuid = 1;
 }
 
 // sensor 수정
@@ -582,6 +584,7 @@ message CreateGroupRequest {
   Group group = 1;
 }
 message CreateGroupResponse {
+  string uuid = 1;
 }
 
 // group 수정
@@ -632,6 +635,7 @@ message CreatePermissionRequest {
   Permission Permission = 1;
 }
 message CreatePermissionResponse {
+  string uuid = 1;
 }
 
 // group 수정
@@ -665,11 +669,9 @@ message FindEmailResponse {
   string email = 1;
 }
 
-
 // // 메인화면 req
 // message MainPageRequest {
 //   string registerer_uuid = 1;
-//   string 
 //   string group_uuid = 2;
 
 //   string name = 1;
@@ -679,4 +681,3 @@ message FindEmailResponse {
 // message MainPageResponse {
 //   string email = 1;
 // }
-
