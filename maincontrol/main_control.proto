@@ -203,11 +203,6 @@ service MainControl {
       body: "*"
   };
   }
-  rpc ReadPermission(ReadPermissionRequest) returns (ReadPermissionResponse) {
-    option (google.api.http) = {
-      get: "/api/main/v1/permission"
-  };
-  }
   rpc ReadPermissionList(ReadPermissionListRequest) returns (ReadPermissionListResponse) {
     option (google.api.http) = {
       get: "/api/main/v1/permission_list"
@@ -276,7 +271,8 @@ message RegistererInfo {
   bool p_sensor_info = 10;
   bool p_ip_module = 11;
   bool p_threshold = 12;
-  string name = 13;
+  bool p_sensor_history = 13;
+  string name = 14;
 }
 
 
@@ -627,6 +623,7 @@ message Permission {
   bool sensor_info = 6;
   bool ip_module = 7;
   bool threshold = 8;
+  bool sensor_history = 9;
 }
 
 
@@ -649,14 +646,6 @@ message DeletePermissionRequest {
   string permission_uuid = 1;
 }
 message DeletePermissionResponse {
-}
-
-// group list 가져오기
-message ReadPermissionRequest {
-  string permission_uuid = 1;
-}
-message ReadPermissionResponse {
-  repeated Permission permission_list = 1;
 }
 
 // group list 가져오기
