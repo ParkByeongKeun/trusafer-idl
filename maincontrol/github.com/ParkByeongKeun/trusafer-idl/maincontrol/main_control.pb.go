@@ -4158,69 +4158,6 @@ func (x *FindEmailResponse) GetEmail() string {
 	return ""
 }
 
-type MainList struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	PlaceList  []*Place  `protobuf:"bytes,1,rep,name=place_list,json=placeList,proto3" json:"place_list,omitempty"`
-	SettopList []*Settop `protobuf:"bytes,2,rep,name=settop_list,json=settopList,proto3" json:"settop_list,omitempty"`
-	SensorList []*Sensor `protobuf:"bytes,3,rep,name=sensor_list,json=sensorList,proto3" json:"sensor_list,omitempty"`
-}
-
-func (x *MainList) Reset() {
-	*x = MainList{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[78]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *MainList) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*MainList) ProtoMessage() {}
-
-func (x *MainList) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[78]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use MainList.ProtoReflect.Descriptor instead.
-func (*MainList) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{78}
-}
-
-func (x *MainList) GetPlaceList() []*Place {
-	if x != nil {
-		return x.PlaceList
-	}
-	return nil
-}
-
-func (x *MainList) GetSettopList() []*Settop {
-	if x != nil {
-		return x.SettopList
-	}
-	return nil
-}
-
-func (x *MainList) GetSensorList() []*Sensor {
-	if x != nil {
-		return x.SensorList
-	}
-	return nil
-}
-
 // 메인화면 req
 type MainListRequest struct {
 	state         protoimpl.MessageState
@@ -4233,7 +4170,7 @@ type MainListRequest struct {
 func (x *MainListRequest) Reset() {
 	*x = MainListRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[79]
+		mi := &file_main_control_proto_msgTypes[78]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4246,7 +4183,7 @@ func (x *MainListRequest) String() string {
 func (*MainListRequest) ProtoMessage() {}
 
 func (x *MainListRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[79]
+	mi := &file_main_control_proto_msgTypes[78]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4259,7 +4196,7 @@ func (x *MainListRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MainListRequest.ProtoReflect.Descriptor instead.
 func (*MainListRequest) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{79}
+	return file_main_control_proto_rawDescGZIP(), []int{78}
 }
 
 func (x *MainListRequest) GetRegistererUuid() string {
@@ -4274,13 +4211,15 @@ type MainListResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	MainList *MainList `protobuf:"bytes,1,opt,name=main_list,json=mainList,proto3" json:"main_list,omitempty"`
+	PlaceList  []*Place  `protobuf:"bytes,1,rep,name=place_list,json=placeList,proto3" json:"place_list,omitempty"`
+	SettopList []*Settop `protobuf:"bytes,2,rep,name=settop_list,json=settopList,proto3" json:"settop_list,omitempty"`
+	SensorList []*Sensor `protobuf:"bytes,3,rep,name=sensor_list,json=sensorList,proto3" json:"sensor_list,omitempty"`
 }
 
 func (x *MainListResponse) Reset() {
 	*x = MainListResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_main_control_proto_msgTypes[80]
+		mi := &file_main_control_proto_msgTypes[79]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4293,7 +4232,7 @@ func (x *MainListResponse) String() string {
 func (*MainListResponse) ProtoMessage() {}
 
 func (x *MainListResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_main_control_proto_msgTypes[80]
+	mi := &file_main_control_proto_msgTypes[79]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4306,12 +4245,26 @@ func (x *MainListResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MainListResponse.ProtoReflect.Descriptor instead.
 func (*MainListResponse) Descriptor() ([]byte, []int) {
-	return file_main_control_proto_rawDescGZIP(), []int{80}
+	return file_main_control_proto_rawDescGZIP(), []int{79}
 }
 
-func (x *MainListResponse) GetMainList() *MainList {
+func (x *MainListResponse) GetPlaceList() []*Place {
 	if x != nil {
-		return x.MainList
+		return x.PlaceList
+	}
+	return nil
+}
+
+func (x *MainListResponse) GetSettopList() []*Settop {
+	if x != nil {
+		return x.SettopList
+	}
+	return nil
+}
+
+func (x *MainListResponse) GetSensorList() []*Sensor {
+	if x != nil {
+		return x.SensorList
 	}
 	return nil
 }
@@ -4700,26 +4653,22 @@ var file_main_control_proto_rawDesc = []byte{
 	0x52, 0x0d, 0x63, 0x6f, 0x6d, 0x70, 0x61, 0x6e, 0x79, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x22,
 	0x29, 0x0a, 0x11, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6d, 0x61, 0x69, 0x6c, 0x52, 0x65, 0x73, 0x70,
 	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x22, 0xa9, 0x01, 0x0a, 0x08, 0x4d,
-	0x61, 0x69, 0x6e, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x31, 0x0a, 0x0a, 0x70, 0x6c, 0x61, 0x63, 0x65,
-	0x5f, 0x6c, 0x69, 0x73, 0x74, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x12, 0x2e, 0x6d, 0x61,
-	0x69, 0x6e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x2e, 0x50, 0x6c, 0x61, 0x63, 0x65, 0x52,
-	0x09, 0x70, 0x6c, 0x61, 0x63, 0x65, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x34, 0x0a, 0x0b, 0x73, 0x65,
-	0x74, 0x74, 0x6f, 0x70, 0x5f, 0x6c, 0x69, 0x73, 0x74, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32,
-	0x13, 0x2e, 0x6d, 0x61, 0x69, 0x6e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x2e, 0x53, 0x65,
-	0x74, 0x74, 0x6f, 0x70, 0x52, 0x0a, 0x73, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x4c, 0x69, 0x73, 0x74,
-	0x12, 0x34, 0x0a, 0x0b, 0x73, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x5f, 0x6c, 0x69, 0x73, 0x74, 0x18,
-	0x03, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x13, 0x2e, 0x6d, 0x61, 0x69, 0x6e, 0x63, 0x6f, 0x6e, 0x74,
-	0x72, 0x6f, 0x6c, 0x2e, 0x53, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x52, 0x0a, 0x73, 0x65, 0x6e, 0x73,
-	0x6f, 0x72, 0x4c, 0x69, 0x73, 0x74, 0x22, 0x3a, 0x0a, 0x0f, 0x4d, 0x61, 0x69, 0x6e, 0x4c, 0x69,
-	0x73, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x27, 0x0a, 0x0f, 0x72, 0x65, 0x67,
-	0x69, 0x73, 0x74, 0x65, 0x72, 0x65, 0x72, 0x5f, 0x75, 0x75, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x09, 0x52, 0x0e, 0x72, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x65, 0x72, 0x55, 0x75,
-	0x69, 0x64, 0x22, 0x46, 0x0a, 0x10, 0x4d, 0x61, 0x69, 0x6e, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x32, 0x0a, 0x09, 0x6d, 0x61, 0x69, 0x6e, 0x5f, 0x6c,
-	0x69, 0x73, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x15, 0x2e, 0x6d, 0x61, 0x69, 0x6e,
-	0x63, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x2e, 0x4d, 0x61, 0x69, 0x6e, 0x4c, 0x69, 0x73, 0x74,
-	0x52, 0x08, 0x6d, 0x61, 0x69, 0x6e, 0x4c, 0x69, 0x73, 0x74, 0x2a, 0x9c, 0x01, 0x0a, 0x10, 0x52,
+	0x01, 0x28, 0x09, 0x52, 0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x22, 0x3a, 0x0a, 0x0f, 0x4d, 0x61,
+	0x69, 0x6e, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x27, 0x0a,
+	0x0f, 0x72, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x65, 0x72, 0x5f, 0x75, 0x75, 0x69, 0x64,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0e, 0x72, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72,
+	0x65, 0x72, 0x55, 0x75, 0x69, 0x64, 0x22, 0xb1, 0x01, 0x0a, 0x10, 0x4d, 0x61, 0x69, 0x6e, 0x4c,
+	0x69, 0x73, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x31, 0x0a, 0x0a, 0x70,
+	0x6c, 0x61, 0x63, 0x65, 0x5f, 0x6c, 0x69, 0x73, 0x74, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32,
+	0x12, 0x2e, 0x6d, 0x61, 0x69, 0x6e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x2e, 0x50, 0x6c,
+	0x61, 0x63, 0x65, 0x52, 0x09, 0x70, 0x6c, 0x61, 0x63, 0x65, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x34,
+	0x0a, 0x0b, 0x73, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x5f, 0x6c, 0x69, 0x73, 0x74, 0x18, 0x02, 0x20,
+	0x03, 0x28, 0x0b, 0x32, 0x13, 0x2e, 0x6d, 0x61, 0x69, 0x6e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x6f,
+	0x6c, 0x2e, 0x53, 0x65, 0x74, 0x74, 0x6f, 0x70, 0x52, 0x0a, 0x73, 0x65, 0x74, 0x74, 0x6f, 0x70,
+	0x4c, 0x69, 0x73, 0x74, 0x12, 0x34, 0x0a, 0x0b, 0x73, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x5f, 0x6c,
+	0x69, 0x73, 0x74, 0x18, 0x03, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x13, 0x2e, 0x6d, 0x61, 0x69, 0x6e,
+	0x63, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x2e, 0x53, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x52, 0x0a,
+	0x73, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x4c, 0x69, 0x73, 0x74, 0x2a, 0x9c, 0x01, 0x0a, 0x10, 0x52,
 	0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x65, 0x72, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12,
 	0x1d, 0x0a, 0x19, 0x52, 0x45, 0x47, 0x49, 0x53, 0x54, 0x45, 0x52, 0x45, 0x52, 0x5f, 0x53, 0x54,
 	0x41, 0x54, 0x55, 0x53, 0x5f, 0x44, 0x49, 0x53, 0x41, 0x42, 0x4c, 0x45, 0x10, 0x00, 0x12, 0x20,
@@ -5032,7 +4981,7 @@ func file_main_control_proto_rawDescGZIP() []byte {
 }
 
 var file_main_control_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_main_control_proto_msgTypes = make([]protoimpl.MessageInfo, 81)
+var file_main_control_proto_msgTypes = make([]protoimpl.MessageInfo, 80)
 var file_main_control_proto_goTypes = []interface{}{
 	(RegistererStatus)(0),              // 0: maincontrol.RegistererStatus
 	(SensorStatus)(0),                  // 1: maincontrol.SensorStatus
@@ -5114,9 +5063,8 @@ var file_main_control_proto_goTypes = []interface{}{
 	(*ReadPermissionListResponse)(nil), // 77: maincontrol.ReadPermissionListResponse
 	(*FindEmailRequest)(nil),           // 78: maincontrol.FindEmailRequest
 	(*FindEmailResponse)(nil),          // 79: maincontrol.FindEmailResponse
-	(*MainList)(nil),                   // 80: maincontrol.MainList
-	(*MainListRequest)(nil),            // 81: maincontrol.MainListRequest
-	(*MainListResponse)(nil),           // 82: maincontrol.MainListResponse
+	(*MainListRequest)(nil),            // 80: maincontrol.MainListRequest
+	(*MainListResponse)(nil),           // 81: maincontrol.MainListResponse
 }
 var file_main_control_proto_depIdxs = []int32{
 	0,  // 0: maincontrol.Registerer.status:type_name -> maincontrol.RegistererStatus
@@ -5149,87 +5097,86 @@ var file_main_control_proto_depIdxs = []int32{
 	69, // 27: maincontrol.CreatePermissionRequest.Permission:type_name -> maincontrol.Permission
 	69, // 28: maincontrol.UpdatePermissionRequest.permission:type_name -> maincontrol.Permission
 	69, // 29: maincontrol.ReadPermissionListResponse.permission_list:type_name -> maincontrol.Permission
-	14, // 30: maincontrol.MainList.place_list:type_name -> maincontrol.Place
-	25, // 31: maincontrol.MainList.settop_list:type_name -> maincontrol.Settop
-	36, // 32: maincontrol.MainList.sensor_list:type_name -> maincontrol.Sensor
-	80, // 33: maincontrol.MainListResponse.main_list:type_name -> maincontrol.MainList
-	4,  // 34: maincontrol.MainControl.CreateRegisterer:input_type -> maincontrol.CreateRegistererRequest
-	10, // 35: maincontrol.MainControl.ReadRegisterer:input_type -> maincontrol.ReadRegistererRequest
-	12, // 36: maincontrol.MainControl.ReadRegistererList:input_type -> maincontrol.ReadRegistererListRequest
-	6,  // 37: maincontrol.MainControl.UpdateRegisterer:input_type -> maincontrol.UpdateRegistererRequest
-	8,  // 38: maincontrol.MainControl.DeleteRegisterer:input_type -> maincontrol.DeleteRegistererRequest
-	15, // 39: maincontrol.MainControl.CreatePlace:input_type -> maincontrol.CreatePlaceRequest
-	21, // 40: maincontrol.MainControl.ReadPlace:input_type -> maincontrol.ReadPlaceRequest
-	23, // 41: maincontrol.MainControl.ReadPlaceList:input_type -> maincontrol.ReadPlaceListRequest
-	17, // 42: maincontrol.MainControl.UpdatePlace:input_type -> maincontrol.UpdatePlaceRequest
-	19, // 43: maincontrol.MainControl.DeletePlace:input_type -> maincontrol.DeletePlaceRequest
-	26, // 44: maincontrol.MainControl.CreateSettop:input_type -> maincontrol.CreateSettopRequest
-	32, // 45: maincontrol.MainControl.ReadSettop:input_type -> maincontrol.ReadSettopRequest
-	34, // 46: maincontrol.MainControl.ReadSettopList:input_type -> maincontrol.ReadSettopListRequest
-	28, // 47: maincontrol.MainControl.UpdateSettop:input_type -> maincontrol.UpdateSettopRequest
-	30, // 48: maincontrol.MainControl.DeleteSettop:input_type -> maincontrol.DeleteSettopRequest
-	37, // 49: maincontrol.MainControl.CreateSensor:input_type -> maincontrol.CreateSensorRequest
-	43, // 50: maincontrol.MainControl.ReadSensor:input_type -> maincontrol.ReadSensorRequest
-	45, // 51: maincontrol.MainControl.ReadSensorList:input_type -> maincontrol.ReadSensorListRequest
-	39, // 52: maincontrol.MainControl.UpdateSensor:input_type -> maincontrol.UpdateSensorRequest
-	41, // 53: maincontrol.MainControl.DeleteSensor:input_type -> maincontrol.DeleteSensorRequest
-	48, // 54: maincontrol.MainControl.CreateHistory:input_type -> maincontrol.CreateHistoryRequest
-	54, // 55: maincontrol.MainControl.ReadHistory:input_type -> maincontrol.ReadHistoryRequest
-	56, // 56: maincontrol.MainControl.ReadHistoryList:input_type -> maincontrol.ReadHistoryListRequest
-	50, // 57: maincontrol.MainControl.UpdateHistory:input_type -> maincontrol.UpdateHistoryRequest
-	52, // 58: maincontrol.MainControl.DeleteHistory:input_type -> maincontrol.DeleteHistoryRequest
-	59, // 59: maincontrol.MainControl.CreateGroup:input_type -> maincontrol.CreateGroupRequest
-	65, // 60: maincontrol.MainControl.ReadGroup:input_type -> maincontrol.ReadGroupRequest
-	67, // 61: maincontrol.MainControl.ReadGroupList:input_type -> maincontrol.ReadGroupListRequest
-	61, // 62: maincontrol.MainControl.UpdateGroup:input_type -> maincontrol.UpdateGroupRequest
-	63, // 63: maincontrol.MainControl.DeleteGroup:input_type -> maincontrol.DeleteGroupRequest
-	70, // 64: maincontrol.MainControl.CreatePermission:input_type -> maincontrol.CreatePermissionRequest
-	76, // 65: maincontrol.MainControl.ReadPermissionList:input_type -> maincontrol.ReadPermissionListRequest
-	72, // 66: maincontrol.MainControl.UpdatePermission:input_type -> maincontrol.UpdatePermissionRequest
-	74, // 67: maincontrol.MainControl.DeletePermission:input_type -> maincontrol.DeletePermissionRequest
-	78, // 68: maincontrol.MainControl.FindEmail:input_type -> maincontrol.FindEmailRequest
-	81, // 69: maincontrol.MainControl.MainList:input_type -> maincontrol.MainListRequest
-	5,  // 70: maincontrol.MainControl.CreateRegisterer:output_type -> maincontrol.CreateRegistererResponse
-	11, // 71: maincontrol.MainControl.ReadRegisterer:output_type -> maincontrol.ReadRegistererResponse
-	13, // 72: maincontrol.MainControl.ReadRegistererList:output_type -> maincontrol.ReadRegistererListResponse
-	7,  // 73: maincontrol.MainControl.UpdateRegisterer:output_type -> maincontrol.UpdateRegistererResponse
-	9,  // 74: maincontrol.MainControl.DeleteRegisterer:output_type -> maincontrol.DeleteRegistererResponse
-	16, // 75: maincontrol.MainControl.CreatePlace:output_type -> maincontrol.CreatePlaceResponse
-	22, // 76: maincontrol.MainControl.ReadPlace:output_type -> maincontrol.ReadPlaceResponse
-	24, // 77: maincontrol.MainControl.ReadPlaceList:output_type -> maincontrol.ReadPlaceListResponse
-	18, // 78: maincontrol.MainControl.UpdatePlace:output_type -> maincontrol.UpdatePlaceResponse
-	20, // 79: maincontrol.MainControl.DeletePlace:output_type -> maincontrol.DeletePlaceResponse
-	27, // 80: maincontrol.MainControl.CreateSettop:output_type -> maincontrol.CreateSettopResponse
-	33, // 81: maincontrol.MainControl.ReadSettop:output_type -> maincontrol.ReadSettopResponse
-	35, // 82: maincontrol.MainControl.ReadSettopList:output_type -> maincontrol.ReadSettopListResponse
-	29, // 83: maincontrol.MainControl.UpdateSettop:output_type -> maincontrol.UpdateSettopResponse
-	31, // 84: maincontrol.MainControl.DeleteSettop:output_type -> maincontrol.DeleteSettopResponse
-	38, // 85: maincontrol.MainControl.CreateSensor:output_type -> maincontrol.CreateSensorResponse
-	44, // 86: maincontrol.MainControl.ReadSensor:output_type -> maincontrol.ReadSensorResponse
-	46, // 87: maincontrol.MainControl.ReadSensorList:output_type -> maincontrol.ReadSensorListResponse
-	40, // 88: maincontrol.MainControl.UpdateSensor:output_type -> maincontrol.UpdateSensorResponse
-	42, // 89: maincontrol.MainControl.DeleteSensor:output_type -> maincontrol.DeleteSensorResponse
-	49, // 90: maincontrol.MainControl.CreateHistory:output_type -> maincontrol.CreateHistoryResponse
-	55, // 91: maincontrol.MainControl.ReadHistory:output_type -> maincontrol.ReadHistoryResponse
-	57, // 92: maincontrol.MainControl.ReadHistoryList:output_type -> maincontrol.ReadHistoryListResponse
-	51, // 93: maincontrol.MainControl.UpdateHistory:output_type -> maincontrol.UpdateHistoryResponse
-	53, // 94: maincontrol.MainControl.DeleteHistory:output_type -> maincontrol.DeleteHistoryResponse
-	60, // 95: maincontrol.MainControl.CreateGroup:output_type -> maincontrol.CreateGroupResponse
-	66, // 96: maincontrol.MainControl.ReadGroup:output_type -> maincontrol.ReadGroupResponse
-	68, // 97: maincontrol.MainControl.ReadGroupList:output_type -> maincontrol.ReadGroupListResponse
-	62, // 98: maincontrol.MainControl.UpdateGroup:output_type -> maincontrol.UpdateGroupResponse
-	64, // 99: maincontrol.MainControl.DeleteGroup:output_type -> maincontrol.DeleteGroupResponse
-	71, // 100: maincontrol.MainControl.CreatePermission:output_type -> maincontrol.CreatePermissionResponse
-	77, // 101: maincontrol.MainControl.ReadPermissionList:output_type -> maincontrol.ReadPermissionListResponse
-	73, // 102: maincontrol.MainControl.UpdatePermission:output_type -> maincontrol.UpdatePermissionResponse
-	75, // 103: maincontrol.MainControl.DeletePermission:output_type -> maincontrol.DeletePermissionResponse
-	79, // 104: maincontrol.MainControl.FindEmail:output_type -> maincontrol.FindEmailResponse
-	82, // 105: maincontrol.MainControl.MainList:output_type -> maincontrol.MainListResponse
-	70, // [70:106] is the sub-list for method output_type
-	34, // [34:70] is the sub-list for method input_type
-	34, // [34:34] is the sub-list for extension type_name
-	34, // [34:34] is the sub-list for extension extendee
-	0,  // [0:34] is the sub-list for field type_name
+	14, // 30: maincontrol.MainListResponse.place_list:type_name -> maincontrol.Place
+	25, // 31: maincontrol.MainListResponse.settop_list:type_name -> maincontrol.Settop
+	36, // 32: maincontrol.MainListResponse.sensor_list:type_name -> maincontrol.Sensor
+	4,  // 33: maincontrol.MainControl.CreateRegisterer:input_type -> maincontrol.CreateRegistererRequest
+	10, // 34: maincontrol.MainControl.ReadRegisterer:input_type -> maincontrol.ReadRegistererRequest
+	12, // 35: maincontrol.MainControl.ReadRegistererList:input_type -> maincontrol.ReadRegistererListRequest
+	6,  // 36: maincontrol.MainControl.UpdateRegisterer:input_type -> maincontrol.UpdateRegistererRequest
+	8,  // 37: maincontrol.MainControl.DeleteRegisterer:input_type -> maincontrol.DeleteRegistererRequest
+	15, // 38: maincontrol.MainControl.CreatePlace:input_type -> maincontrol.CreatePlaceRequest
+	21, // 39: maincontrol.MainControl.ReadPlace:input_type -> maincontrol.ReadPlaceRequest
+	23, // 40: maincontrol.MainControl.ReadPlaceList:input_type -> maincontrol.ReadPlaceListRequest
+	17, // 41: maincontrol.MainControl.UpdatePlace:input_type -> maincontrol.UpdatePlaceRequest
+	19, // 42: maincontrol.MainControl.DeletePlace:input_type -> maincontrol.DeletePlaceRequest
+	26, // 43: maincontrol.MainControl.CreateSettop:input_type -> maincontrol.CreateSettopRequest
+	32, // 44: maincontrol.MainControl.ReadSettop:input_type -> maincontrol.ReadSettopRequest
+	34, // 45: maincontrol.MainControl.ReadSettopList:input_type -> maincontrol.ReadSettopListRequest
+	28, // 46: maincontrol.MainControl.UpdateSettop:input_type -> maincontrol.UpdateSettopRequest
+	30, // 47: maincontrol.MainControl.DeleteSettop:input_type -> maincontrol.DeleteSettopRequest
+	37, // 48: maincontrol.MainControl.CreateSensor:input_type -> maincontrol.CreateSensorRequest
+	43, // 49: maincontrol.MainControl.ReadSensor:input_type -> maincontrol.ReadSensorRequest
+	45, // 50: maincontrol.MainControl.ReadSensorList:input_type -> maincontrol.ReadSensorListRequest
+	39, // 51: maincontrol.MainControl.UpdateSensor:input_type -> maincontrol.UpdateSensorRequest
+	41, // 52: maincontrol.MainControl.DeleteSensor:input_type -> maincontrol.DeleteSensorRequest
+	48, // 53: maincontrol.MainControl.CreateHistory:input_type -> maincontrol.CreateHistoryRequest
+	54, // 54: maincontrol.MainControl.ReadHistory:input_type -> maincontrol.ReadHistoryRequest
+	56, // 55: maincontrol.MainControl.ReadHistoryList:input_type -> maincontrol.ReadHistoryListRequest
+	50, // 56: maincontrol.MainControl.UpdateHistory:input_type -> maincontrol.UpdateHistoryRequest
+	52, // 57: maincontrol.MainControl.DeleteHistory:input_type -> maincontrol.DeleteHistoryRequest
+	59, // 58: maincontrol.MainControl.CreateGroup:input_type -> maincontrol.CreateGroupRequest
+	65, // 59: maincontrol.MainControl.ReadGroup:input_type -> maincontrol.ReadGroupRequest
+	67, // 60: maincontrol.MainControl.ReadGroupList:input_type -> maincontrol.ReadGroupListRequest
+	61, // 61: maincontrol.MainControl.UpdateGroup:input_type -> maincontrol.UpdateGroupRequest
+	63, // 62: maincontrol.MainControl.DeleteGroup:input_type -> maincontrol.DeleteGroupRequest
+	70, // 63: maincontrol.MainControl.CreatePermission:input_type -> maincontrol.CreatePermissionRequest
+	76, // 64: maincontrol.MainControl.ReadPermissionList:input_type -> maincontrol.ReadPermissionListRequest
+	72, // 65: maincontrol.MainControl.UpdatePermission:input_type -> maincontrol.UpdatePermissionRequest
+	74, // 66: maincontrol.MainControl.DeletePermission:input_type -> maincontrol.DeletePermissionRequest
+	78, // 67: maincontrol.MainControl.FindEmail:input_type -> maincontrol.FindEmailRequest
+	80, // 68: maincontrol.MainControl.MainList:input_type -> maincontrol.MainListRequest
+	5,  // 69: maincontrol.MainControl.CreateRegisterer:output_type -> maincontrol.CreateRegistererResponse
+	11, // 70: maincontrol.MainControl.ReadRegisterer:output_type -> maincontrol.ReadRegistererResponse
+	13, // 71: maincontrol.MainControl.ReadRegistererList:output_type -> maincontrol.ReadRegistererListResponse
+	7,  // 72: maincontrol.MainControl.UpdateRegisterer:output_type -> maincontrol.UpdateRegistererResponse
+	9,  // 73: maincontrol.MainControl.DeleteRegisterer:output_type -> maincontrol.DeleteRegistererResponse
+	16, // 74: maincontrol.MainControl.CreatePlace:output_type -> maincontrol.CreatePlaceResponse
+	22, // 75: maincontrol.MainControl.ReadPlace:output_type -> maincontrol.ReadPlaceResponse
+	24, // 76: maincontrol.MainControl.ReadPlaceList:output_type -> maincontrol.ReadPlaceListResponse
+	18, // 77: maincontrol.MainControl.UpdatePlace:output_type -> maincontrol.UpdatePlaceResponse
+	20, // 78: maincontrol.MainControl.DeletePlace:output_type -> maincontrol.DeletePlaceResponse
+	27, // 79: maincontrol.MainControl.CreateSettop:output_type -> maincontrol.CreateSettopResponse
+	33, // 80: maincontrol.MainControl.ReadSettop:output_type -> maincontrol.ReadSettopResponse
+	35, // 81: maincontrol.MainControl.ReadSettopList:output_type -> maincontrol.ReadSettopListResponse
+	29, // 82: maincontrol.MainControl.UpdateSettop:output_type -> maincontrol.UpdateSettopResponse
+	31, // 83: maincontrol.MainControl.DeleteSettop:output_type -> maincontrol.DeleteSettopResponse
+	38, // 84: maincontrol.MainControl.CreateSensor:output_type -> maincontrol.CreateSensorResponse
+	44, // 85: maincontrol.MainControl.ReadSensor:output_type -> maincontrol.ReadSensorResponse
+	46, // 86: maincontrol.MainControl.ReadSensorList:output_type -> maincontrol.ReadSensorListResponse
+	40, // 87: maincontrol.MainControl.UpdateSensor:output_type -> maincontrol.UpdateSensorResponse
+	42, // 88: maincontrol.MainControl.DeleteSensor:output_type -> maincontrol.DeleteSensorResponse
+	49, // 89: maincontrol.MainControl.CreateHistory:output_type -> maincontrol.CreateHistoryResponse
+	55, // 90: maincontrol.MainControl.ReadHistory:output_type -> maincontrol.ReadHistoryResponse
+	57, // 91: maincontrol.MainControl.ReadHistoryList:output_type -> maincontrol.ReadHistoryListResponse
+	51, // 92: maincontrol.MainControl.UpdateHistory:output_type -> maincontrol.UpdateHistoryResponse
+	53, // 93: maincontrol.MainControl.DeleteHistory:output_type -> maincontrol.DeleteHistoryResponse
+	60, // 94: maincontrol.MainControl.CreateGroup:output_type -> maincontrol.CreateGroupResponse
+	66, // 95: maincontrol.MainControl.ReadGroup:output_type -> maincontrol.ReadGroupResponse
+	68, // 96: maincontrol.MainControl.ReadGroupList:output_type -> maincontrol.ReadGroupListResponse
+	62, // 97: maincontrol.MainControl.UpdateGroup:output_type -> maincontrol.UpdateGroupResponse
+	64, // 98: maincontrol.MainControl.DeleteGroup:output_type -> maincontrol.DeleteGroupResponse
+	71, // 99: maincontrol.MainControl.CreatePermission:output_type -> maincontrol.CreatePermissionResponse
+	77, // 100: maincontrol.MainControl.ReadPermissionList:output_type -> maincontrol.ReadPermissionListResponse
+	73, // 101: maincontrol.MainControl.UpdatePermission:output_type -> maincontrol.UpdatePermissionResponse
+	75, // 102: maincontrol.MainControl.DeletePermission:output_type -> maincontrol.DeletePermissionResponse
+	79, // 103: maincontrol.MainControl.FindEmail:output_type -> maincontrol.FindEmailResponse
+	81, // 104: maincontrol.MainControl.MainList:output_type -> maincontrol.MainListResponse
+	69, // [69:105] is the sub-list for method output_type
+	33, // [33:69] is the sub-list for method input_type
+	33, // [33:33] is the sub-list for extension type_name
+	33, // [33:33] is the sub-list for extension extendee
+	0,  // [0:33] is the sub-list for field type_name
 }
 
 func init() { file_main_control_proto_init() }
@@ -6175,18 +6122,6 @@ func file_main_control_proto_init() {
 			}
 		}
 		file_main_control_proto_msgTypes[78].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MainList); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_main_control_proto_msgTypes[79].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*MainListRequest); i {
 			case 0:
 				return &v.state
@@ -6198,7 +6133,7 @@ func file_main_control_proto_init() {
 				return nil
 			}
 		}
-		file_main_control_proto_msgTypes[80].Exporter = func(v interface{}, i int) interface{} {
+		file_main_control_proto_msgTypes[79].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*MainListResponse); i {
 			case 0:
 				return &v.state
@@ -6217,7 +6152,7 @@ func file_main_control_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_main_control_proto_rawDesc,
 			NumEnums:      2,
-			NumMessages:   81,
+			NumMessages:   80,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
