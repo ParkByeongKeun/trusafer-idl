@@ -459,7 +459,7 @@ message ReadSettopResponse {
 
 // settop list 가져오기
 message ReadSettopListRequest {
-  string place_uuid = 1;
+  // string place_uuid = 1; //Todo : 플랫폼형은 나중에 상호명? 으로 구현
 }
 message ReadSettopListResponse {
   repeated Settop settop_list = 1;
