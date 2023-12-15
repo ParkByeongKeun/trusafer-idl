@@ -64,6 +64,7 @@ type MainControlClient interface {
 	UpdatePermission(ctx context.Context, in *UpdatePermissionRequest, opts ...grpc.CallOption) (*UpdatePermissionResponse, error)
 	DeletePermission(ctx context.Context, in *DeletePermissionRequest, opts ...grpc.CallOption) (*DeletePermissionResponse, error)
 	FindEmail(ctx context.Context, in *FindEmailRequest, opts ...grpc.CallOption) (*FindEmailResponse, error)
+	MainList(ctx context.Context, in *MainListRequest, opts ...grpc.CallOption) (*MainListResponse, error)
 }
 
 type mainControlClient struct {
@@ -389,6 +390,15 @@ func (c *mainControlClient) FindEmail(ctx context.Context, in *FindEmailRequest,
 	return out, nil
 }
 
+func (c *mainControlClient) MainList(ctx context.Context, in *MainListRequest, opts ...grpc.CallOption) (*MainListResponse, error) {
+	out := new(MainListResponse)
+	err := c.cc.Invoke(ctx, "/maincontrol.MainControl/MainList", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MainControlServer is the server API for MainControl service.
 // All implementations must embed UnimplementedMainControlServer
 // for forward compatibility
@@ -435,6 +445,7 @@ type MainControlServer interface {
 	UpdatePermission(context.Context, *UpdatePermissionRequest) (*UpdatePermissionResponse, error)
 	DeletePermission(context.Context, *DeletePermissionRequest) (*DeletePermissionResponse, error)
 	FindEmail(context.Context, *FindEmailRequest) (*FindEmailResponse, error)
+	MainList(context.Context, *MainListRequest) (*MainListResponse, error)
 	mustEmbedUnimplementedMainControlServer()
 }
 
@@ -546,6 +557,9 @@ func (UnimplementedMainControlServer) DeletePermission(context.Context, *DeleteP
 }
 func (UnimplementedMainControlServer) FindEmail(context.Context, *FindEmailRequest) (*FindEmailResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindEmail not implemented")
+}
+func (UnimplementedMainControlServer) MainList(context.Context, *MainListRequest) (*MainListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MainList not implemented")
 }
 func (UnimplementedMainControlServer) mustEmbedUnimplementedMainControlServer() {}
 
@@ -1190,6 +1204,24 @@ func _MainControl_FindEmail_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MainControl_MainList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MainListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MainControlServer).MainList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/maincontrol.MainControl/MainList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MainControlServer).MainList(ctx, req.(*MainListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MainControl_ServiceDesc is the grpc.ServiceDesc for MainControl service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1336,6 +1368,10 @@ var MainControl_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "FindEmail",
 			Handler:    _MainControl_FindEmail_Handler,
+		},
+		{
+			MethodName: "MainList",
+			Handler:    _MainControl_MainList_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
