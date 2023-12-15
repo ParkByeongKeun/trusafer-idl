@@ -18,7 +18,7 @@ service StorageControl {
 }
 
 message StorageData {
-  uint64 uuid = 1;
+  string uuid = 1;
   string date = 2;
   string serial = 3;
   string max_temp = 4;
