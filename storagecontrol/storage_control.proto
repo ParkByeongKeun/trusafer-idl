@@ -6,8 +6,6 @@ Main Control Protocol
 
 syntax = "proto3";
 
-import "google/api/annotations.proto";
-
 option go_package = "github.com/ParkByeongKeun/trusafer-idl/storagecontrol";
 option java_multiple_files = true;
 option java_package = "net.ijoon.trusafer.storage_control";
@@ -24,7 +22,7 @@ message StorageData {
   string date = 2;
   string serial = 3;
   string max_temp = 4;
-  string min_temp = 4;
+  string min_temp = 5;
 }
 
 message ReadStorageDataRequest {
