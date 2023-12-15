@@ -1,0 +1,41 @@
+/*
+Main Control Protocol
+- App(gRPC client) -> Main Server(gRPC server)
+- Edge Controller(gRPC client) -> Main Server(gRPC server)
+*/
+
+syntax = "proto3";
+
+import "google/api/annotations.proto";
+
+option go_package = "github.com/ParkByeongKeun/trusafer-idl/storagecontrol";
+option java_multiple_files = true;
+option java_package = "net.ijoon.trusafer.storage_control";
+option java_outer_classname = "StorageControlProto";
+
+package storagecontrol;
+
+service StorageControl {
+  rpc ReadStorageData(ReadStorageDataRequest) returns (ReadStorageDataResponse) {}
+}
+
+message StorageData {
+  uint64 uuid = 1;
+  string date = 2;
+  string serial = 3;
+  string max_temp = 4;
+  string min_temp = 4;
+}
+
+message ReadStorageDataRequest {
+  string serial = 1;
+  string prev_date = 2;
+  string next_date = 3;
+  uint64 interval = 4;
+  uint64 cursor = 5;
+  uint64 count = 6;
+}
+message ReadStorageDataResponse {
+  repeated StorageData storageData = 1;
+}
+
