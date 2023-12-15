@@ -674,12 +674,16 @@ message FindEmailResponse {
   string email = 1;
 }
 
+message MainList {
+  repeated Place place_list = 1;
+  repeated Settop settop_list = 2;
+  repeated Sensor sensor_list = 3;
+}
+
 // 메인화면 req
 message MainListRequest {
   string registerer_uuid = 1;
 }
 message MainListResponse {
-  repeated Place place_list = 1;
-  repeated Settop settop_list = 2;
-  repeated Sensor sensor_list = 3;
+  MainList main_list = 1;
 }
