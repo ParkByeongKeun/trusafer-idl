@@ -485,6 +485,7 @@ message Sensor {
   string threshold_temp_danger = 8;
   string latest_version = 9;
   string registered_time = 10;
+  string ip_module_mac = 11;
 }
 
 
