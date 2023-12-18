@@ -65,6 +65,8 @@ type MainControlClient interface {
 	DeletePermission(ctx context.Context, in *DeletePermissionRequest, opts ...grpc.CallOption) (*DeletePermissionResponse, error)
 	FindEmail(ctx context.Context, in *FindEmailRequest, opts ...grpc.CallOption) (*FindEmailResponse, error)
 	MainList(ctx context.Context, in *MainListRequest, opts ...grpc.CallOption) (*MainListResponse, error)
+	StreamImage(ctx context.Context, in *ImageRequest, opts ...grpc.CallOption) (MainControl_StreamImageClient, error)
+	ReadStorageData(ctx context.Context, in *ReadStorageDataRequest, opts ...grpc.CallOption) (*ReadStorageDataResponse, error)
 }
 
 type mainControlClient struct {
@@ -399,6 +401,47 @@ func (c *mainControlClient) MainList(ctx context.Context, in *MainListRequest, o
 	return out, nil
 }
 
+func (c *mainControlClient) StreamImage(ctx context.Context, in *ImageRequest, opts ...grpc.CallOption) (MainControl_StreamImageClient, error) {
+	stream, err := c.cc.NewStream(ctx, &MainControl_ServiceDesc.Streams[0], "/maincontrol.MainControl/StreamImage", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &mainControlStreamImageClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type MainControl_StreamImageClient interface {
+	Recv() (*ImageChunk, error)
+	grpc.ClientStream
+}
+
+type mainControlStreamImageClient struct {
+	grpc.ClientStream
+}
+
+func (x *mainControlStreamImageClient) Recv() (*ImageChunk, error) {
+	m := new(ImageChunk)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *mainControlClient) ReadStorageData(ctx context.Context, in *ReadStorageDataRequest, opts ...grpc.CallOption) (*ReadStorageDataResponse, error) {
+	out := new(ReadStorageDataResponse)
+	err := c.cc.Invoke(ctx, "/maincontrol.MainControl/ReadStorageData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MainControlServer is the server API for MainControl service.
 // All implementations must embed UnimplementedMainControlServer
 // for forward compatibility
@@ -446,6 +489,8 @@ type MainControlServer interface {
 	DeletePermission(context.Context, *DeletePermissionRequest) (*DeletePermissionResponse, error)
 	FindEmail(context.Context, *FindEmailRequest) (*FindEmailResponse, error)
 	MainList(context.Context, *MainListRequest) (*MainListResponse, error)
+	StreamImage(*ImageRequest, MainControl_StreamImageServer) error
+	ReadStorageData(context.Context, *ReadStorageDataRequest) (*ReadStorageDataResponse, error)
 	mustEmbedUnimplementedMainControlServer()
 }
 
@@ -560,6 +605,12 @@ func (UnimplementedMainControlServer) FindEmail(context.Context, *FindEmailReque
 }
 func (UnimplementedMainControlServer) MainList(context.Context, *MainListRequest) (*MainListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MainList not implemented")
+}
+func (UnimplementedMainControlServer) StreamImage(*ImageRequest, MainControl_StreamImageServer) error {
+	return status.Errorf(codes.Unimplemented, "method StreamImage not implemented")
+}
+func (UnimplementedMainControlServer) ReadStorageData(context.Context, *ReadStorageDataRequest) (*ReadStorageDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReadStorageData not implemented")
 }
 func (UnimplementedMainControlServer) mustEmbedUnimplementedMainControlServer() {}
 
@@ -1222,6 +1273,45 @@ func _MainControl_MainList_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MainControl_StreamImage_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(ImageRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(MainControlServer).StreamImage(m, &mainControlStreamImageServer{stream})
+}
+
+type MainControl_StreamImageServer interface {
+	Send(*ImageChunk) error
+	grpc.ServerStream
+}
+
+type mainControlStreamImageServer struct {
+	grpc.ServerStream
+}
+
+func (x *mainControlStreamImageServer) Send(m *ImageChunk) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func _MainControl_ReadStorageData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReadStorageDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MainControlServer).ReadStorageData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/maincontrol.MainControl/ReadStorageData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MainControlServer).ReadStorageData(ctx, req.(*ReadStorageDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MainControl_ServiceDesc is the grpc.ServiceDesc for MainControl service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1373,7 +1463,17 @@ var MainControl_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "MainList",
 			Handler:    _MainControl_MainList_Handler,
 		},
+		{
+			MethodName: "ReadStorageData",
+			Handler:    _MainControl_ReadStorageData_Handler,
+		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "StreamImage",
+			Handler:       _MainControl_StreamImage_Handler,
+			ServerStreams: true,
+		},
+	},
 	Metadata: "main_control.proto",
 }

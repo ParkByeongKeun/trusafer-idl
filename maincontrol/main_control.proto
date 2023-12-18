@@ -233,6 +233,15 @@ service MainControl {
       get: "/api/main/v1/main_list"
     };
   }
+
+  rpc StreamImage(ImageRequest) returns (stream ImageChunk);
+
+  rpc ReadStorageData(ReadStorageDataRequest) returns (ReadStorageDataResponse) {
+    option (google.api.http) = {
+      get: "/api/main/v1/storage_data"
+    };
+  }
+
   // /* Share */
   // rpc CreateShareUser(CreateShareRequest) returns (CreateShareResponse) {}
   // rpc DeleteShareUser(DeleteShareRequest) returns (DeleteShareResponse) {}
@@ -455,6 +464,8 @@ message ReadSettopRequest {
 }
 message ReadSettopResponse {
   Settop settop = 1;
+  string place_name = 2;
+  string place_address = 3;
 }
 
 // settop list 가져오기
@@ -463,6 +474,8 @@ message ReadSettopListRequest {
 }
 message ReadSettopListResponse {
   repeated Settop settop_list = 1;
+  string place_name = 2;
+  string place_address = 3;
 }
 
 
@@ -683,4 +696,33 @@ message MainListResponse {
   repeated Place place_list = 1;
   repeated Settop settop_list = 2;
   repeated Sensor sensor_list = 3;
+}
+
+message ImageRequest {
+  string sensor_serial = 1;
+  string date = 2;
+}
+
+message ImageChunk {
+  bytes tempImage = 1;
+}
+
+message StorageData {
+  string uuid = 1;
+  string date = 2;
+  string serial = 3;
+  string max_temp = 4;
+  string min_temp = 5;
+}
+
+message ReadStorageDataRequest {
+  string serial = 1;
+  string prev_date = 2;
+  string next_date = 3;
+  uint64 interval = 4;
+  uint64 cursor = 5;
+  uint64 count = 6;
+}
+message ReadStorageDataResponse {
+  repeated StorageData storageData = 1;
 }
