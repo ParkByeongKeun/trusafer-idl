@@ -234,7 +234,11 @@ service MainControl {
     };
   }
 
-  rpc StreamImage(ImageRequest) returns (stream ImageChunk){};
+  rpc StreamImage(ImageRequest) returns (stream ImageChunk){
+    option (google.api.http) = {
+      get: "/v1/image/stream"
+    };
+  }
 
   rpc ReadStorageData(ReadStorageDataRequest) returns (ReadStorageDataResponse) {
     option (google.api.http) = {

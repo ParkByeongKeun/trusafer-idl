@@ -1247,15 +1247,18 @@ func local_request_MainControl_MainList_0(ctx context.Context, marshaler runtime
 
 }
 
+var (
+	filter_MainControl_StreamImage_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
 func request_MainControl_StreamImage_0(ctx context.Context, marshaler runtime.Marshaler, client MainControlClient, req *http.Request, pathParams map[string]string) (MainControl_StreamImageClient, runtime.ServerMetadata, error) {
 	var protoReq ImageRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MainControl_StreamImage_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -2214,7 +2217,7 @@ func RegisterMainControlHandlerServer(ctx context.Context, mux *runtime.ServeMux
 
 	})
 
-	mux.Handle("POST", pattern_MainControl_StreamImage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_MainControl_StreamImage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		err := status.Error(codes.Unimplemented, "streaming calls are not yet supported in the in-process transport")
 		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -3079,13 +3082,13 @@ func RegisterMainControlHandlerClient(ctx context.Context, mux *runtime.ServeMux
 
 	})
 
-	mux.Handle("POST", pattern_MainControl_StreamImage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_MainControl_StreamImage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/maincontrol.MainControl/StreamImage", runtime.WithHTTPPathPattern("/maincontrol.MainControl/StreamImage"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/maincontrol.MainControl/StreamImage", runtime.WithHTTPPathPattern("/v1/image/stream"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3199,7 +3202,7 @@ var (
 
 	pattern_MainControl_MainList_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "main", "v1", "main_list"}, ""))
 
-	pattern_MainControl_StreamImage_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"maincontrol.MainControl", "StreamImage"}, ""))
+	pattern_MainControl_StreamImage_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "image", "stream"}, ""))
 
 	pattern_MainControl_ReadStorageData_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "main", "v1", "storage_data"}, ""))
 )
