@@ -435,6 +435,21 @@ message Settop {
   string registered_time = 11;
 }
 
+message SettopInfo {
+  string uuid = 1;
+  string place_uuid = 2;
+  string serial = 3;
+  string room = 5;
+  uint64 floor = 6;
+  string mac1 = 7;
+  string mac2 = 8;
+  bool is_alive = 9;
+  string latest_version = 10; 
+  string registered_time = 11;
+  string place_name = 12;
+  string place_address = 13;
+}
+
 
 // settop 등록
 message CreateSettopRequest {
@@ -463,9 +478,7 @@ message ReadSettopRequest {
   string settop_uuid = 1;
 }
 message ReadSettopResponse {
-  Settop settop = 1;
-  string place_name = 2;
-  string place_address = 3;
+  SettopInfo settop = 1;
 }
 
 // settop list 가져오기
@@ -473,9 +486,7 @@ message ReadSettopListRequest {
   string company_name = 1; 
 }
 message ReadSettopListResponse {
-  repeated Settop settop_list = 1;
-  string place_name = 2;
-  string place_address = 3;
+  repeated SettopInfo settop_list = 1;
 }
 
 
