@@ -234,7 +234,7 @@ service MainControl {
     };
   }
 
-  rpc StreamImage(ImageRequest) returns (stream ImageChunk){}
+  rpc StreamImage(ImageRequest) returns (stream ImageChunk){};
 
   rpc ReadStorageData(ReadStorageDataRequest) returns (ReadStorageDataResponse) {
     option (google.api.http) = {
