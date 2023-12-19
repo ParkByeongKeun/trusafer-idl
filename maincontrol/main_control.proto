@@ -246,6 +246,14 @@ service MainControl {
     };
   }
 
+
+  rpc SubscribeFirebase(SubscribeFirebaseRequest) returns (SubscribeFirebaseResponse) {
+    option (google.api.http) = {
+      post: "/api/main/v1/subscribeFirebase"
+    };
+  }
+  
+
   // /* Share */
   // rpc CreateShareUser(CreateShareRequest) returns (CreateShareResponse) {}
   // rpc DeleteShareUser(DeleteShareRequest) returns (DeleteShareResponse) {}
@@ -740,4 +748,11 @@ message ReadStorageDataRequest {
 }
 message ReadStorageDataResponse {
   repeated StorageData storageData = 1;
+}
+
+
+message SubscribeFirebaseRequest {
+  bool isSubscribe = 1;
+}
+message SubscribeFirebaseResponse {
 }
