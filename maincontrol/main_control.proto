@@ -247,11 +247,11 @@ service MainControl {
   }
 
 
-  rpc SubscribeFirebase(SubscribeFirebaseRequest) returns (SubscribeFirebaseResponse) {
-    option (google.api.http) = {
-      post: "/api/main/v1/subscribeFirebase"
-    };
-  }
+  // rpc SubscribeFirebase(SubscribeFirebaseRequest) returns (SubscribeFirebaseResponse) {
+  //   option (google.api.http) = {
+  //     post: "/api/main/v1/subscribeFirebase"
+  //   };
+  // }
   
 
   // /* Share */
@@ -751,10 +751,10 @@ message ReadStorageDataResponse {
 }
 
 
-message SubscribeFirebaseRequest {
-  bool isSubscribe = 1;
-  string token = 2;
-  string topic = 3;
-}
-message SubscribeFirebaseResponse {
-}
+// message SubscribeFirebaseRequest {
+//   bool isSubscribe = 1;
+//   string token = 2;
+//   string topic = 3;
+// }
+// message SubscribeFirebaseResponse {
+// }

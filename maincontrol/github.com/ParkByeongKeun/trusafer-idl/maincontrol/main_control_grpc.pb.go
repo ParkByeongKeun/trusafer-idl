@@ -67,7 +67,6 @@ type MainControlClient interface {
 	MainList(ctx context.Context, in *MainListRequest, opts ...grpc.CallOption) (*MainListResponse, error)
 	StreamImage(ctx context.Context, in *ImageRequest, opts ...grpc.CallOption) (MainControl_StreamImageClient, error)
 	ReadStorageData(ctx context.Context, in *ReadStorageDataRequest, opts ...grpc.CallOption) (*ReadStorageDataResponse, error)
-	SubscribeFirebase(ctx context.Context, in *SubscribeFirebaseRequest, opts ...grpc.CallOption) (*SubscribeFirebaseResponse, error)
 }
 
 type mainControlClient struct {
@@ -443,15 +442,6 @@ func (c *mainControlClient) ReadStorageData(ctx context.Context, in *ReadStorage
 	return out, nil
 }
 
-func (c *mainControlClient) SubscribeFirebase(ctx context.Context, in *SubscribeFirebaseRequest, opts ...grpc.CallOption) (*SubscribeFirebaseResponse, error) {
-	out := new(SubscribeFirebaseResponse)
-	err := c.cc.Invoke(ctx, "/maincontrol.MainControl/SubscribeFirebase", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // MainControlServer is the server API for MainControl service.
 // All implementations must embed UnimplementedMainControlServer
 // for forward compatibility
@@ -501,7 +491,6 @@ type MainControlServer interface {
 	MainList(context.Context, *MainListRequest) (*MainListResponse, error)
 	StreamImage(*ImageRequest, MainControl_StreamImageServer) error
 	ReadStorageData(context.Context, *ReadStorageDataRequest) (*ReadStorageDataResponse, error)
-	SubscribeFirebase(context.Context, *SubscribeFirebaseRequest) (*SubscribeFirebaseResponse, error)
 	mustEmbedUnimplementedMainControlServer()
 }
 
@@ -622,9 +611,6 @@ func (UnimplementedMainControlServer) StreamImage(*ImageRequest, MainControl_Str
 }
 func (UnimplementedMainControlServer) ReadStorageData(context.Context, *ReadStorageDataRequest) (*ReadStorageDataResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReadStorageData not implemented")
-}
-func (UnimplementedMainControlServer) SubscribeFirebase(context.Context, *SubscribeFirebaseRequest) (*SubscribeFirebaseResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SubscribeFirebase not implemented")
 }
 func (UnimplementedMainControlServer) mustEmbedUnimplementedMainControlServer() {}
 
@@ -1326,24 +1312,6 @@ func _MainControl_ReadStorageData_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MainControl_SubscribeFirebase_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SubscribeFirebaseRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MainControlServer).SubscribeFirebase(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/maincontrol.MainControl/SubscribeFirebase",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MainControlServer).SubscribeFirebase(ctx, req.(*SubscribeFirebaseRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // MainControl_ServiceDesc is the grpc.ServiceDesc for MainControl service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1498,10 +1466,6 @@ var MainControl_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ReadStorageData",
 			Handler:    _MainControl_ReadStorageData_Handler,
-		},
-		{
-			MethodName: "SubscribeFirebase",
-			Handler:    _MainControl_SubscribeFirebase_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
