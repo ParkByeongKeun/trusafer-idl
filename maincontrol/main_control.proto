@@ -250,6 +250,7 @@ service MainControl {
   rpc SubscribeFirebase(SubscribeFirebaseRequest) returns (SubscribeFirebaseResponse) {
     option (google.api.http) = {
       post: "/api/main/v1/subscribeFirebase"
+      body: "*"
     };
   }
   
