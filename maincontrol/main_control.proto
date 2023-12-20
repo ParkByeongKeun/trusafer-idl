@@ -510,6 +510,10 @@ enum SensorStatus {
   SENSOR_STATUS_INSPECTION = 3; // 점검
 }
 
+message Threshold {
+  string temp_warning = 1;
+  string temp_danger = 2;
+}
 
 message Sensor {
   string uuid = 1;
@@ -518,11 +522,10 @@ message Sensor {
   string serial = 4;
   string ip_address = 5;
   string location = 6;
-  string threshold_temp_warning = 7;
-  string threshold_temp_danger = 8;
-  string latest_version = 9;
-  string registered_time = 10;
-  string ip_module_mac = 11;
+  repeated Threshold thresholds = 7;
+  string latest_version = 8;
+  string registered_time = 9;
+  string ip_module_mac = 10;
 }
 
 
