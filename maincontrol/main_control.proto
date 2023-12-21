@@ -550,6 +550,7 @@ message ReadSensorRequest {
 }
 message ReadSensorResponse {
   Sensor sensor = 1;
+  string settop_serial = 2;
 }
 
 // sensor list 가져오기
