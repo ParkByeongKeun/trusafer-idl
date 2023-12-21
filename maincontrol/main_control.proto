@@ -563,8 +563,8 @@ message ReadSensorListResponse {
 message History {
   string uuid = 1;
   string sensor_serial = 2;
-  string min_temp = 3;
-  string max_temp = 4;
+  float min_temp = 3;
+  float max_temp = 4;
   string date = 5;
   
 }
