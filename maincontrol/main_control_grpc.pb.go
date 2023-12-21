@@ -66,7 +66,6 @@ type MainControlClient interface {
 	FindEmail(ctx context.Context, in *FindEmailRequest, opts ...grpc.CallOption) (*FindEmailResponse, error)
 	MainList(ctx context.Context, in *MainListRequest, opts ...grpc.CallOption) (*MainListResponse, error)
 	StreamImage(ctx context.Context, in *ImageRequest, opts ...grpc.CallOption) (MainControl_StreamImageClient, error)
-	ReadStorageData(ctx context.Context, in *ReadStorageDataRequest, opts ...grpc.CallOption) (*ReadStorageDataResponse, error)
 	SubscribeFirebase(ctx context.Context, in *SubscribeFirebaseRequest, opts ...grpc.CallOption) (*SubscribeFirebaseResponse, error)
 }
 
@@ -434,15 +433,6 @@ func (x *mainControlStreamImageClient) Recv() (*ImageChunk, error) {
 	return m, nil
 }
 
-func (c *mainControlClient) ReadStorageData(ctx context.Context, in *ReadStorageDataRequest, opts ...grpc.CallOption) (*ReadStorageDataResponse, error) {
-	out := new(ReadStorageDataResponse)
-	err := c.cc.Invoke(ctx, "/maincontrol.MainControl/ReadStorageData", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *mainControlClient) SubscribeFirebase(ctx context.Context, in *SubscribeFirebaseRequest, opts ...grpc.CallOption) (*SubscribeFirebaseResponse, error) {
 	out := new(SubscribeFirebaseResponse)
 	err := c.cc.Invoke(ctx, "/maincontrol.MainControl/SubscribeFirebase", in, out, opts...)
@@ -500,7 +490,6 @@ type MainControlServer interface {
 	FindEmail(context.Context, *FindEmailRequest) (*FindEmailResponse, error)
 	MainList(context.Context, *MainListRequest) (*MainListResponse, error)
 	StreamImage(*ImageRequest, MainControl_StreamImageServer) error
-	ReadStorageData(context.Context, *ReadStorageDataRequest) (*ReadStorageDataResponse, error)
 	SubscribeFirebase(context.Context, *SubscribeFirebaseRequest) (*SubscribeFirebaseResponse, error)
 	mustEmbedUnimplementedMainControlServer()
 }
@@ -619,9 +608,6 @@ func (UnimplementedMainControlServer) MainList(context.Context, *MainListRequest
 }
 func (UnimplementedMainControlServer) StreamImage(*ImageRequest, MainControl_StreamImageServer) error {
 	return status.Errorf(codes.Unimplemented, "method StreamImage not implemented")
-}
-func (UnimplementedMainControlServer) ReadStorageData(context.Context, *ReadStorageDataRequest) (*ReadStorageDataResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ReadStorageData not implemented")
 }
 func (UnimplementedMainControlServer) SubscribeFirebase(context.Context, *SubscribeFirebaseRequest) (*SubscribeFirebaseResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SubscribeFirebase not implemented")
@@ -1308,24 +1294,6 @@ func (x *mainControlStreamImageServer) Send(m *ImageChunk) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func _MainControl_ReadStorageData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ReadStorageDataRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MainControlServer).ReadStorageData(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/maincontrol.MainControl/ReadStorageData",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MainControlServer).ReadStorageData(ctx, req.(*ReadStorageDataRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _MainControl_SubscribeFirebase_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SubscribeFirebaseRequest)
 	if err := dec(in); err != nil {
@@ -1494,10 +1462,6 @@ var MainControl_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "MainList",
 			Handler:    _MainControl_MainList_Handler,
-		},
-		{
-			MethodName: "ReadStorageData",
-			Handler:    _MainControl_ReadStorageData_Handler,
 		},
 		{
 			MethodName: "SubscribeFirebase",

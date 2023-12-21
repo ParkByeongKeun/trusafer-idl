@@ -240,13 +240,6 @@ service MainControl {
     };
   }
 
-  rpc ReadStorageData(ReadStorageDataRequest) returns (ReadStorageDataResponse) {
-    option (google.api.http) = {
-      get: "/api/main/v1/storage_data"
-    };
-  }
-
-
   rpc SubscribeFirebase(SubscribeFirebaseRequest) returns (SubscribeFirebaseResponse) {
     option (google.api.http) = {
       post: "/api/main/v1/subscribeFirebase"
@@ -570,8 +563,8 @@ message ReadSensorListResponse {
 message History {
   string uuid = 1;
   string sensor_serial = 2;
-  uint64 min_temp = 3;
-  uint64 max_temp = 4;
+  float min_temp = 3;
+  float max_temp = 4;
   string date = 5;
   
 }
@@ -736,27 +729,6 @@ message ImageRequest {
 message ImageChunk {
   bytes tempImage = 1;
 }
-
-message StorageData {
-  string uuid = 1;
-  string date = 2;
-  string serial = 3;
-  string max_temp = 4;
-  string min_temp = 5;
-}
-
-message ReadStorageDataRequest {
-  string serial = 1;
-  string prev_date = 2;
-  string next_date = 3;
-  uint64 interval = 4;
-  uint64 cursor = 5;
-  uint64 count = 6;
-}
-message ReadStorageDataResponse {
-  repeated StorageData storageData = 1;
-}
-
 
 message SubscribeFirebaseRequest {
   bool isSubscribe = 1;
