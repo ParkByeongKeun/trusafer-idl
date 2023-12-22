@@ -756,6 +756,8 @@ message Log {
 message LogListRequest {
   string registerer_uuid = 1;
   string unit = 2;               //  1."mobile" , 2."web"
+  uint64 cursor = 3;
+  uint64 count = 4;
 }
 message LogListResponse {
   repeated Log log = 1;
