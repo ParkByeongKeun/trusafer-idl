@@ -755,7 +755,7 @@ message Log {
 // log
 message LogListRequest {
   string registerer_uuid = 1;
-  string unit = 2;               //  1."mobile" , 2."web"
+  string unit = 2;               //  1."mobile" , 2."web" , 3. "anomaly"
   uint64 cursor = 3;
   uint64 count = 4;
 }
