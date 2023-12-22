@@ -325,6 +325,7 @@ message ReadRegistererRequest {
 }
 message ReadRegistererResponse {
   RegistererInfo registerer_info = 1;
+  string permission_uuid = 2;
 }
 
 // 특정 건물의 registerer list 가져오기
@@ -433,7 +434,7 @@ message Settop {
   string place_uuid = 2;
   string serial = 3;
   string room = 5;
-  uint64 floor = 6;
+  string floor = 6;
   string mac1 = 7;
   string mac2 = 8;
   bool is_alive = 9;
@@ -446,7 +447,7 @@ message SettopInfo {
   string place_uuid = 2;
   string serial = 3;
   string room = 5;
-  uint64 floor = 6;
+  string floor = 6;
   string mac1 = 7;
   string mac2 = 8;
   bool is_alive = 9;
