@@ -67,6 +67,7 @@ type MainControlClient interface {
 	MainList(ctx context.Context, in *MainListRequest, opts ...grpc.CallOption) (*MainListResponse, error)
 	StreamImage(ctx context.Context, in *ImageRequest, opts ...grpc.CallOption) (MainControl_StreamImageClient, error)
 	SubscribeFirebase(ctx context.Context, in *SubscribeFirebaseRequest, opts ...grpc.CallOption) (*SubscribeFirebaseResponse, error)
+	LogList(ctx context.Context, in *LogListRequest, opts ...grpc.CallOption) (*LogListResponse, error)
 }
 
 type mainControlClient struct {
@@ -442,6 +443,15 @@ func (c *mainControlClient) SubscribeFirebase(ctx context.Context, in *Subscribe
 	return out, nil
 }
 
+func (c *mainControlClient) LogList(ctx context.Context, in *LogListRequest, opts ...grpc.CallOption) (*LogListResponse, error) {
+	out := new(LogListResponse)
+	err := c.cc.Invoke(ctx, "/maincontrol.MainControl/LogList", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MainControlServer is the server API for MainControl service.
 // All implementations must embed UnimplementedMainControlServer
 // for forward compatibility
@@ -491,6 +501,7 @@ type MainControlServer interface {
 	MainList(context.Context, *MainListRequest) (*MainListResponse, error)
 	StreamImage(*ImageRequest, MainControl_StreamImageServer) error
 	SubscribeFirebase(context.Context, *SubscribeFirebaseRequest) (*SubscribeFirebaseResponse, error)
+	LogList(context.Context, *LogListRequest) (*LogListResponse, error)
 	mustEmbedUnimplementedMainControlServer()
 }
 
@@ -611,6 +622,9 @@ func (UnimplementedMainControlServer) StreamImage(*ImageRequest, MainControl_Str
 }
 func (UnimplementedMainControlServer) SubscribeFirebase(context.Context, *SubscribeFirebaseRequest) (*SubscribeFirebaseResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SubscribeFirebase not implemented")
+}
+func (UnimplementedMainControlServer) LogList(context.Context, *LogListRequest) (*LogListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LogList not implemented")
 }
 func (UnimplementedMainControlServer) mustEmbedUnimplementedMainControlServer() {}
 
@@ -1312,6 +1326,24 @@ func _MainControl_SubscribeFirebase_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MainControl_LogList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LogListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MainControlServer).LogList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/maincontrol.MainControl/LogList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MainControlServer).LogList(ctx, req.(*LogListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MainControl_ServiceDesc is the grpc.ServiceDesc for MainControl service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1466,6 +1498,10 @@ var MainControl_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SubscribeFirebase",
 			Handler:    _MainControl_SubscribeFirebase_Handler,
+		},
+		{
+			MethodName: "LogList",
+			Handler:    _MainControl_LogList_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

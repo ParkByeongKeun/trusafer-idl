@@ -247,7 +247,11 @@ service MainControl {
     };
   }
   
-
+  rpc LogList(LogListRequest) returns (LogListResponse) {
+    option (google.api.http) = {
+      get: "/api/main/v1/log"
+    };
+  }
   // /* Share */
   // rpc CreateShareUser(CreateShareRequest) returns (CreateShareResponse) {}
   // rpc DeleteShareUser(DeleteShareRequest) returns (DeleteShareResponse) {}
@@ -277,6 +281,7 @@ message Registerer {
   bool is_alarm = 6;
   string permission_uuid = 7;
   string name = 8;
+  string group_uuid = 9;
 }
 
 message RegistererInfo {
@@ -738,4 +743,20 @@ message SubscribeFirebaseRequest {
   string topic = 3;
 }
 message SubscribeFirebaseResponse {
+}
+
+message Log {
+  string uuid = 1;
+  string unit = 2;
+  string message = 3;
+  string registered_time = 4;
+}
+
+// log
+message LogListRequest {
+  string registerer_uuid = 1;
+  string unit = 2;               //  1."mobile" , 2."web"
+}
+message LogListResponse {
+  repeated Log log = 1;
 }
