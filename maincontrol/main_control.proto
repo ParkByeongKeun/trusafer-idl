@@ -750,14 +750,16 @@ message Log {
   string unit = 2;
   string message = 3;
   string registered_time = 4;
+  string sensor_serial = 5;
 }
 
 // log
 message LogListRequest {
   string registerer_uuid = 1;
   string unit = 2;               //  1."mobile" , 2."web" , 3. "anomaly"
-  uint64 cursor = 3;
-  uint64 count = 4;
+  string sensor_serial = 3;
+  uint64 cursor = 4;
+  uint64 count = 5;
 }
 message LogListResponse {
   repeated Log log = 1;
