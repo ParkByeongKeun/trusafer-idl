@@ -68,6 +68,8 @@ type MainControlClient interface {
 	StreamImage(ctx context.Context, in *ImageRequest, opts ...grpc.CallOption) (MainControl_StreamImageClient, error)
 	SubscribeFirebase(ctx context.Context, in *SubscribeFirebaseRequest, opts ...grpc.CallOption) (*SubscribeFirebaseResponse, error)
 	LogList(ctx context.Context, in *LogListRequest, opts ...grpc.CallOption) (*LogListResponse, error)
+	UploadCompanyImage(ctx context.Context, in *UploadCompanyImageRequest, opts ...grpc.CallOption) (*UploadCompanyImageResponse, error)
+	ReadCompanyImage(ctx context.Context, in *ReadCompanyImageRequest, opts ...grpc.CallOption) (*ReadCompanyImageResponse, error)
 }
 
 type mainControlClient struct {
@@ -452,6 +454,24 @@ func (c *mainControlClient) LogList(ctx context.Context, in *LogListRequest, opt
 	return out, nil
 }
 
+func (c *mainControlClient) UploadCompanyImage(ctx context.Context, in *UploadCompanyImageRequest, opts ...grpc.CallOption) (*UploadCompanyImageResponse, error) {
+	out := new(UploadCompanyImageResponse)
+	err := c.cc.Invoke(ctx, "/maincontrol.MainControl/UploadCompanyImage", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mainControlClient) ReadCompanyImage(ctx context.Context, in *ReadCompanyImageRequest, opts ...grpc.CallOption) (*ReadCompanyImageResponse, error) {
+	out := new(ReadCompanyImageResponse)
+	err := c.cc.Invoke(ctx, "/maincontrol.MainControl/ReadCompanyImage", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MainControlServer is the server API for MainControl service.
 // All implementations must embed UnimplementedMainControlServer
 // for forward compatibility
@@ -502,6 +522,8 @@ type MainControlServer interface {
 	StreamImage(*ImageRequest, MainControl_StreamImageServer) error
 	SubscribeFirebase(context.Context, *SubscribeFirebaseRequest) (*SubscribeFirebaseResponse, error)
 	LogList(context.Context, *LogListRequest) (*LogListResponse, error)
+	UploadCompanyImage(context.Context, *UploadCompanyImageRequest) (*UploadCompanyImageResponse, error)
+	ReadCompanyImage(context.Context, *ReadCompanyImageRequest) (*ReadCompanyImageResponse, error)
 	mustEmbedUnimplementedMainControlServer()
 }
 
@@ -625,6 +647,12 @@ func (UnimplementedMainControlServer) SubscribeFirebase(context.Context, *Subscr
 }
 func (UnimplementedMainControlServer) LogList(context.Context, *LogListRequest) (*LogListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LogList not implemented")
+}
+func (UnimplementedMainControlServer) UploadCompanyImage(context.Context, *UploadCompanyImageRequest) (*UploadCompanyImageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UploadCompanyImage not implemented")
+}
+func (UnimplementedMainControlServer) ReadCompanyImage(context.Context, *ReadCompanyImageRequest) (*ReadCompanyImageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReadCompanyImage not implemented")
 }
 func (UnimplementedMainControlServer) mustEmbedUnimplementedMainControlServer() {}
 
@@ -1344,6 +1372,42 @@ func _MainControl_LogList_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MainControl_UploadCompanyImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UploadCompanyImageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MainControlServer).UploadCompanyImage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/maincontrol.MainControl/UploadCompanyImage",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MainControlServer).UploadCompanyImage(ctx, req.(*UploadCompanyImageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MainControl_ReadCompanyImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReadCompanyImageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MainControlServer).ReadCompanyImage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/maincontrol.MainControl/ReadCompanyImage",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MainControlServer).ReadCompanyImage(ctx, req.(*ReadCompanyImageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MainControl_ServiceDesc is the grpc.ServiceDesc for MainControl service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1502,6 +1566,14 @@ var MainControl_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "LogList",
 			Handler:    _MainControl_LogList_Handler,
+		},
+		{
+			MethodName: "UploadCompanyImage",
+			Handler:    _MainControl_UploadCompanyImage_Handler,
+		},
+		{
+			MethodName: "ReadCompanyImage",
+			Handler:    _MainControl_ReadCompanyImage_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
