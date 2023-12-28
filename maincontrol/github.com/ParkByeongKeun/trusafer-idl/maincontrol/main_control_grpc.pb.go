@@ -68,6 +68,12 @@ type MainControlClient interface {
 	StreamImage(ctx context.Context, in *ImageRequest, opts ...grpc.CallOption) (MainControl_StreamImageClient, error)
 	SubscribeFirebase(ctx context.Context, in *SubscribeFirebaseRequest, opts ...grpc.CallOption) (*SubscribeFirebaseResponse, error)
 	LogList(ctx context.Context, in *LogListRequest, opts ...grpc.CallOption) (*LogListResponse, error)
+	CreateRegistererGroup(ctx context.Context, in *CreateRegistererGroupRequest, opts ...grpc.CallOption) (*CreateRegistererGroupResponse, error)
+	ReadRegistererGroupList(ctx context.Context, in *ReadRegistererGroupListRequest, opts ...grpc.CallOption) (*ReadRegistererGroupListResponse, error)
+	DeleteRegistererGroup(ctx context.Context, in *DeleteRegistererGroupRequest, opts ...grpc.CallOption) (*DeleteRegistererGroupResponse, error)
+	CreateSettopGroup(ctx context.Context, in *CreateSettopGroupRequest, opts ...grpc.CallOption) (*CreateSettopGroupResponse, error)
+	ReadSettopGroupList(ctx context.Context, in *ReadSettopGroupListRequest, opts ...grpc.CallOption) (*ReadSettopGroupListResponse, error)
+	DeleteSettopGroup(ctx context.Context, in *DeleteSettopGroupRequest, opts ...grpc.CallOption) (*DeleteSettopGroupResponse, error)
 }
 
 type mainControlClient struct {
@@ -452,6 +458,60 @@ func (c *mainControlClient) LogList(ctx context.Context, in *LogListRequest, opt
 	return out, nil
 }
 
+func (c *mainControlClient) CreateRegistererGroup(ctx context.Context, in *CreateRegistererGroupRequest, opts ...grpc.CallOption) (*CreateRegistererGroupResponse, error) {
+	out := new(CreateRegistererGroupResponse)
+	err := c.cc.Invoke(ctx, "/maincontrol.MainControl/CreateRegistererGroup", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mainControlClient) ReadRegistererGroupList(ctx context.Context, in *ReadRegistererGroupListRequest, opts ...grpc.CallOption) (*ReadRegistererGroupListResponse, error) {
+	out := new(ReadRegistererGroupListResponse)
+	err := c.cc.Invoke(ctx, "/maincontrol.MainControl/ReadRegistererGroupList", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mainControlClient) DeleteRegistererGroup(ctx context.Context, in *DeleteRegistererGroupRequest, opts ...grpc.CallOption) (*DeleteRegistererGroupResponse, error) {
+	out := new(DeleteRegistererGroupResponse)
+	err := c.cc.Invoke(ctx, "/maincontrol.MainControl/DeleteRegistererGroup", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mainControlClient) CreateSettopGroup(ctx context.Context, in *CreateSettopGroupRequest, opts ...grpc.CallOption) (*CreateSettopGroupResponse, error) {
+	out := new(CreateSettopGroupResponse)
+	err := c.cc.Invoke(ctx, "/maincontrol.MainControl/CreateSettopGroup", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mainControlClient) ReadSettopGroupList(ctx context.Context, in *ReadSettopGroupListRequest, opts ...grpc.CallOption) (*ReadSettopGroupListResponse, error) {
+	out := new(ReadSettopGroupListResponse)
+	err := c.cc.Invoke(ctx, "/maincontrol.MainControl/ReadSettopGroupList", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mainControlClient) DeleteSettopGroup(ctx context.Context, in *DeleteSettopGroupRequest, opts ...grpc.CallOption) (*DeleteSettopGroupResponse, error) {
+	out := new(DeleteSettopGroupResponse)
+	err := c.cc.Invoke(ctx, "/maincontrol.MainControl/DeleteSettopGroup", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MainControlServer is the server API for MainControl service.
 // All implementations must embed UnimplementedMainControlServer
 // for forward compatibility
@@ -502,6 +562,12 @@ type MainControlServer interface {
 	StreamImage(*ImageRequest, MainControl_StreamImageServer) error
 	SubscribeFirebase(context.Context, *SubscribeFirebaseRequest) (*SubscribeFirebaseResponse, error)
 	LogList(context.Context, *LogListRequest) (*LogListResponse, error)
+	CreateRegistererGroup(context.Context, *CreateRegistererGroupRequest) (*CreateRegistererGroupResponse, error)
+	ReadRegistererGroupList(context.Context, *ReadRegistererGroupListRequest) (*ReadRegistererGroupListResponse, error)
+	DeleteRegistererGroup(context.Context, *DeleteRegistererGroupRequest) (*DeleteRegistererGroupResponse, error)
+	CreateSettopGroup(context.Context, *CreateSettopGroupRequest) (*CreateSettopGroupResponse, error)
+	ReadSettopGroupList(context.Context, *ReadSettopGroupListRequest) (*ReadSettopGroupListResponse, error)
+	DeleteSettopGroup(context.Context, *DeleteSettopGroupRequest) (*DeleteSettopGroupResponse, error)
 	mustEmbedUnimplementedMainControlServer()
 }
 
@@ -625,6 +691,24 @@ func (UnimplementedMainControlServer) SubscribeFirebase(context.Context, *Subscr
 }
 func (UnimplementedMainControlServer) LogList(context.Context, *LogListRequest) (*LogListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LogList not implemented")
+}
+func (UnimplementedMainControlServer) CreateRegistererGroup(context.Context, *CreateRegistererGroupRequest) (*CreateRegistererGroupResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateRegistererGroup not implemented")
+}
+func (UnimplementedMainControlServer) ReadRegistererGroupList(context.Context, *ReadRegistererGroupListRequest) (*ReadRegistererGroupListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReadRegistererGroupList not implemented")
+}
+func (UnimplementedMainControlServer) DeleteRegistererGroup(context.Context, *DeleteRegistererGroupRequest) (*DeleteRegistererGroupResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteRegistererGroup not implemented")
+}
+func (UnimplementedMainControlServer) CreateSettopGroup(context.Context, *CreateSettopGroupRequest) (*CreateSettopGroupResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateSettopGroup not implemented")
+}
+func (UnimplementedMainControlServer) ReadSettopGroupList(context.Context, *ReadSettopGroupListRequest) (*ReadSettopGroupListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReadSettopGroupList not implemented")
+}
+func (UnimplementedMainControlServer) DeleteSettopGroup(context.Context, *DeleteSettopGroupRequest) (*DeleteSettopGroupResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteSettopGroup not implemented")
 }
 func (UnimplementedMainControlServer) mustEmbedUnimplementedMainControlServer() {}
 
@@ -1344,6 +1428,114 @@ func _MainControl_LogList_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MainControl_CreateRegistererGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateRegistererGroupRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MainControlServer).CreateRegistererGroup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/maincontrol.MainControl/CreateRegistererGroup",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MainControlServer).CreateRegistererGroup(ctx, req.(*CreateRegistererGroupRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MainControl_ReadRegistererGroupList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReadRegistererGroupListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MainControlServer).ReadRegistererGroupList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/maincontrol.MainControl/ReadRegistererGroupList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MainControlServer).ReadRegistererGroupList(ctx, req.(*ReadRegistererGroupListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MainControl_DeleteRegistererGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteRegistererGroupRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MainControlServer).DeleteRegistererGroup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/maincontrol.MainControl/DeleteRegistererGroup",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MainControlServer).DeleteRegistererGroup(ctx, req.(*DeleteRegistererGroupRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MainControl_CreateSettopGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateSettopGroupRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MainControlServer).CreateSettopGroup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/maincontrol.MainControl/CreateSettopGroup",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MainControlServer).CreateSettopGroup(ctx, req.(*CreateSettopGroupRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MainControl_ReadSettopGroupList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReadSettopGroupListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MainControlServer).ReadSettopGroupList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/maincontrol.MainControl/ReadSettopGroupList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MainControlServer).ReadSettopGroupList(ctx, req.(*ReadSettopGroupListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MainControl_DeleteSettopGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteSettopGroupRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MainControlServer).DeleteSettopGroup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/maincontrol.MainControl/DeleteSettopGroup",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MainControlServer).DeleteSettopGroup(ctx, req.(*DeleteSettopGroupRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MainControl_ServiceDesc is the grpc.ServiceDesc for MainControl service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1502,6 +1694,30 @@ var MainControl_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "LogList",
 			Handler:    _MainControl_LogList_Handler,
+		},
+		{
+			MethodName: "CreateRegistererGroup",
+			Handler:    _MainControl_CreateRegistererGroup_Handler,
+		},
+		{
+			MethodName: "ReadRegistererGroupList",
+			Handler:    _MainControl_ReadRegistererGroupList_Handler,
+		},
+		{
+			MethodName: "DeleteRegistererGroup",
+			Handler:    _MainControl_DeleteRegistererGroup_Handler,
+		},
+		{
+			MethodName: "CreateSettopGroup",
+			Handler:    _MainControl_CreateSettopGroup_Handler,
+		},
+		{
+			MethodName: "ReadSettopGroupList",
+			Handler:    _MainControl_ReadSettopGroupList_Handler,
+		},
+		{
+			MethodName: "DeleteSettopGroup",
+			Handler:    _MainControl_DeleteSettopGroup_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

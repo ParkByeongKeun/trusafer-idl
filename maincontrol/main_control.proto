@@ -252,6 +252,42 @@ service MainControl {
       get: "/api/main/v1/log"
     };
   }
+
+  rpc CreateRegistererGroup(CreateRegistererGroupRequest) returns (CreateRegistererGroupResponse) {
+    option (google.api.http) = {
+      post: "/api/main/v1/registerer_group"
+      body: "*"
+  };
+  }
+  rpc ReadRegistererGroupList(ReadRegistererGroupListRequest) returns (ReadRegistererGroupListResponse) {
+    option (google.api.http) = {
+      get: "/api/main/v1/registerer_group_list"
+  };
+  }
+  rpc DeleteRegistererGroup(DeleteRegistererGroupRequest) returns (DeleteRegistererGroupResponse) {
+    option (google.api.http) = {
+      delete: "/api/main/v1/registerer_group"
+      body: "*"
+    };
+  }
+
+  rpc CreateSettopGroup(CreateSettopGroupRequest) returns (CreateSettopGroupResponse) {
+    option (google.api.http) = {
+      post: "/api/main/v1/settop_group"
+      body: "*"
+  };
+  }
+  rpc ReadSettopGroupList(ReadSettopGroupListRequest) returns (ReadSettopGroupListResponse) {
+    option (google.api.http) = {
+      get: "/api/main/v1/settop_group_list"
+  };
+  }
+  rpc DeleteSettopGroup(DeleteSettopGroupRequest) returns (DeleteSettopGroupResponse) {
+    option (google.api.http) = {
+      delete: "/api/main/v1/settop_group"
+      body: "*"
+    };
+  }
   // /* Share */
   // rpc CreateShareUser(CreateShareRequest) returns (CreateShareResponse) {}
   // rpc DeleteShareUser(DeleteShareRequest) returns (DeleteShareResponse) {}
@@ -281,7 +317,6 @@ message Registerer {
   bool is_alarm = 6;
   string permission_uuid = 7;
   string name = 8;
-  string group_uuid = 9;
 }
 
 message RegistererInfo {
@@ -525,6 +560,7 @@ message Sensor {
   string latest_version = 8;
   string registered_time = 9;
   string ip_module_mac = 10;
+  string name = 11;
 }
 
 
@@ -622,9 +658,7 @@ message ReadHistoryListResponse {
 
 message Group {
   string uuid = 1;
-  string place_uuid = 2;
-  uint64 group_id = 3;
-  string name = 4;
+  string name = 2;
 }
 
 
@@ -763,4 +797,64 @@ message LogListRequest {
 }
 message LogListResponse {
   repeated Log log = 1;
+}
+
+//read
+//group registerer
+//group_uuid -> registerer_uuid
+
+//group settop
+//settop_uuid -> group_uuid
+
+
+//create_registerer
+//group_uuid
+//registerer_uuid list 
+
+//create_settop
+//settop_uuid
+//group_uuid list
+
+
+message CreateRegistererGroupRequest {
+  string group_uuid = 1;
+  repeated string registerer_uuid = 2;
+}
+message CreateRegistererGroupResponse { 
+}
+
+message DeleteRegistererGroupRequest {
+  string group_uuid = 1;
+  string registerer_uuid = 2;
+}
+message DeleteRegistererGroupResponse {
+}
+
+message ReadRegistererGroupListRequest {
+  string group_uuid = 1;
+}
+message ReadRegistererGroupListResponse {
+  repeated Registerer registerer_list = 1;
+}
+
+
+message CreateSettopGroupRequest {
+  string settop_uuid = 1;
+  repeated string group_uuid = 2;
+}
+message CreateSettopGroupResponse { 
+}
+
+message DeleteSettopGroupRequest {
+  string group_uuid = 1;
+  string settop_uuid = 2;
+}
+message DeleteSettopGroupResponse {
+}
+
+message ReadSettopGroupListRequest {
+  string settop_uuid = 1;
+}
+message ReadSettopGroupListResponse {
+  repeated Group group_list = 1;
 }
