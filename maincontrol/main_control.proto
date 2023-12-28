@@ -252,22 +252,6 @@ service MainControl {
       get: "/api/main/v1/log"
     };
   }
-
-  rpc UploadCompanyImage(UploadCompanyImageRequest) returns (UploadCompanyImageResponse) {
-    option (google.api.http) = {
-      post: "/api/main/v1/upload_company_image"
-      body: "*"
-    };
-  }
-
-  rpc ReadCompanyImage(ReadCompanyImageRequest) returns (ReadCompanyImageResponse) {
-    option (google.api.http) = {
-      post: "/api/main/v1/read_company_image"
-      body: "*"
-    };
-  }
-
-
   // /* Share */
   // rpc CreateShareUser(CreateShareRequest) returns (CreateShareResponse) {}
   // rpc DeleteShareUser(DeleteShareRequest) returns (DeleteShareResponse) {}
@@ -779,20 +763,4 @@ message LogListRequest {
 }
 message LogListResponse {
   repeated Log log = 1;
-}
-
-message UploadCompanyImageRequest {
-
-}
-
-message UploadCompanyImageResponse {
-  
-}
-
-message ReadCompanyImageRequest {
-
-}
-
-message ReadCompanyImageResponse {
-  
 }
