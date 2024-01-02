@@ -288,6 +288,19 @@ service MainControl {
       body: "*"
     };
   }
+
+  rpc MainGroupList (MainGroupListRequest) returns (MainGroupListResponse) {
+    option (google.api.http) = {
+      get: "/api/main/v1/main_group_list"
+    };
+  }
+  
+  rpc MainSettopList (MainSettopListRequest) returns (MainSettopListResponse) {
+    option (google.api.http) = {
+      get: "/api/main/v1/main_settop_list"
+    };
+  }
+
   // /* Share */
   // rpc CreateShareUser(CreateShareRequest) returns (CreateShareResponse) {}
   // rpc DeleteShareUser(DeleteShareRequest) returns (DeleteShareResponse) {}
@@ -861,3 +874,28 @@ message ReadSettopGroupListResponse {
   string serial = 2;
   string address = 3;
 }
+
+message MainGroup {
+  string name = 1;
+  repeated Registerer registererList = 2;
+}
+
+// group list
+message MainGroupListRequest {
+}
+message MainGroupListResponse {
+  map<string, MainGroup> groups = 1;
+}
+
+message MainSettop {
+  string serial = 1;
+  string address = 2;
+  repeated Group groupList = 3;
+}
+
+message MainSettopListRequest {
+}
+message MainSettopListResponse {
+  map<string, MainSettop> stbs = 1;
+}
+

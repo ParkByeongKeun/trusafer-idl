@@ -74,6 +74,8 @@ type MainControlClient interface {
 	CreateSettopGroup(ctx context.Context, in *CreateSettopGroupRequest, opts ...grpc.CallOption) (*CreateSettopGroupResponse, error)
 	ReadSettopGroupList(ctx context.Context, in *ReadSettopGroupListRequest, opts ...grpc.CallOption) (*ReadSettopGroupListResponse, error)
 	DeleteSettopGroup(ctx context.Context, in *DeleteSettopGroupRequest, opts ...grpc.CallOption) (*DeleteSettopGroupResponse, error)
+	MainGroupList(ctx context.Context, in *MainGroupListRequest, opts ...grpc.CallOption) (*MainGroupListResponse, error)
+	MainSettopList(ctx context.Context, in *MainSettopListRequest, opts ...grpc.CallOption) (*MainSettopListResponse, error)
 }
 
 type mainControlClient struct {
@@ -512,6 +514,24 @@ func (c *mainControlClient) DeleteSettopGroup(ctx context.Context, in *DeleteSet
 	return out, nil
 }
 
+func (c *mainControlClient) MainGroupList(ctx context.Context, in *MainGroupListRequest, opts ...grpc.CallOption) (*MainGroupListResponse, error) {
+	out := new(MainGroupListResponse)
+	err := c.cc.Invoke(ctx, "/maincontrol.MainControl/MainGroupList", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mainControlClient) MainSettopList(ctx context.Context, in *MainSettopListRequest, opts ...grpc.CallOption) (*MainSettopListResponse, error) {
+	out := new(MainSettopListResponse)
+	err := c.cc.Invoke(ctx, "/maincontrol.MainControl/MainSettopList", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MainControlServer is the server API for MainControl service.
 // All implementations must embed UnimplementedMainControlServer
 // for forward compatibility
@@ -568,6 +588,8 @@ type MainControlServer interface {
 	CreateSettopGroup(context.Context, *CreateSettopGroupRequest) (*CreateSettopGroupResponse, error)
 	ReadSettopGroupList(context.Context, *ReadSettopGroupListRequest) (*ReadSettopGroupListResponse, error)
 	DeleteSettopGroup(context.Context, *DeleteSettopGroupRequest) (*DeleteSettopGroupResponse, error)
+	MainGroupList(context.Context, *MainGroupListRequest) (*MainGroupListResponse, error)
+	MainSettopList(context.Context, *MainSettopListRequest) (*MainSettopListResponse, error)
 	mustEmbedUnimplementedMainControlServer()
 }
 
@@ -709,6 +731,12 @@ func (UnimplementedMainControlServer) ReadSettopGroupList(context.Context, *Read
 }
 func (UnimplementedMainControlServer) DeleteSettopGroup(context.Context, *DeleteSettopGroupRequest) (*DeleteSettopGroupResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteSettopGroup not implemented")
+}
+func (UnimplementedMainControlServer) MainGroupList(context.Context, *MainGroupListRequest) (*MainGroupListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MainGroupList not implemented")
+}
+func (UnimplementedMainControlServer) MainSettopList(context.Context, *MainSettopListRequest) (*MainSettopListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MainSettopList not implemented")
 }
 func (UnimplementedMainControlServer) mustEmbedUnimplementedMainControlServer() {}
 
@@ -1536,6 +1564,42 @@ func _MainControl_DeleteSettopGroup_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MainControl_MainGroupList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MainGroupListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MainControlServer).MainGroupList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/maincontrol.MainControl/MainGroupList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MainControlServer).MainGroupList(ctx, req.(*MainGroupListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MainControl_MainSettopList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MainSettopListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MainControlServer).MainSettopList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/maincontrol.MainControl/MainSettopList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MainControlServer).MainSettopList(ctx, req.(*MainSettopListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MainControl_ServiceDesc is the grpc.ServiceDesc for MainControl service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1718,6 +1782,14 @@ var MainControl_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteSettopGroup",
 			Handler:    _MainControl_DeleteSettopGroup_Handler,
+		},
+		{
+			MethodName: "MainGroupList",
+			Handler:    _MainControl_MainGroupList_Handler,
+		},
+		{
+			MethodName: "MainSettopList",
+			Handler:    _MainControl_MainSettopList_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
