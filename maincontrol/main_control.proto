@@ -896,6 +896,6 @@ message MainSettop {
 message MainSettopListRequest {
 }
 message MainSettopListResponse {
-  map<string, MainSettop> stbs = 1;
+  map<string, MainSettop> settops = 1;
 }
 
