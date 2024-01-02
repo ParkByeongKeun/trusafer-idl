@@ -835,6 +835,7 @@ message ReadRegistererGroupListRequest {
 }
 message ReadRegistererGroupListResponse {
   repeated Registerer registerer_list = 1;
+  string name = 2;
 }
 
 
@@ -857,4 +858,6 @@ message ReadSettopGroupListRequest {
 }
 message ReadSettopGroupListResponse {
   repeated Group group_list = 1;
+  string serial = 2;
+  string address = 3;
 }
