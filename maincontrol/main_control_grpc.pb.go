@@ -76,7 +76,6 @@ type MainControlClient interface {
 	DeleteSettopGroup(ctx context.Context, in *DeleteSettopGroupRequest, opts ...grpc.CallOption) (*DeleteSettopGroupResponse, error)
 	MainGroupList(ctx context.Context, in *MainGroupListRequest, opts ...grpc.CallOption) (*MainGroupListResponse, error)
 	MainSettopList(ctx context.Context, in *MainSettopListRequest, opts ...grpc.CallOption) (*MainSettopListResponse, error)
-	ReadFirebaseTopicList(ctx context.Context, in *ReadFirebaseTopicListRequest, opts ...grpc.CallOption) (*ReadFirebaseTopicListResponse, error)
 }
 
 type mainControlClient struct {
@@ -533,15 +532,6 @@ func (c *mainControlClient) MainSettopList(ctx context.Context, in *MainSettopLi
 	return out, nil
 }
 
-func (c *mainControlClient) ReadFirebaseTopicList(ctx context.Context, in *ReadFirebaseTopicListRequest, opts ...grpc.CallOption) (*ReadFirebaseTopicListResponse, error) {
-	out := new(ReadFirebaseTopicListResponse)
-	err := c.cc.Invoke(ctx, "/maincontrol.MainControl/ReadFirebaseTopicList", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // MainControlServer is the server API for MainControl service.
 // All implementations must embed UnimplementedMainControlServer
 // for forward compatibility
@@ -600,7 +590,6 @@ type MainControlServer interface {
 	DeleteSettopGroup(context.Context, *DeleteSettopGroupRequest) (*DeleteSettopGroupResponse, error)
 	MainGroupList(context.Context, *MainGroupListRequest) (*MainGroupListResponse, error)
 	MainSettopList(context.Context, *MainSettopListRequest) (*MainSettopListResponse, error)
-	ReadFirebaseTopicList(context.Context, *ReadFirebaseTopicListRequest) (*ReadFirebaseTopicListResponse, error)
 	mustEmbedUnimplementedMainControlServer()
 }
 
@@ -748,9 +737,6 @@ func (UnimplementedMainControlServer) MainGroupList(context.Context, *MainGroupL
 }
 func (UnimplementedMainControlServer) MainSettopList(context.Context, *MainSettopListRequest) (*MainSettopListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MainSettopList not implemented")
-}
-func (UnimplementedMainControlServer) ReadFirebaseTopicList(context.Context, *ReadFirebaseTopicListRequest) (*ReadFirebaseTopicListResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ReadFirebaseTopicList not implemented")
 }
 func (UnimplementedMainControlServer) mustEmbedUnimplementedMainControlServer() {}
 
@@ -1614,24 +1600,6 @@ func _MainControl_MainSettopList_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MainControl_ReadFirebaseTopicList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ReadFirebaseTopicListRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MainControlServer).ReadFirebaseTopicList(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/maincontrol.MainControl/ReadFirebaseTopicList",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MainControlServer).ReadFirebaseTopicList(ctx, req.(*ReadFirebaseTopicListRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // MainControl_ServiceDesc is the grpc.ServiceDesc for MainControl service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1822,10 +1790,6 @@ var MainControl_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "MainSettopList",
 			Handler:    _MainControl_MainSettopList_Handler,
-		},
-		{
-			MethodName: "ReadFirebaseTopicList",
-			Handler:    _MainControl_ReadFirebaseTopicList_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

@@ -299,14 +299,7 @@ service MainControl {
     option (google.api.http) = {
       get: "/api/main/v1/main_settop_list"
     };
-  }
-
-  rpc ReadFirebaseTopicList (ReadFirebaseTopicListRequest) returns (ReadFirebaseTopicListResponse) {
-    option (google.api.http) = {
-      get: "/api/main/v1/firebase_topic_list"
-    };
-  }
-  
+  }  
   
 
   // /* Share */
@@ -795,7 +788,6 @@ message ImageChunk {
 message SubscribeFirebaseRequest {
   bool isSubscribe = 1;
   string token = 2;
-  string topic = 3;
 }
 message SubscribeFirebaseResponse {
 }
@@ -906,10 +898,3 @@ message MainSettopListRequest {
 message MainSettopListResponse {
   map<string, MainSettop> settops = 1;
 }
-
-message ReadFirebaseTopicListRequest {
-}
-message ReadFirebaseTopicListResponse {
-  repeated string topics = 1;
-}
-
