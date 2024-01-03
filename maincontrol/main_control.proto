@@ -788,6 +788,7 @@ message ImageChunk {
 message SubscribeFirebaseRequest {
   bool isSubscribe = 1;
   string token = 2;
+  string group_uuid = 3;
 }
 message SubscribeFirebaseResponse {
 }
