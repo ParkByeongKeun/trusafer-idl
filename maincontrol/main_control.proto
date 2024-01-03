@@ -301,6 +301,14 @@ service MainControl {
     };
   }
 
+  rpc ReadGroupInRegistererList (ReadGroupInRegistererListRequest) returns (ReadGroupInRegistererListResponse) {
+    option (google.api.http) = {
+      get: "/api/main/v1/group_in_registerer"
+    };
+  }
+  
+  
+
   // /* Share */
   // rpc CreateShareUser(CreateShareRequest) returns (CreateShareResponse) {}
   // rpc DeleteShareUser(DeleteShareRequest) returns (DeleteShareResponse) {}
@@ -897,5 +905,11 @@ message MainSettopListRequest {
 }
 message MainSettopListResponse {
   map<string, MainSettop> settops = 1;
+}
+
+message ReadGroupInRegistererListRequest {
+}
+message ReadGroupInRegistererListResponse {
+  repeated Group groupList = 1;
 }
 
