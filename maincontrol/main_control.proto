@@ -302,6 +302,12 @@ service MainControl {
   }  
   
 
+  rpc ReadFirebaseTopicList (ReadFirebaseTopicListRequest) returns (ReadFirebaseTopicListResponse) {
+    option (google.api.http) = {
+      get: "/api/main/v1/firebase_topic_list"
+    };
+  }
+  
   // /* Share */
   // rpc CreateShareUser(CreateShareRequest) returns (CreateShareResponse) {}
   // rpc DeleteShareUser(DeleteShareRequest) returns (DeleteShareResponse) {}
@@ -898,4 +904,10 @@ message MainSettopListRequest {
 }
 message MainSettopListResponse {
   map<string, MainSettop> settops = 1;
+}
+
+message ReadFirebaseTopicListRequest {
+}
+message ReadFirebaseTopicListResponse {
+  repeated Group groupList = 3;
 }
