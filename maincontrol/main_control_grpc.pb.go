@@ -76,7 +76,7 @@ type MainControlClient interface {
 	DeleteSettopGroup(ctx context.Context, in *DeleteSettopGroupRequest, opts ...grpc.CallOption) (*DeleteSettopGroupResponse, error)
 	MainGroupList(ctx context.Context, in *MainGroupListRequest, opts ...grpc.CallOption) (*MainGroupListResponse, error)
 	MainSettopList(ctx context.Context, in *MainSettopListRequest, opts ...grpc.CallOption) (*MainSettopListResponse, error)
-	ReadGroupInRegistererList(ctx context.Context, in *ReadGroupInRegistererListRequest, opts ...grpc.CallOption) (*ReadGroupInRegistererListResponse, error)
+	ReadFirebaseTopicList(ctx context.Context, in *ReadFirebaseTopicListRequest, opts ...grpc.CallOption) (*ReadFirebaseTopicListResponse, error)
 }
 
 type mainControlClient struct {
@@ -533,9 +533,9 @@ func (c *mainControlClient) MainSettopList(ctx context.Context, in *MainSettopLi
 	return out, nil
 }
 
-func (c *mainControlClient) ReadGroupInRegistererList(ctx context.Context, in *ReadGroupInRegistererListRequest, opts ...grpc.CallOption) (*ReadGroupInRegistererListResponse, error) {
-	out := new(ReadGroupInRegistererListResponse)
-	err := c.cc.Invoke(ctx, "/maincontrol.MainControl/ReadGroupInRegistererList", in, out, opts...)
+func (c *mainControlClient) ReadFirebaseTopicList(ctx context.Context, in *ReadFirebaseTopicListRequest, opts ...grpc.CallOption) (*ReadFirebaseTopicListResponse, error) {
+	out := new(ReadFirebaseTopicListResponse)
+	err := c.cc.Invoke(ctx, "/maincontrol.MainControl/ReadFirebaseTopicList", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -600,7 +600,7 @@ type MainControlServer interface {
 	DeleteSettopGroup(context.Context, *DeleteSettopGroupRequest) (*DeleteSettopGroupResponse, error)
 	MainGroupList(context.Context, *MainGroupListRequest) (*MainGroupListResponse, error)
 	MainSettopList(context.Context, *MainSettopListRequest) (*MainSettopListResponse, error)
-	ReadGroupInRegistererList(context.Context, *ReadGroupInRegistererListRequest) (*ReadGroupInRegistererListResponse, error)
+	ReadFirebaseTopicList(context.Context, *ReadFirebaseTopicListRequest) (*ReadFirebaseTopicListResponse, error)
 	mustEmbedUnimplementedMainControlServer()
 }
 
@@ -749,8 +749,8 @@ func (UnimplementedMainControlServer) MainGroupList(context.Context, *MainGroupL
 func (UnimplementedMainControlServer) MainSettopList(context.Context, *MainSettopListRequest) (*MainSettopListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MainSettopList not implemented")
 }
-func (UnimplementedMainControlServer) ReadGroupInRegistererList(context.Context, *ReadGroupInRegistererListRequest) (*ReadGroupInRegistererListResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ReadGroupInRegistererList not implemented")
+func (UnimplementedMainControlServer) ReadFirebaseTopicList(context.Context, *ReadFirebaseTopicListRequest) (*ReadFirebaseTopicListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReadFirebaseTopicList not implemented")
 }
 func (UnimplementedMainControlServer) mustEmbedUnimplementedMainControlServer() {}
 
@@ -1614,20 +1614,20 @@ func _MainControl_MainSettopList_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MainControl_ReadGroupInRegistererList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ReadGroupInRegistererListRequest)
+func _MainControl_ReadFirebaseTopicList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReadFirebaseTopicListRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MainControlServer).ReadGroupInRegistererList(ctx, in)
+		return srv.(MainControlServer).ReadFirebaseTopicList(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/maincontrol.MainControl/ReadGroupInRegistererList",
+		FullMethod: "/maincontrol.MainControl/ReadFirebaseTopicList",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MainControlServer).ReadGroupInRegistererList(ctx, req.(*ReadGroupInRegistererListRequest))
+		return srv.(MainControlServer).ReadFirebaseTopicList(ctx, req.(*ReadFirebaseTopicListRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1824,8 +1824,8 @@ var MainControl_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _MainControl_MainSettopList_Handler,
 		},
 		{
-			MethodName: "ReadGroupInRegistererList",
-			Handler:    _MainControl_ReadGroupInRegistererList_Handler,
+			MethodName: "ReadFirebaseTopicList",
+			Handler:    _MainControl_ReadFirebaseTopicList_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

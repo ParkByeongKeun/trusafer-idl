@@ -301,9 +301,9 @@ service MainControl {
     };
   }
 
-  rpc ReadGroupInRegistererList (ReadGroupInRegistererListRequest) returns (ReadGroupInRegistererListResponse) {
+  rpc ReadFirebaseTopicList (ReadFirebaseTopicListRequest) returns (ReadFirebaseTopicListResponse) {
     option (google.api.http) = {
-      get: "/api/main/v1/group_in_registerer"
+      get: "/api/main/v1/firebase_topic_list"
     };
   }
   
@@ -907,9 +907,9 @@ message MainSettopListResponse {
   map<string, MainSettop> settops = 1;
 }
 
-message ReadGroupInRegistererListRequest {
+message ReadFirebaseTopicListRequest {
 }
-message ReadGroupInRegistererListResponse {
+message ReadFirebaseTopicListResponse {
   repeated Group groupList = 1;
 }
 

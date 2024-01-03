@@ -1589,20 +1589,20 @@ func local_request_MainControl_MainSettopList_0(ctx context.Context, marshaler r
 
 }
 
-func request_MainControl_ReadGroupInRegistererList_0(ctx context.Context, marshaler runtime.Marshaler, client MainControlClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ReadGroupInRegistererListRequest
+func request_MainControl_ReadFirebaseTopicList_0(ctx context.Context, marshaler runtime.Marshaler, client MainControlClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ReadFirebaseTopicListRequest
 	var metadata runtime.ServerMetadata
 
-	msg, err := client.ReadGroupInRegistererList(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.ReadFirebaseTopicList(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_MainControl_ReadGroupInRegistererList_0(ctx context.Context, marshaler runtime.Marshaler, server MainControlServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ReadGroupInRegistererListRequest
+func local_request_MainControl_ReadFirebaseTopicList_0(ctx context.Context, marshaler runtime.Marshaler, server MainControlServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ReadFirebaseTopicListRequest
 	var metadata runtime.ServerMetadata
 
-	msg, err := server.ReadGroupInRegistererList(ctx, &protoReq)
+	msg, err := server.ReadFirebaseTopicList(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -2770,7 +2770,7 @@ func RegisterMainControlHandlerServer(ctx context.Context, mux *runtime.ServeMux
 
 	})
 
-	mux.Handle("GET", pattern_MainControl_ReadGroupInRegistererList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_MainControl_ReadFirebaseTopicList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -2778,12 +2778,12 @@ func RegisterMainControlHandlerServer(ctx context.Context, mux *runtime.ServeMux
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/maincontrol.MainControl/ReadGroupInRegistererList", runtime.WithHTTPPathPattern("/api/main/v1/group_in_registerer"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/maincontrol.MainControl/ReadFirebaseTopicList", runtime.WithHTTPPathPattern("/api/main/v1/firebase_topic_list"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_MainControl_ReadGroupInRegistererList_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MainControl_ReadFirebaseTopicList_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -2791,7 +2791,7 @@ func RegisterMainControlHandlerServer(ctx context.Context, mux *runtime.ServeMux
 			return
 		}
 
-		forward_MainControl_ReadGroupInRegistererList_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MainControl_ReadFirebaseTopicList_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -3870,25 +3870,25 @@ func RegisterMainControlHandlerClient(ctx context.Context, mux *runtime.ServeMux
 
 	})
 
-	mux.Handle("GET", pattern_MainControl_ReadGroupInRegistererList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_MainControl_ReadFirebaseTopicList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/maincontrol.MainControl/ReadGroupInRegistererList", runtime.WithHTTPPathPattern("/api/main/v1/group_in_registerer"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/maincontrol.MainControl/ReadFirebaseTopicList", runtime.WithHTTPPathPattern("/api/main/v1/firebase_topic_list"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_MainControl_ReadGroupInRegistererList_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_MainControl_ReadFirebaseTopicList_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_MainControl_ReadGroupInRegistererList_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MainControl_ReadFirebaseTopicList_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -3990,7 +3990,7 @@ var (
 
 	pattern_MainControl_MainSettopList_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "main", "v1", "main_settop_list"}, ""))
 
-	pattern_MainControl_ReadGroupInRegistererList_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "main", "v1", "group_in_registerer"}, ""))
+	pattern_MainControl_ReadFirebaseTopicList_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "main", "v1", "firebase_topic_list"}, ""))
 )
 
 var (
@@ -4088,5 +4088,5 @@ var (
 
 	forward_MainControl_MainSettopList_0 = runtime.ForwardResponseMessage
 
-	forward_MainControl_ReadGroupInRegistererList_0 = runtime.ForwardResponseMessage
+	forward_MainControl_ReadFirebaseTopicList_0 = runtime.ForwardResponseMessage
 )
