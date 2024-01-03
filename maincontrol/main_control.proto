@@ -910,6 +910,6 @@ message MainSettopListResponse {
 message ReadFirebaseTopicListRequest {
 }
 message ReadFirebaseTopicListResponse {
-  repeated Group groupList = 1;
+  repeated string topics = 1;
 }
 
