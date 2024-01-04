@@ -354,6 +354,7 @@ message RegistererInfo {
   bool p_threshold = 12;
   bool p_sensor_history = 13;
   string name = 14;
+  repeated string group_uuid = 15;
 }
 
 
@@ -793,7 +794,7 @@ message ImageChunk {
 message SubscribeFirebaseRequest {
   bool isSubscribe = 1;
   string token = 2;
-  string group_uuid = 3;
+  repeated string group_uuid = 3;
 }
 message SubscribeFirebaseResponse {
 }
