@@ -357,13 +357,12 @@ message RegistererInfo {
   repeated string group_uuid = 15;
 }
 
-
-
 // registerer 등록
 message CreateRegistererRequest {
   Registerer registerer = 1;
 }
 message CreateRegistererResponse {
+  Registerer registerer = 1;
 }
 
 // registerer 수정
