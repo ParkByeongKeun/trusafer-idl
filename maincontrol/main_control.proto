@@ -706,6 +706,7 @@ message DeleteGroupResponse {
 
 // 특정 group 가져오기
 message ReadGroupRequest {
+  string group_uuid = 1;
 }
 message ReadGroupResponse {
   Group group = 1;
@@ -713,7 +714,6 @@ message ReadGroupResponse {
 
 // group list 가져오기
 message ReadGroupListRequest {
-  string place_uuid = 1;
 }
 message ReadGroupListResponse {
   repeated Group group_list = 1;
