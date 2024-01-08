@@ -65,7 +65,7 @@ type MainControlClient interface {
 	DeletePermission(ctx context.Context, in *DeletePermissionRequest, opts ...grpc.CallOption) (*DeletePermissionResponse, error)
 	FindEmail(ctx context.Context, in *FindEmailRequest, opts ...grpc.CallOption) (*FindEmailResponse, error)
 	MainList(ctx context.Context, in *MainListRequest, opts ...grpc.CallOption) (*MainListResponse, error)
-	StreamImage(ctx context.Context, in *ImageRequest, opts ...grpc.CallOption) (MainControl_StreamImageClient, error)
+	StreamImage(ctx context.Context, in *ImageRequest, opts ...grpc.CallOption) (*ImageChunk, error)
 	SubscribeFirebase(ctx context.Context, in *SubscribeFirebaseRequest, opts ...grpc.CallOption) (*SubscribeFirebaseResponse, error)
 	LogList(ctx context.Context, in *LogListRequest, opts ...grpc.CallOption) (*LogListResponse, error)
 	CreateRegistererGroup(ctx context.Context, in *CreateRegistererGroupRequest, opts ...grpc.CallOption) (*CreateRegistererGroupResponse, error)
@@ -411,36 +411,13 @@ func (c *mainControlClient) MainList(ctx context.Context, in *MainListRequest, o
 	return out, nil
 }
 
-func (c *mainControlClient) StreamImage(ctx context.Context, in *ImageRequest, opts ...grpc.CallOption) (MainControl_StreamImageClient, error) {
-	stream, err := c.cc.NewStream(ctx, &MainControl_ServiceDesc.Streams[0], "/maincontrol.MainControl/StreamImage", opts...)
+func (c *mainControlClient) StreamImage(ctx context.Context, in *ImageRequest, opts ...grpc.CallOption) (*ImageChunk, error) {
+	out := new(ImageChunk)
+	err := c.cc.Invoke(ctx, "/maincontrol.MainControl/StreamImage", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &mainControlStreamImageClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type MainControl_StreamImageClient interface {
-	Recv() (*ImageChunk, error)
-	grpc.ClientStream
-}
-
-type mainControlStreamImageClient struct {
-	grpc.ClientStream
-}
-
-func (x *mainControlStreamImageClient) Recv() (*ImageChunk, error) {
-	m := new(ImageChunk)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
+	return out, nil
 }
 
 func (c *mainControlClient) SubscribeFirebase(ctx context.Context, in *SubscribeFirebaseRequest, opts ...grpc.CallOption) (*SubscribeFirebaseResponse, error) {
@@ -589,7 +566,7 @@ type MainControlServer interface {
 	DeletePermission(context.Context, *DeletePermissionRequest) (*DeletePermissionResponse, error)
 	FindEmail(context.Context, *FindEmailRequest) (*FindEmailResponse, error)
 	MainList(context.Context, *MainListRequest) (*MainListResponse, error)
-	StreamImage(*ImageRequest, MainControl_StreamImageServer) error
+	StreamImage(context.Context, *ImageRequest) (*ImageChunk, error)
 	SubscribeFirebase(context.Context, *SubscribeFirebaseRequest) (*SubscribeFirebaseResponse, error)
 	LogList(context.Context, *LogListRequest) (*LogListResponse, error)
 	CreateRegistererGroup(context.Context, *CreateRegistererGroupRequest) (*CreateRegistererGroupResponse, error)
@@ -716,8 +693,8 @@ func (UnimplementedMainControlServer) FindEmail(context.Context, *FindEmailReque
 func (UnimplementedMainControlServer) MainList(context.Context, *MainListRequest) (*MainListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MainList not implemented")
 }
-func (UnimplementedMainControlServer) StreamImage(*ImageRequest, MainControl_StreamImageServer) error {
-	return status.Errorf(codes.Unimplemented, "method StreamImage not implemented")
+func (UnimplementedMainControlServer) StreamImage(context.Context, *ImageRequest) (*ImageChunk, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StreamImage not implemented")
 }
 func (UnimplementedMainControlServer) SubscribeFirebase(context.Context, *SubscribeFirebaseRequest) (*SubscribeFirebaseResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SubscribeFirebase not implemented")
@@ -1413,25 +1390,22 @@ func _MainControl_MainList_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MainControl_StreamImage_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(ImageRequest)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
+func _MainControl_StreamImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ImageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
 	}
-	return srv.(MainControlServer).StreamImage(m, &mainControlStreamImageServer{stream})
-}
-
-type MainControl_StreamImageServer interface {
-	Send(*ImageChunk) error
-	grpc.ServerStream
-}
-
-type mainControlStreamImageServer struct {
-	grpc.ServerStream
-}
-
-func (x *mainControlStreamImageServer) Send(m *ImageChunk) error {
-	return x.ServerStream.SendMsg(m)
+	if interceptor == nil {
+		return srv.(MainControlServer).StreamImage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/maincontrol.MainControl/StreamImage",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MainControlServer).StreamImage(ctx, req.(*ImageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _MainControl_SubscribeFirebase_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -1784,6 +1758,10 @@ var MainControl_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _MainControl_MainList_Handler,
 		},
 		{
+			MethodName: "StreamImage",
+			Handler:    _MainControl_StreamImage_Handler,
+		},
+		{
 			MethodName: "SubscribeFirebase",
 			Handler:    _MainControl_SubscribeFirebase_Handler,
 		},
@@ -1828,12 +1806,6 @@ var MainControl_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _MainControl_ReadFirebaseTopicList_Handler,
 		},
 	},
-	Streams: []grpc.StreamDesc{
-		{
-			StreamName:    "StreamImage",
-			Handler:       _MainControl_StreamImage_Handler,
-			ServerStreams: true,
-		},
-	},
+	Streams:  []grpc.StreamDesc{},
 	Metadata: "main_control.proto",
 }

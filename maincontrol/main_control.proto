@@ -234,7 +234,7 @@ service MainControl {
     };
   }
 
-  rpc StreamImage(ImageRequest) returns (stream ImageChunk){
+  rpc StreamImage(ImageRequest) returns (ImageChunk){
     option (google.api.http) = {
       get: "/v1/image/stream"
     };
@@ -787,7 +787,7 @@ message ImageRequest {
 }
 
 message ImageChunk {
-  bytes tempImage = 1;
+  string tempImage = 1;
 }
 
 message SubscribeFirebaseRequest {
