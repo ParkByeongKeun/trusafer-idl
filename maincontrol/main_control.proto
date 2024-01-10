@@ -348,7 +348,7 @@ message RegistererInfo {
   bool is_alarm = 6;
   bool p_user = 7;
   bool p_permission = 8;
-  bool p_sensor_create = 9;
+  bool p_settop_create = 9;
   bool p_sensor_info = 10;
   bool p_ip_module = 11;
   bool p_threshold = 12;
