@@ -723,7 +723,7 @@ message Permission {
   string name = 2; 
   bool user = 3;
   bool permission = 4;
-  bool sensor_create = 5;
+  bool settop_create = 5;
   bool sensor_info = 6;
   bool ip_module = 7;
   bool threshold = 8;
