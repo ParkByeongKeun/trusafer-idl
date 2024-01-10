@@ -498,7 +498,7 @@ message Settop {
   string mac1 = 7;
   string mac2 = 8;
   bool is_alive = 9;
-  string latest_version = 10; 
+  string fw_version = 10; 
   string registered_time = 11;
 }
 
@@ -511,7 +511,7 @@ message SettopInfo {
   string mac1 = 7;
   string mac2 = 8;
   bool is_alive = 9;
-  string latest_version = 10; 
+  string fw_version = 10; 
   string registered_time = 11;
   string place_name = 12;
   string place_address = 13;
@@ -577,10 +577,9 @@ message Sensor {
   string ip_address = 5;
   string location = 6;
   repeated Threshold thresholds = 7;
-  string latest_version = 8;
-  string registered_time = 9;
-  string ip_module_mac = 10;
-  string name = 11;
+  string registered_time = 8;
+  string ip_module_mac = 9;
+  string name = 10;
 }
 
 
@@ -764,8 +763,9 @@ message ReadPermissionListResponse {
 // 이메일 찾기
 message FindEmailRequest {
   string name = 1;
-  string company_name = 2;
-  string company_number = 3;
+  string phone_number = 2;
+  // string company_name = 2;
+  // string company_number = 3;
 }
 message FindEmailResponse {
   string email = 1;
