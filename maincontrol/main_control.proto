@@ -813,6 +813,7 @@ message LogListRequest {
   string sensor_serial = 3;
   uint64 cursor = 4;
   uint64 count = 5;
+  repeated string mobile_bulk_sensor_serial = 6;
 }
 message LogListResponse {
   repeated Log log = 1;
