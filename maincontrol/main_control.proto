@@ -599,9 +599,9 @@ message ReadSensorListResponse {
 }
 
 message History {
-  float min_temp = 2;
-  float max_temp = 3;
-  string date = 4;
+  float min_temp = 1;
+  float max_temp = 2;
+  string date = 3;
 }
 
 // history list 가져오기
