@@ -135,35 +135,11 @@ service MainControl {
       body: "*"
     };
   }
-  
   /* History */
-  rpc CreateHistory(CreateHistoryRequest) returns (CreateHistoryResponse) {
-    option (google.api.http) = {
-      post: "/api/main/v1/history"
-      body: "*"
-  };
-  }
-  rpc ReadHistory(ReadHistoryRequest) returns (ReadHistoryResponse) {
-    option (google.api.http) = {
-      get: "/api/main/v1/history"
-  };
-  }
   rpc ReadHistoryList(ReadHistoryListRequest) returns (ReadHistoryListResponse) {
     option (google.api.http) = {
       get: "/api/main/v1/history_list"
   };
-  }
-  rpc UpdateHistory(UpdateHistoryRequest) returns (UpdateHistoryResponse) {
-    option (google.api.http) = {
-      put: "/api/main/v1/history"
-      body: "*"
-    };
-  }
-  rpc DeleteHistory(DeleteHistoryRequest) returns (DeleteHistoryResponse) {
-    option (google.api.http) = {
-      delete: "/api/main/v1/history"
-      body: "*"
-    };
   }
 
   /* Group */
@@ -623,42 +599,9 @@ message ReadSensorListResponse {
 }
 
 message History {
-  string uuid = 1;
-  string sensor_serial = 2;
-  float min_temp = 3;
-  float max_temp = 4;
-  string date = 5;
-  
-}
-
-
-// history 등록
-message CreateHistoryRequest {
-  History history = 1;
-}
-message CreateHistoryResponse {
-}
-
-// history 수정
-message UpdateHistoryRequest {
-  History history = 1;
-}
-message UpdateHistoryResponse {
-}
-
-// history 삭제
-message DeleteHistoryRequest {
-  string history_uuid = 1;
-}
-message DeleteHistoryResponse {
-}
-
-// 특정 history 가져오기
-message ReadHistoryRequest {
-  string history_uuid = 1;
-}
-message ReadHistoryResponse {
-  History history = 1;
+  float min_temp = 2;
+  float max_temp = 3;
+  string date = 4;
 }
 
 // history list 가져오기

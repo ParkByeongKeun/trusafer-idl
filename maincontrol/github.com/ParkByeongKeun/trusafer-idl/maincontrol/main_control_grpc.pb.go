@@ -47,11 +47,7 @@ type MainControlClient interface {
 	UpdateSensor(ctx context.Context, in *UpdateSensorRequest, opts ...grpc.CallOption) (*UpdateSensorResponse, error)
 	DeleteSensor(ctx context.Context, in *DeleteSensorRequest, opts ...grpc.CallOption) (*DeleteSensorResponse, error)
 	// History
-	CreateHistory(ctx context.Context, in *CreateHistoryRequest, opts ...grpc.CallOption) (*CreateHistoryResponse, error)
-	ReadHistory(ctx context.Context, in *ReadHistoryRequest, opts ...grpc.CallOption) (*ReadHistoryResponse, error)
 	ReadHistoryList(ctx context.Context, in *ReadHistoryListRequest, opts ...grpc.CallOption) (*ReadHistoryListResponse, error)
-	UpdateHistory(ctx context.Context, in *UpdateHistoryRequest, opts ...grpc.CallOption) (*UpdateHistoryResponse, error)
-	DeleteHistory(ctx context.Context, in *DeleteHistoryRequest, opts ...grpc.CallOption) (*DeleteHistoryResponse, error)
 	// Group
 	CreateGroup(ctx context.Context, in *CreateGroupRequest, opts ...grpc.CallOption) (*CreateGroupResponse, error)
 	ReadGroup(ctx context.Context, in *ReadGroupRequest, opts ...grpc.CallOption) (*ReadGroupResponse, error)
@@ -267,45 +263,9 @@ func (c *mainControlClient) DeleteSensor(ctx context.Context, in *DeleteSensorRe
 	return out, nil
 }
 
-func (c *mainControlClient) CreateHistory(ctx context.Context, in *CreateHistoryRequest, opts ...grpc.CallOption) (*CreateHistoryResponse, error) {
-	out := new(CreateHistoryResponse)
-	err := c.cc.Invoke(ctx, "/maincontrol.MainControl/CreateHistory", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *mainControlClient) ReadHistory(ctx context.Context, in *ReadHistoryRequest, opts ...grpc.CallOption) (*ReadHistoryResponse, error) {
-	out := new(ReadHistoryResponse)
-	err := c.cc.Invoke(ctx, "/maincontrol.MainControl/ReadHistory", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *mainControlClient) ReadHistoryList(ctx context.Context, in *ReadHistoryListRequest, opts ...grpc.CallOption) (*ReadHistoryListResponse, error) {
 	out := new(ReadHistoryListResponse)
 	err := c.cc.Invoke(ctx, "/maincontrol.MainControl/ReadHistoryList", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *mainControlClient) UpdateHistory(ctx context.Context, in *UpdateHistoryRequest, opts ...grpc.CallOption) (*UpdateHistoryResponse, error) {
-	out := new(UpdateHistoryResponse)
-	err := c.cc.Invoke(ctx, "/maincontrol.MainControl/UpdateHistory", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *mainControlClient) DeleteHistory(ctx context.Context, in *DeleteHistoryRequest, opts ...grpc.CallOption) (*DeleteHistoryResponse, error) {
-	out := new(DeleteHistoryResponse)
-	err := c.cc.Invoke(ctx, "/maincontrol.MainControl/DeleteHistory", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -548,11 +508,7 @@ type MainControlServer interface {
 	UpdateSensor(context.Context, *UpdateSensorRequest) (*UpdateSensorResponse, error)
 	DeleteSensor(context.Context, *DeleteSensorRequest) (*DeleteSensorResponse, error)
 	// History
-	CreateHistory(context.Context, *CreateHistoryRequest) (*CreateHistoryResponse, error)
-	ReadHistory(context.Context, *ReadHistoryRequest) (*ReadHistoryResponse, error)
 	ReadHistoryList(context.Context, *ReadHistoryListRequest) (*ReadHistoryListResponse, error)
-	UpdateHistory(context.Context, *UpdateHistoryRequest) (*UpdateHistoryResponse, error)
-	DeleteHistory(context.Context, *DeleteHistoryRequest) (*DeleteHistoryResponse, error)
 	// Group
 	CreateGroup(context.Context, *CreateGroupRequest) (*CreateGroupResponse, error)
 	ReadGroup(context.Context, *ReadGroupRequest) (*ReadGroupResponse, error)
@@ -645,20 +601,8 @@ func (UnimplementedMainControlServer) UpdateSensor(context.Context, *UpdateSenso
 func (UnimplementedMainControlServer) DeleteSensor(context.Context, *DeleteSensorRequest) (*DeleteSensorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteSensor not implemented")
 }
-func (UnimplementedMainControlServer) CreateHistory(context.Context, *CreateHistoryRequest) (*CreateHistoryResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateHistory not implemented")
-}
-func (UnimplementedMainControlServer) ReadHistory(context.Context, *ReadHistoryRequest) (*ReadHistoryResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ReadHistory not implemented")
-}
 func (UnimplementedMainControlServer) ReadHistoryList(context.Context, *ReadHistoryListRequest) (*ReadHistoryListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReadHistoryList not implemented")
-}
-func (UnimplementedMainControlServer) UpdateHistory(context.Context, *UpdateHistoryRequest) (*UpdateHistoryResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateHistory not implemented")
-}
-func (UnimplementedMainControlServer) DeleteHistory(context.Context, *DeleteHistoryRequest) (*DeleteHistoryResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteHistory not implemented")
 }
 func (UnimplementedMainControlServer) CreateGroup(context.Context, *CreateGroupRequest) (*CreateGroupResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateGroup not implemented")
@@ -1102,42 +1046,6 @@ func _MainControl_DeleteSensor_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MainControl_CreateHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateHistoryRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MainControlServer).CreateHistory(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/maincontrol.MainControl/CreateHistory",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MainControlServer).CreateHistory(ctx, req.(*CreateHistoryRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _MainControl_ReadHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ReadHistoryRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MainControlServer).ReadHistory(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/maincontrol.MainControl/ReadHistory",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MainControlServer).ReadHistory(ctx, req.(*ReadHistoryRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _MainControl_ReadHistoryList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ReadHistoryListRequest)
 	if err := dec(in); err != nil {
@@ -1152,42 +1060,6 @@ func _MainControl_ReadHistoryList_Handler(srv interface{}, ctx context.Context, 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MainControlServer).ReadHistoryList(ctx, req.(*ReadHistoryListRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _MainControl_UpdateHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateHistoryRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MainControlServer).UpdateHistory(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/maincontrol.MainControl/UpdateHistory",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MainControlServer).UpdateHistory(ctx, req.(*UpdateHistoryRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _MainControl_DeleteHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteHistoryRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MainControlServer).DeleteHistory(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/maincontrol.MainControl/DeleteHistory",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MainControlServer).DeleteHistory(ctx, req.(*DeleteHistoryRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1694,24 +1566,8 @@ var MainControl_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _MainControl_DeleteSensor_Handler,
 		},
 		{
-			MethodName: "CreateHistory",
-			Handler:    _MainControl_CreateHistory_Handler,
-		},
-		{
-			MethodName: "ReadHistory",
-			Handler:    _MainControl_ReadHistory_Handler,
-		},
-		{
 			MethodName: "ReadHistoryList",
 			Handler:    _MainControl_ReadHistoryList_Handler,
-		},
-		{
-			MethodName: "UpdateHistory",
-			Handler:    _MainControl_UpdateHistory_Handler,
-		},
-		{
-			MethodName: "DeleteHistory",
-			Handler:    _MainControl_DeleteHistory_Handler,
 		},
 		{
 			MethodName: "CreateGroup",
