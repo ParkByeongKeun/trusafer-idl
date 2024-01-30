@@ -418,53 +418,6 @@ message ReadPlaceListResponse {
   repeated Place place_list = 1;
 }
 
-
-// message ip_module {
-//   uint64 id = 1;
-//   uint64 settop_id = 2;
-//   string ip_address = 3;
-//   string mac_address = 4;
-//   string firmware_version = 5;
-// }
-
-
-// // ip_module 등록
-// message CreateIpModuleRequest {
-//   ip_module ip_module = 1;
-// }
-// message CreateIpModuleResponse {
-// }
-
-// // ip_module 수정
-// message UpdateIpModuleRequest {
-//   ip_module ip_module = 1;
-// }
-// message UpdateIpModuleResponse {
-// }
-
-// // ip_module 삭제
-// message DeleteIpModuleRequest {
-//   uint64 ip_module_id = 1;
-// }
-// message DeleteIpModuleResponse {
-// }
-
-// // 특정 ip_module 가져오기
-// message ReadIpModuleRequest {
-//   uint64 ip_module_id = 1;
-// }
-// message ReadIpModuleResponse {
-//   ip_module ip_module = 1;
-// }
-
-// // ip_module list 가져오기
-// message ReadIpModuleListRequest {
-//   uint64 settop_id = 1;
-// }
-// message ReadIpModuleListResponse {
-//   repeated ip_module ip_module_list = 1;
-// }
-
 message Settop {
   string uuid = 1;
   string place_uuid = 2;
@@ -755,19 +708,17 @@ message Log {
   string place = 1;
   string floor = 2;
   string room = 3;
-  string settop_serial = 4;
-  string sensor_serial = 5;
-  TypeStatus type = 6;
-  string registered_time = 7;
+  string sensor_name = 4;
+  TypeStatus type = 5;
+  string registered_time = 6;
 }
 
 // log
 message LogListRequest {
-  string settop_serial = 1;
+  string registerer_uuid = 1;
   string sensor_serial = 2;
   uint64 cursor = 3;
   uint64 count = 4;
-  repeated string mobile_bulk_sensor_serial = 5;
 }
 message LogListResponse {
   repeated Log log = 1;
