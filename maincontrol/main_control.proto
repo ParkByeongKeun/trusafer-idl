@@ -704,7 +704,7 @@ enum TypeStatus {
   TYPE_STATUS_Inspection = 5; //점검
 }
 
-message Log {
+message LogItem {
   string place = 1;
   string floor = 2;
   string room = 3;
@@ -721,7 +721,7 @@ message LogListRequest {
   uint64 count = 4;
 }
 message LogListResponse {
-  repeated Log log = 1;
+  repeated LogItem log = 1;
 }
 
 //read
