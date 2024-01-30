@@ -497,6 +497,7 @@ message SettopInfo {
 // settop 등록
 message CreateSettopRequest {
   Settop settop = 1;
+  repeated string group_uuid = 2;
 }
 message CreateSettopResponse {
   string uuid = 1;
@@ -741,22 +742,32 @@ message SubscribeFirebaseRequest {
 message SubscribeFirebaseResponse {
 }
 
+enum TypeStatus {
+  TYPE_STATUS_Disconnected = 0; // 연결 끊김
+  TYPE_STATUS_Connected = 1; // 연결
+  TYPE_STATUS_Normal = 2; // 정상
+  TYPE_STATUS_Warning = 3; // 주의
+  TYPE_STATUS_Danger = 4; // 위험
+  TYPE_STATUS_Inspection = 5; //점검
+}
+
 message Log {
-  string uuid = 1;
-  string unit = 2;
-  string message = 3;
-  string registered_time = 4;
+  string place = 1;
+  string floor = 2;
+  string room = 3;
+  string settop_serial = 4;
   string sensor_serial = 5;
+  TypeStatus type = 6;
+  string registered_time = 7;
 }
 
 // log
 message LogListRequest {
-  string registerer_uuid = 1;
-  string unit = 2;               //  1."mobile" , 2."web" , 3. "anomaly"
-  string sensor_serial = 3;
-  uint64 cursor = 4;
-  uint64 count = 5;
-  repeated string mobile_bulk_sensor_serial = 6;
+  string settop_serial = 1;
+  string sensor_serial = 2;
+  uint64 cursor = 3;
+  uint64 count = 4;
+  repeated string mobile_bulk_sensor_serial = 5;
 }
 message LogListResponse {
   repeated Log log = 1;
