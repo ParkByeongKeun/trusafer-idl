@@ -696,12 +696,13 @@ message SubscribeFirebaseResponse {
 }
 
 enum TypeStatus {
-  TYPE_STATUS_Disconnected = 0; // 연결 끊김
-  TYPE_STATUS_Connected = 1; // 연결
-  TYPE_STATUS_Normal = 2; // 정상
-  TYPE_STATUS_Warning = 3; // 주의
-  TYPE_STATUS_Danger = 4; // 위험
-  TYPE_STATUS_Inspection = 5; //점검
+  TYPE_STATUS_Normal = 0; // 정상
+  TYPE_STATUS_Warning = 1; // 주의
+  TYPE_STATUS_Danger = 2; // 위험
+  TYPE_STATUS_Connected = 3; // 센서 연결
+  TYPE_STATUS_Disconnected = 4; // 센서 연결 끊김
+  TYPE_STATUS_Online = 5; //ipmodule 연결 (online)
+  TYPE_STATUS_Offline = 6; //ipmodule 연결 끊김 (offline)
 }
 
 message LogItem {
