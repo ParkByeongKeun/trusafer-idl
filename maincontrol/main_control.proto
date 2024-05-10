@@ -277,20 +277,23 @@ service MainControl {
     };
   }  
   
-
   rpc ReadFirebaseTopicList (ReadFirebaseTopicListRequest) returns (ReadFirebaseTopicListResponse) {
     option (google.api.http) = {
       get: "/api/main/v1/firebase_topic_list"
     };
   }
   
-  // /* Share */
-  // rpc CreateShareUser(CreateShareRequest) returns (CreateShareResponse) {}
-  // rpc DeleteShareUser(DeleteShareRequest) returns (DeleteShareResponse) {}
-  // rpc UpdateShareUser(UpdateShareRequest) returns (UpdateShareResponse) {}
-  // rpc ReadShareUser(ReadShareRequest) returns (ReadShareResponse) {}
-  // rpc ReadShareUserList(ReadShareListRequest) returns (ReadShareListResponse) {}
+  rpc ReadLocalPushDataSensor(ReadLocalPushDataSensorRequest) returns (ReadLocalPushDataSensorResponse) {
+    option (google.api.http) = {
+      get: "/api/main/v1/local_push_data_sensor"
+  };
+  }
 
+  rpc ReadLocalPushDataIpmodule(ReadLocalPushDataIpmoduleRequest) returns (ReadLocalPushDataIpmoduleResponse) {
+    option (google.api.http) = {
+      get: "/api/main/v1/local_push_data_ipmodule"
+  };
+  }
 }
 
 
@@ -630,7 +633,7 @@ message Permission {
 
 // permission 등록
 message CreatePermissionRequest {
-  Permission Permission = 1;
+  Permission permission = 1;
 }
 message CreatePermissionResponse {
   string uuid = 1;
@@ -661,8 +664,6 @@ message ReadPermissionListResponse {
 message FindEmailRequest {
   string name = 1;
   string phone_number = 2;
-  // string company_name = 2;
-  // string company_number = 3;
 }
 message FindEmailResponse {
   string email = 1;
@@ -684,11 +685,11 @@ message ImageRequest {
 }
 
 message ImageChunk {
-  string tempImage = 1;
+  string temp_image = 1;
 }
 
 message SubscribeFirebaseRequest {
-  bool isSubscribe = 1;
+  bool is_subscribe = 1;
   string token = 2;
   repeated string group_uuid = 3;
 }
@@ -790,7 +791,7 @@ message ReadSettopGroupListResponse {
 
 message MainGroup {
   string name = 1;
-  repeated Registerer registererList = 2;
+  repeated Registerer registerer_list = 2;
 }
 
 // group list
@@ -803,7 +804,7 @@ message MainGroupListResponse {
 message MainSettop {
   string serial = 1;
   string address = 2;
-  repeated Group groupList = 3;
+  repeated Group group_list = 3;
 }
 
 message MainSettopListRequest {
@@ -815,5 +816,28 @@ message MainSettopListResponse {
 message ReadFirebaseTopicListRequest {
 }
 message ReadFirebaseTopicListResponse {
-  repeated Group groupList = 3;
+  repeated Group group_list = 1;
+}
+
+// local push를 위한 필요 데이터 가져오기
+message ReadLocalPushDataSensorRequest {
+  string settop_serial = 1;
+  string sensor_serial = 2;
+}
+message ReadLocalPushDataSensorResponse {
+  repeated string group_uuid_list = 1;
+  string sensor_name = 2;
+  string sensor_uuid = 3;
+  string settop_uuid = 4;
+}
+
+message ReadLocalPushDataIpmoduleRequest {
+  string settop_serial = 1;
+  string mac = 2;
+}
+message ReadLocalPushDataIpmoduleResponse {
+  repeated string group_uuid_list = 1;
+  repeated string sensor_name_list = 2;
+  repeated string sensor_uuid_list = 3;
+  string settop_uuid = 4;
 }

@@ -73,6 +73,8 @@ type MainControlClient interface {
 	MainGroupList(ctx context.Context, in *MainGroupListRequest, opts ...grpc.CallOption) (*MainGroupListResponse, error)
 	MainSettopList(ctx context.Context, in *MainSettopListRequest, opts ...grpc.CallOption) (*MainSettopListResponse, error)
 	ReadFirebaseTopicList(ctx context.Context, in *ReadFirebaseTopicListRequest, opts ...grpc.CallOption) (*ReadFirebaseTopicListResponse, error)
+	ReadLocalPushDataSensor(ctx context.Context, in *ReadLocalPushDataSensorRequest, opts ...grpc.CallOption) (*ReadLocalPushDataSensorResponse, error)
+	ReadLocalPushDataIpmodule(ctx context.Context, in *ReadLocalPushDataIpmoduleRequest, opts ...grpc.CallOption) (*ReadLocalPushDataIpmoduleResponse, error)
 }
 
 type mainControlClient struct {
@@ -479,6 +481,24 @@ func (c *mainControlClient) ReadFirebaseTopicList(ctx context.Context, in *ReadF
 	return out, nil
 }
 
+func (c *mainControlClient) ReadLocalPushDataSensor(ctx context.Context, in *ReadLocalPushDataSensorRequest, opts ...grpc.CallOption) (*ReadLocalPushDataSensorResponse, error) {
+	out := new(ReadLocalPushDataSensorResponse)
+	err := c.cc.Invoke(ctx, "/maincontrol.MainControl/ReadLocalPushDataSensor", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mainControlClient) ReadLocalPushDataIpmodule(ctx context.Context, in *ReadLocalPushDataIpmoduleRequest, opts ...grpc.CallOption) (*ReadLocalPushDataIpmoduleResponse, error) {
+	out := new(ReadLocalPushDataIpmoduleResponse)
+	err := c.cc.Invoke(ctx, "/maincontrol.MainControl/ReadLocalPushDataIpmodule", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MainControlServer is the server API for MainControl service.
 // All implementations must embed UnimplementedMainControlServer
 // for forward compatibility
@@ -534,6 +554,8 @@ type MainControlServer interface {
 	MainGroupList(context.Context, *MainGroupListRequest) (*MainGroupListResponse, error)
 	MainSettopList(context.Context, *MainSettopListRequest) (*MainSettopListResponse, error)
 	ReadFirebaseTopicList(context.Context, *ReadFirebaseTopicListRequest) (*ReadFirebaseTopicListResponse, error)
+	ReadLocalPushDataSensor(context.Context, *ReadLocalPushDataSensorRequest) (*ReadLocalPushDataSensorResponse, error)
+	ReadLocalPushDataIpmodule(context.Context, *ReadLocalPushDataIpmoduleRequest) (*ReadLocalPushDataIpmoduleResponse, error)
 	mustEmbedUnimplementedMainControlServer()
 }
 
@@ -672,6 +694,12 @@ func (UnimplementedMainControlServer) MainSettopList(context.Context, *MainSetto
 }
 func (UnimplementedMainControlServer) ReadFirebaseTopicList(context.Context, *ReadFirebaseTopicListRequest) (*ReadFirebaseTopicListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReadFirebaseTopicList not implemented")
+}
+func (UnimplementedMainControlServer) ReadLocalPushDataSensor(context.Context, *ReadLocalPushDataSensorRequest) (*ReadLocalPushDataSensorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReadLocalPushDataSensor not implemented")
+}
+func (UnimplementedMainControlServer) ReadLocalPushDataIpmodule(context.Context, *ReadLocalPushDataIpmoduleRequest) (*ReadLocalPushDataIpmoduleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReadLocalPushDataIpmodule not implemented")
 }
 func (UnimplementedMainControlServer) mustEmbedUnimplementedMainControlServer() {}
 
@@ -1478,6 +1506,42 @@ func _MainControl_ReadFirebaseTopicList_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MainControl_ReadLocalPushDataSensor_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReadLocalPushDataSensorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MainControlServer).ReadLocalPushDataSensor(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/maincontrol.MainControl/ReadLocalPushDataSensor",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MainControlServer).ReadLocalPushDataSensor(ctx, req.(*ReadLocalPushDataSensorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MainControl_ReadLocalPushDataIpmodule_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReadLocalPushDataIpmoduleRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MainControlServer).ReadLocalPushDataIpmodule(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/maincontrol.MainControl/ReadLocalPushDataIpmodule",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MainControlServer).ReadLocalPushDataIpmodule(ctx, req.(*ReadLocalPushDataIpmoduleRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MainControl_ServiceDesc is the grpc.ServiceDesc for MainControl service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1660,6 +1724,14 @@ var MainControl_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ReadFirebaseTopicList",
 			Handler:    _MainControl_ReadFirebaseTopicList_Handler,
+		},
+		{
+			MethodName: "ReadLocalPushDataSensor",
+			Handler:    _MainControl_ReadLocalPushDataSensor_Handler,
+		},
+		{
+			MethodName: "ReadLocalPushDataIpmodule",
+			Handler:    _MainControl_ReadLocalPushDataIpmodule_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
